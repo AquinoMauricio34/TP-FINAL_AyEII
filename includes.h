@@ -29,5 +29,6 @@
 #include"funciones/clientes/buscar_actividad.c"
 #include"funciones/clientes/buscar_dni_cliente.c"
 #include"funciones/clientes/modificar_cliente.c"
+#include"funciones/clientes/buscar_nodo_cliente.c"
 #endif
 //holis
