@@ -21,5 +21,14 @@
 #include"funciones/profesores/buscar_dni_profesor.c"
 #include"funciones/profesores/modificar_profesor.c"
 
+
+#include"funciones/tipo_turnos/ABM_tipo_turno.c"
+
+// clientes
+#include"funciones/clientes/ABM_cliente.c"
+#include"funciones/clientes/buscar_actividad.c"
+#include"funciones/clientes/buscar_dni_cliente.c"
+#include"funciones/clientes/modificar_cliente.c"
+#include"funciones/clientes/buscar_nodo_cliente.c"
 #endif
 //holis
