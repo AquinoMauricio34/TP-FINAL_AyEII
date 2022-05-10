@@ -13,5 +13,9 @@ void insertar_profesor(profesor **nv, profesor **ini_profesor);
 void listar_codigo_actividades(actividad *ini);
 void modificar_profesor(long int dato,int op,profesor **ini_profesor);
 void vacio_reserva(reserva *S);
-
+// clientes
+void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad);
+int buscar_dni_cliente(long int dni,cliente *ini_cliente);
+void insertar_cliente(cliente **nv, cliente **ini_cliente);
+void modificar_cliente(long int dato,int op,cliente **ini_cliente);
 #endif
