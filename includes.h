@@ -21,5 +21,8 @@
 #include"funciones/profesores/buscar_dni_profesor.c"
 #include"funciones/profesores/modificar_profesor.c"
 
+
+#include"funciones/tipo_turnos/ABM_tipo_turno.c"
+
 #endif
 //holis
