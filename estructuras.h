@@ -28,7 +28,7 @@ typedef struct{
 typedef struct{
 	int cod_act,cod_turno;
 	float precio;
-	hora hora_turno;
+	hora hora_inicio_turno,hora_fin_turno;
 	int dias[5];/*
 	cada espacio en el vector representa un dia de la semana (de lunes a viernes). EL 0 represente no y el 1 representa si.
 	EJ: para poner dias lun, mierc, vier seria dias[0]=1 (lunes si), dias[1]=0 (martes no), dias[2]=1 (miercoles si), dias[3]=0 (jueves no), dias[4]=1 (viernes si)
