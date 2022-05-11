@@ -6,7 +6,7 @@
 #include<string.h>
 #include"../../estructuras.h"
 #include"../../prototipos.h"
-void ABM_profesores(profesor **ini_profesor,actividad **ini_actividad){
+void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad){
 	profesor *nv=NULL;
 	int op,buscar=0,dni_profesor,buscar_dni=0,op_mod;
 	long int buscar_borrar,modificar;
@@ -114,11 +114,12 @@ void ABM_profesores(profesor **ini_profesor,actividad **ini_actividad){
 					do{
 						printf("1-modificar nombre del profesor\n");
 						printf("2-modificar telefono del profesor\n");
+						printf("3-modificar actividad del profesor\n");
 						//agregar opcion para modificar la actividad del profesor (trabajo Mauri)
 						printf("0-Finalizar\n");
 						scanf("%d",&op_mod);
-					}while(op_mod<0 || op_mod>2);
-					modificar_profesor(modificar,op_mod,&*ini_profesor);
+					}while(op_mod<0 || op_mod>3);
+					modificar_profesor(modificar,op_mod,&*ini_profesor,ini_actividad);
 				}
 			break;
 
