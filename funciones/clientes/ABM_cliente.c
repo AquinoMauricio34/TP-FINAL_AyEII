@@ -21,6 +21,7 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad){
 		
 		switch(op){
 			case 1://aniadir un nuevo cliente
+				//se debe pedir espacio en la memoria ------------------------------------------------------------------
 				do{//mientras se encuentre el dni ingresado o el dni es igual a 0, el bucle se repetira
 					listar_codigo_actividades(*ini_actividad);
 					printf("ingrese el codigo de la actividad que desee\n");
