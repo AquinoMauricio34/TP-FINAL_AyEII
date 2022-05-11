@@ -114,6 +114,7 @@ void ABM_profesores(profesor **ini_profesor,actividad **ini_actividad){
 					do{
 						printf("1-modificar nombre del profesor\n");
 						printf("2-modificar telefono del profesor\n");
+						//agregar opcion para modificar la actividad del profesor (trabajo Mauri)
 						printf("0-Finalizar\n");
 						scanf("%d",&op_mod);
 					}while(op_mod<0 || op_mod>2);
