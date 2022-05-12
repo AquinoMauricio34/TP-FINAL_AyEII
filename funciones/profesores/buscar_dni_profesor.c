@@ -12,6 +12,7 @@ int buscar_dni_profesor(long int dni,profesor *ini_profesor){
 	while(ini_profesor != NULL){
 		if(ini_profesor->cod_act == dni){
 			buscar = 1;
+			ini_profesor = NULL;
 		}else{
 			buscar = 0;
 		}

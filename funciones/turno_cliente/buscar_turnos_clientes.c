@@ -10,7 +10,7 @@
 int buscar_turno(int turno,tipo_turno *ini_turno){
 	int buscar=0;
 	while(ini_turno != NULL){
-		if(ini_actividad->cod_turno == turno){
+		if(ini_turno->cod_turno == turno){
 			buscar = 1;
 			ini_turno = NULL;
 		}else{
