@@ -12,8 +12,23 @@ int main(){
     
     do{
     //opciones a elegir
-        printf("ABM Profesores");
-    }while(opcion<0 || );
+        printf("1. ABM Profesores\n");
+        printf("2. ABM Reservas\n");
+        printf("3. ABM Cliente\n");
+        printf("0. Cerrar Programa");
+    }while(opcion<0 || opcion>3);
+
+    switch(opcion){
+        case 1:
+            // ABM_profesores();
+        break;
+        case 2:
+            // ABM_reservas();
+        break;
+        case 3:
+            // ABM_clientes();
+        break;
+    }
 
 
     return 0;
