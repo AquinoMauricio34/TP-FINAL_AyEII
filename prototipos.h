@@ -7,6 +7,7 @@ void insertar_reserva(reserva **nv,reserva **ini_reserva);
 void borrar_nodo_reserva(long int dni_borrar, reserva **ini);
 void buscar_borrar_reserva(long int dni_borrar,reserva **rc,reserva **ant,int *proceder);
 int buscar_dni_reserva(long int dni,reserva *ini_reserva);
+void listar_reservas(reserva *ini);
 
 void insertar_profesor(profesor **nv, profesor **ini_profesor);
 int buscar_dni_profesor(long int dni,profesor *ini_profesor);

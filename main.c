@@ -14,10 +14,11 @@ int main(){
     //llamado a funciones de verificacion de fecha, borrado o activacion de actividades/tipo_turnos
     do{
         do{
+            system("cls");
         //opciones a elegir
             printf("1. ABM Profesores\n");
             printf("2. ABM Reservas\n");
-            printf("3. ABM Cliente\n");
+            printf("3. Listas Reservas\n");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
         }while(opcion<0 || opcion>3);
@@ -27,10 +28,13 @@ int main(){
                 // ABM_profesores();
             break;
             case 2:
+                system("cls");
                 ABM_reservas(&ini_reserva);
             break;
             case 3:
-                // ABM_clientes();
+                system("cls");
+                listar_reservas(ini_reserva);
+                system("pause");
             break;
         }
     }while(opcion != 0);

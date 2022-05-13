@@ -8,6 +8,7 @@
 #include"funciones/reservas/insertar_reserva.c"
 #include"funciones/reservas/ABM_reservas.c"
 #include"funciones/reservas/buscar_dni_reserva.c"
+#include"funciones/reservas/listar_reservas.c"
 
 // profesores
 

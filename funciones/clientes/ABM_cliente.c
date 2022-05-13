@@ -55,8 +55,8 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad){
 
 				if(buscar_borrar != 0){//si ebcontro el dni
 					printf("Esta seguro/a de que quiere eliminar al cliente (1. SI | 0. NO): ");
-					scanf("%d",&op);
-					if(op == 1){
+					scanf("%d",&op_mod);
+					if(op_mod == 1){
 					//	borrar_Tcliente(buscar_borrar,&*ini_cliente);
 						borrar_nodo_cliente(buscar_borrar,&*ini_cliente);
 					}
