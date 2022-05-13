@@ -38,11 +38,8 @@ void ABM_reservas(reserva **ini_reserva){
                     do{
                         printf("Esta seguro de que quiere realizar la reserva? (1.Si | 0.No): ");scanf("%d",&opcion);
                     }while(opcion<0 || opcion>1);
-                    printf("\n11111111111\n");
                     if(opcion){
-                        printf("\n22222222222\n");
                         insertar_reserva(&nv,&*ini_reserva);
-                        printf("\n333333333333\n");
                     }
                 }
             break;
@@ -58,7 +55,6 @@ void ABM_reservas(reserva **ini_reserva){
                     printf("Esta seguro/a de que quiere eliminar al cliente (1. SI | 0. NO): ");
                     scanf("%d",&op);
                     if(op == 1){
-                    //	borrar_Tcliente(buscar_borrar,&*ini_cliente);
                         borrar_nodo_reserva(dni_quitar,&*ini_reserva);
                     }
                 }
@@ -68,6 +64,172 @@ void ABM_reservas(reserva **ini_reserva){
             break;
         }
     }while(opcion != 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void borrar_nodo_reserva(long int dni_borrar, reserva **ini){
+	reserva *bor=NULL,*ant=NULL,*aux=NULL;
+	int proceder = 0;
+	bor = *ini;
+	buscar_borrar_reserva(dni_borrar,&bor,&ant,&proceder);
+	if(bor != NULL){
+		if(ant==NULL){
+			*ini = (*ini)->sgte;
+			bor->sgte = NULL;
+			if(*ini!=NULL){
+				(*ini)->ant = NULL;
+			}
+			printf("d\n");
+		}else{
+			ant->sgte = bor->sgte;
+			if(bor->sgte != NULL){
+				aux = bor->sgte;
+				aux->ant = ant;
+				bor->sgte = NULL;
+				aux = NULL;
+			}else
+			bor->ant = NULL;
+			ant = NULL;
+		}
+	}
+	free(bor);
+
+}	
+
+void buscar_borrar_reserva(long int dni_borrar,reserva **rc,reserva **ant,int *proceder){
+	*proceder = 0;
+	
+	*ant = NULL;
+	while(rc!=NULL && *proceder == 0){
+		if((*rc)->dni == dni_borrar){
+			*proceder = 1;
+		}else{
+			*ant = *rc;
+			*rc = (*rc)->sgte;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int buscar_dni_reserva(long int dni,reserva *ini_reserva){
+    int encontrado=0;
+	while(ini_reserva != NULL && encontrado != 1){
+		if(ini_reserva->dni == dni){
+			printf("\nddddddd\n");
+			encontrado = 1;
+		}else{
+			encontrado = 0;
+		}
+		ini_reserva = ini_reserva->sgte;
+	}
+	
+	return encontrado;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void insertar_reserva(reserva **nv,reserva **ini_reserva){
+    reserva *aux=NULL;
+    aux=*ini_reserva;
+    if(*ini_reserva != NULL){
+
+        while(aux->sgte != NULL){
+            aux = aux->sgte;
+        }
+
+        aux->sgte = *nv;
+        (*nv)->ant = aux;
+        *nv = NULL;
+    }else{
+        *ini_reserva = *nv;
+        *nv = NULL;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void listar_reservas(reserva *ini){
+	if(ini!=NULL){
+		while(ini != NULL){
+			printf("%-10ld| %30s| %10ld| %d/%d/%d\n",ini->dni,ini->nombre,ini->telefono,ini->f_nacimiento.dd,ini->f_nacimiento.mm,ini->f_nacimiento.yy);
+			ini = ini->sgte;
+		}
+	}else
+		printf("\nSIN RESERVAS\n");
 }
 
 #endif
