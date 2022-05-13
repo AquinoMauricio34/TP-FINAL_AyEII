@@ -11,7 +11,7 @@ int buscar_actividades(int codigo,actividad *ini_actividad){
 	while(ini_actividad != NULL){
 		if(ini_actividad->cod_act == codigo){
 			buscar = 1;
-			ini_activividad = NULL;
+			ini_actividad = NULL;
 		}else{
 			buscar = 0;
 		}

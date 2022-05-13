@@ -21,7 +21,7 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 					scanf("%d",&sede);
 					//chequear si no existe el codigo
 					do{//mientras se encuentre el dni ingresado o el dni es igual a 0, el bucle se repetira
-						listar_codigo_actividades(*ini_actividad);
+						listar_actividades(*ini_actividad);
 						printf("ingrese el codigo de la actividad que desee\n");
                    			scanf("%d",&cod_act);
 						buscar = buscar_actividades(cod_act,ini_actividad);

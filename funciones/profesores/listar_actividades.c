@@ -4,8 +4,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include"../estructuras.h"
-#include"../prototipos.h"
+#include"../../estructuras.h"
+#include"../../prototipos.h"
 
 void listar_actividades(actividad *ini){
 	while(ini != NULL){
