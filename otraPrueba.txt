@@ -6,10 +6,5 @@ df
 
 asdffasdfasdf
 
-asdff
-asdf
-
-int main(){
-    printf("Hello World");
     return 0;
 }
