@@ -52,6 +52,7 @@ typedef struct{
 }profesor;
 
 typedef struct{
+	int cod_act,cod_turno;
 	long int dni,telefono;
 	fecha f_nacimiento;
 	char nombre[100];
