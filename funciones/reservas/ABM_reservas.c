@@ -9,7 +9,7 @@
 
 void ABM_reservas(reserva **ini_reserva){
     int opcion,encontrado,buscar,op;
-    long int dni_quitar;
+    long int dni_cliente;
     reserva *nv=NULL;
     do{
 
@@ -27,35 +27,46 @@ void ABM_reservas(reserva **ini_reserva){
             case 1:
                 nv = malloc(sizeof(reserva));
                 if(nv != NULL){
-                    fflush(stdin);
-                    printf("Ingresar nombre del cliente: ");gets(nv->nombre);
-                    //DO WHILE PARA EL DNI------------------------------------------------------
-                    printf("Ingresar DNI del cliente: ");scanf("%ld",&nv->dni);
-                    printf("Ingresar telefono del cliente: ");scanf("%ld",&nv->telefono);
-                    printf("Ingresar fecha de nacimiento del cliente (formato dd/mm/aa): ");scanf("%d/%d/%d",&nv->f_nacimiento.dd,&nv->f_nacimiento.mm,&nv->f_nacimiento.yy);
-                    nv->ant = NULL;
-                    nv->sgte = NULL;
+                    buscar = -1;
                     do{
-                        printf("Esta seguro de que quiere realizar la reserva? (1.Si | 0.No): ");scanf("%d",&opcion);
-                    }while(opcion<0 || opcion>1);
-                    if(opcion){
-                        insertar_reserva(&nv,&*ini_reserva);
+                        if(buscar != -1){
+                            printf("El dni ingresado ya esta registrado al sistema.\n");
+                        }
+                        printf("Ingresar dni del cliente: ");scanf("%ld",&dni_cliente);
+                        buscar = buscar_dni_reserva(dni_cliente,*ini_reserva);
+                    }while(buscar == 1 && dni_cliente != 0);
+
+                    if(dni_cliente != 0){
+                        fflush(stdin);
+                        printf("Ingresar nombre del cliente: ");gets(nv->nombre);
+                        //DO WHILE PARA EL DNI------------------------------------------------------
+                        nv->dni = dni_cliente;
+                        printf("Ingresar telefono del cliente: ");scanf("%ld",&nv->telefono);
+                        printf("Ingresar fecha de nacimiento del cliente (formato dd/mm/aa): ");scanf("%d/%d/%d",&nv->f_nacimiento.dd,&nv->f_nacimiento.mm,&nv->f_nacimiento.yy);
+                        nv->ant = NULL;
+                        nv->sgte = NULL;
+                        do{
+                            printf("Esta seguro de que quiere realizar la reserva? (1.Si | 0.No): ");scanf("%d",&opcion);
+                        }while(opcion<0 || opcion>1);
+                        if(opcion){
+                            insertar_reserva(&nv,&*ini_reserva);
+                        }
                     }
                 }
+
             break;
             case 2:
                 buscar = 0;
                 do{
-                    printf("Ingresar dni guardado en el reserva: ");scanf("%ld",&dni_quitar);
-                    buscar = buscar_dni_reserva(dni_quitar,*ini_reserva);
+                    printf("Ingresar dni guardado en el reserva: ");scanf("%ld",&dni_cliente);
+                    buscar = buscar_dni_reserva(dni_cliente,*ini_reserva);
+                }while(buscar != 1 && dni_cliente != 0);
 
-                }while(buscar != 1 && dni_quitar != 0);
-
-                if(dni_quitar!=0){
+                if(dni_cliente!=0){
                     printf("Esta seguro/a de que quiere eliminar al cliente (1. SI | 0. NO): ");
                     scanf("%d",&op);
                     if(op == 1){
-                        borrar_nodo_reserva(dni_quitar,&*ini_reserva);
+                        borrar_nodo_reserva(dni_cliente,&*ini_reserva);
                     }
                 }
             break;
@@ -154,7 +165,6 @@ int buscar_dni_reserva(long int dni,reserva *ini_reserva){
     int encontrado=0;
 	while(ini_reserva != NULL && encontrado != 1){
 		if(ini_reserva->dni == dni){
-			printf("\nddddddd\n");
 			encontrado = 1;
 		}else{
 			encontrado = 0;
@@ -231,5 +241,6 @@ void listar_reservas(reserva *ini){
 	}else
 		printf("\nSIN RESERVAS\n");
 }
+
 
 #endif
