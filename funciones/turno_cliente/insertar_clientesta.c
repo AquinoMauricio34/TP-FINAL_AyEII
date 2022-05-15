@@ -9,10 +9,10 @@
 void insertar_clientesta(turno_cliente **nv,turno_cliente **ini_clientesta){
 turno_cliente *aux = *ini_clientesta;
 if(*ini_clientesta != NULL){
-     while(aux<-sgte!= NULL){
-        aux = aux<-sgte;
+     while(aux->sgte!= NULL){
+        aux = aux->sgte;
      }
-     aux<-sgte = *nv:
+     aux->sgte = *nv:
      *nv = NULL;
 }else{
       *ini_clientesta = *nv;
@@ -20,3 +20,4 @@ if(*ini_clientesta != NULL){
  }
 }
 #endif
+

@@ -18,4 +18,14 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad);
 int buscar_dni_cliente(long int dni,cliente *ini_cliente);
 void insertar_cliente(cliente **nv, cliente **ini_cliente);
 void modificar_cliente(long int dato,int op,cliente **ini_cliente);
+//turno_clientes
+void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad);
+void borrar_nodo_clientest(long int buscar_borrar,turno_cliente **ini_clientest);
+int buscar_actividades(int cod_act,int sede,actividad *ini_actividad);
+void buscar_borrar_clientest(long int dato,turno_cliente **bor,turno_cliente **ant);
+int buscar_dni_clientesta(long int dni,turno_cliente *ini_clientesta);
+int buscar_turno_clientesta(int turno,tipo_turno *ini_turno);
+void insertar_clientesta(turno_cliente **nv,turno_cliente **ini_clientesta);
+int buscar_dni_clientest(long int dni,turno_cliente *ini_clientesta,tipo_turno *ini_turno,actividad *ini_actividad);
+void recorrer_turnos(int cod_act,tipo_turno *ini_turno);
 #endif

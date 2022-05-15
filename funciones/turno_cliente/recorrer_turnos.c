@@ -10,7 +10,7 @@ void recorrer_turnos(int cod_act,tipo_turno *ini_turno){
 	int buscar=0;
 	while(ini_turno != NULL){
 		if(ini_turno->cod_act == cod_act){
-			printf("%d,%f,%d",ini_turno->cod_turno,ini_turno->precio,//chequear VECTOR ini_turno->dias);
+			printf("%d,%f,%d",ini_turno->cod_turno,ini_turno->precio);//chequear VECTOR ini_turno->dias);
 		}
 		ini_actividad = ini_actividad->sgte;
 	}
