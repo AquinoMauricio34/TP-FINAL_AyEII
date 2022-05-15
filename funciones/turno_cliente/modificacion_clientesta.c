@@ -18,20 +18,18 @@ int buscar_dni_clientest(long int dni,turno_cliente *ini_clientesta,tipo_turno *
 						recorrer_actividades(sede,*ini_actividad);
 						printf("ingrese el codigo de la actividad que desee\n");
                    			scanf("%d",&cod_act);//codigo y sede 
-						buscara = buscar_actividades(cod_act,sede,ini_actividad);
+						buscara = buscar_actividades_clientesta(cod_act,sede,*ini_actividad);
 				}while(buscara!=1 && nv->cod_act !=0);//modifcar por un or
 				if(buscara == 1){
 					do{//mientra no se encuentre el turno ingresado o es igual a 0, el bucle se repetira
 						recorrer_turnos(cod_act,*ini_turno);
 						printf("ingrese el turno que desee\n");
 						scanf("%d",&nv->cod_turno);
-						buscart = buscar_turno(nv->cod_turno,*ini_turno);
+						buscart = buscar_turno_clientesta(nv->cod_turno,*ini_turno);
 					}while(buscart!=1 && nv->cod_turno !=0);
 						if(buscart == 1){
-							printf("ingrese el turno que desee\n");
-							ini_clientesta = NULL;
-							busqueda = 1;
-					}
+							*ini_clientesta->cod_turno = nv->cod_turno;
+						}
 				}
 			}else
 				ini_clientesta = ini_clientesta->sgte;		
