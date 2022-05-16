@@ -18,6 +18,8 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 		scanf("%d",&op);
 		switch(op){
 			case 1:
+			nv = malloc(sizeof(reserva));
+			if(nv != NULL){
 				printf("ingrese la sede que desee 1-2\n");
 				scanf("%d",&sede);
 					//chequear si no existe el codigo
@@ -41,6 +43,7 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 				}
 			}else
 					printf("La sede ingresada es incorrecta\n");
+			}
 				break;
 
 
@@ -49,7 +52,7 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 
 
 
-				
+
 			case 2:
 					printf("ingrese el dni del cliente que se quiere dar de baja en el turno\n");
 					scanf("%ld",&buscar_borrar);
