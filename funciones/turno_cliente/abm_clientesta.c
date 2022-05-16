@@ -6,7 +6,6 @@
 #include<string.h>
 #include"../../estructuras.h"
 #include"../../prototipos.h"
-//ANALIZAR LOS CUPOS
 void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad){
 	tipo_turno *nv;
 	int op,buscar_act,buscar_turno,sede,cod_act,buscara,buscart;
@@ -25,14 +24,14 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 						recorrer_actividades(sede,*ini_actividad);
 						printf("ingrese el codigo de la actividad que desee\n");
                    			scanf("%d",&cod_act);//codigo y sede 
-						buscara = buscar_actividades_clientesta(cod_act,sede,*ini_actividad);
+						buscara = buscar_actividades(cod_act,sede,*ini_actividad);
 				}while(buscara!=1 && nv->cod_act !=0);//modifcar por un or
 				if(buscara == 1){
 					do{//mientra no se encuentre el turno ingresado o es igual a 0, el bucle se repetira
 						recorrer_turnos(cod_act,*ini_turno);
 						printf("ingrese el turno que desee\n");
 						scanf("%d",&nv->cod_turno);
-						buscart = buscar_turno_clientesta(nv->cod_turno,*ini_turno);
+						buscart = buscar_turno(nv->cod_turno,*ini_turno);
 					}while(buscart!=1 && nv->cod_turno !=0);
 						if(buscart == 1){
 							insertar_clientesta(&nv,&*ini_clientesta);
@@ -52,7 +51,7 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 			case 3:
 					printf("ingrese el dni del cliente que quiere modificar el turno\n");
 					scanf("%ld",&buscar_mod);
-					buscar_dni_clientes = buscar_dni_clientesta(buscar_mod,*ini_clientesta,ini_turno);
+					buscar_dni_clientes = buscar_dni_clientest(buscar_mod,*ini_clientesta,ini_turno);
 				
 			break;
 		}

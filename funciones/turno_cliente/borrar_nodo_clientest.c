@@ -10,7 +10,7 @@
 
 void borrar_nodo_clientest(long int buscar_borrar,turno_cliente **ini_clientest){
 turno_cliente *bor=*ini_clientest,*ant=NULL;
-buscar_borrar_clientest(dato,bor,ant);
+buscar_borrar_clientest(buscar_borrar,bor,ant);
 if(bor != NULL){
     if(ant != NULL){
        *ini_clientest = (*ini_clientest)->sgte;

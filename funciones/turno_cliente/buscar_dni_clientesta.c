@@ -7,7 +7,7 @@
 #include<string.h>
 #include"../../estructuras.h"
 #include"../../prototipos.h"
-int buscar_dni_clientest(long int dni,turno_cliente *ini_clientesta){
+int buscar_dni_clientesta(long int dni,turno_cliente *ini_clientesta){
     int buscar=0;
 	while(ini_clientesta != NULL){
 		if(ini_clientesta->dni == dni){
