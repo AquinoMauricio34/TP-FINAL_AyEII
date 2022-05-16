@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "estructuras.h": "c",
-        "prototipos.h": "c",
-        "stdlib.h": "c"
-    }
-}
