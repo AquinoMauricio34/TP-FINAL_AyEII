@@ -32,6 +32,7 @@ int buscar_dni_clientesta(long int dni,turno_cliente *ini_clientesta);
 int buscar_turno_clientesta(int turno,tipo_turno *ini_turno);
 void insertar_clientesta(turno_cliente **nv,turno_cliente **ini_clientesta);
 int buscar_dni_clientest(long int dni,turno_cliente *ini_clientesta,tipo_turno *ini_turno,actividad *ini_actividad);
+void recorrer_actividades(int sede,actividad *ini);
 void recorrer_turnos(int cod_act,tipo_turno *ini_turno);
 int borrar_Tcliente(int dato,turno_cliente **ini_tcliente);
 void buscar_borrar_profeso(long int dato,turno_cliente **bor,turno_cliente **ant);
