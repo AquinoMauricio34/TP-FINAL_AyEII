@@ -59,7 +59,7 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
                             //elegimos tipo turno
                             do{
                                 printf("Ingresar codigo de la actividad: ");scanf("%d",&eleccion_tipo_turno);
-                                buscar = buscar_actividad_sede(eleccion_tipo_turno,eleccion_actividad,ini_tipo_turno);
+                                buscar = buscar_tipo_turno_actividad(eleccion_tipo_turno,eleccion_actividad,ini_tipo_turno);
                             }while(buscar != 1 && eleccion_tipo_turno != 0);
                             //ya elegido el tipo turno entra en un if(eleccion_tipo_turno != 0)
                             if(eleccion_tipo_turno != 0){
@@ -171,7 +171,7 @@ void listar_tipo_turno(tipo_turno *ini_tipo_turno,int eleccion_actividad){
 	}
 }
 
-int buscar_actividad_sede(int eleccion_tipo_turno,int eleccion_actividad,tipo_turno *ini_tipo_turno){
+int buscar_tipo_turno_actividad(int eleccion_tipo_turno,int eleccion_actividad,tipo_turno *ini_tipo_turno){
     int buscar=0;
 	while(ini_tipo_turno != NULL){
 		if(ini_tipo_turno->cod_turno == eleccion_tipo_turno && ini_tipo_turno->cod_act == eleccion_actividad){

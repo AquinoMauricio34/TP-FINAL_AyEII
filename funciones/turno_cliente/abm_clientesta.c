@@ -7,14 +7,15 @@
 #include"../../estructuras.h"
 #include"../../prototipos.h"
 //controlar tope de alumnos permitidos
-void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad){
+void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno *ini_turno,actividad *ini_actividad){
 	tipo_turno *nv;
-	int op,buscar_act,buscar_turno,sede,cod_act,buscara,buscart;
+	int op,buscar_act,buscar_turno,sede,cod_act,buscara=0,opcion;
 	long int buscar_borrar,buscar_mod,buscar_dni,buscar_dni_clientest,buscar_dni_clientes;
 	do{
 		printf("1-Ingresar un cliente del turno\n");
 		printf("2-Borrar un cliente del turno\n");
 		printf("3-Modifcar un cliente del turno\n");
+		printf("4-Finalizar\n");
 		scanf("%d",&op);
 		switch(op){
 			case 1:
@@ -31,14 +32,26 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 						buscara = buscar_actividades(cod_act,sede,*ini_actividad);
 				}while(buscara!=1 && nv->cod_act !=0);//modifcar por un or
 				if(buscara == 1){
+					buscara = 0;
+					nv->cod_act = cod_act;
 					do{//mientra no se encuentre el turno ingresado o es igual a 0, el bucle se repetira
-						recorrer_turnos(cod_act,*ini_turno);
+						recorrer_turnos(cod_act,ini_turno);
 						printf("ingrese el turno que desee\n");
 						scanf("%d",&nv->cod_turno);
-						buscart = buscar_turno(nv->cod_turno,*ini_turno);
-					}while(buscart!=1 && nv->cod_turno !=0);
-						if(buscart == 1){
-							insertar_clientesta(&nv,&*ini_clientesta);
+						buscara = buscar_turno(nv->cod_turno,nv->cod_act,ini_turno);
+					}while(buscara!=1 && nv->cod_turno !=0);
+					
+ 		
+
+						if(buscara == 1){
+							//ingresar dni
+							do{
+                            printf("Esta seguro de que quiere realizar la reserva? (1.Si | 0.No): ");scanf("%d",&opcion);
+                        }while(opcion<0 || opcion>1);
+                        if(opcion){
+							insertar_codigo_clientesta(&nv,&*ini_clientesta);
+                            insertar_clientesta(&nv,&*ini_clientesta);
+                        }
 						}
 				}
 			}else
@@ -78,7 +91,7 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 				
 			break;
 		}
-	}
+	}while(op != 4);
 }
 
 #endif
