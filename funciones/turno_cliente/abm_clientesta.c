@@ -6,6 +6,7 @@
 #include<string.h>
 #include"../../estructuras.h"
 #include"../../prototipos.h"
+//controlar tope de alumnos permitidos
 void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad){
 	tipo_turno *nv;
 	int op,buscar_act,buscar_turno,sede,cod_act,buscara,buscart;
@@ -17,9 +18,10 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 		scanf("%d",&op);
 		switch(op){
 			case 1:
-					printf("ingrese la sede que desee 1-2\n");
-					scanf("%d",&sede);
+				printf("ingrese la sede que desee 1-2\n");
+				scanf("%d",&sede);
 					//chequear si no existe el codigo
+				if(sede == 1 ||sede == 2 ){
 					do{//mientras se encuentre el dni ingresado o el dni es igual a 0, el bucle se repetira
 						recorrer_actividades(sede,*ini_actividad);
 						printf("ingrese el codigo de la actividad que desee\n");
@@ -37,7 +39,17 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 							insertar_clientesta(&nv,&*ini_clientesta);
 						}
 				}
+			}else
+					printf("La sede ingresada es incorrecta\n");
 				break;
+
+
+
+
+
+
+
+				
 			case 2:
 					printf("ingrese el dni del cliente que se quiere dar de baja en el turno\n");
 					scanf("%ld",&buscar_borrar);
@@ -47,11 +59,19 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 								borrar_nodo_clientest(buscar_borrar,&*ini_clientesta);
 							}
 					}
-				break;
+				break;	
+
+
+
+
+
+
+
+
 			case 3:
 					printf("ingrese el dni del cliente que quiere modificar el turno\n");
 					scanf("%ld",&buscar_mod);
-					buscar_dni_clientes = buscar_dni_clientest(buscar_mod,*ini_clientesta,ini_turno);
+					buscar_dni_clientes = buscar_dni_clientesta(buscar_mod,&*ini_clientesta,*ini_turno);
 				
 			break;
 		}
