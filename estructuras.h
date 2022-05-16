@@ -28,6 +28,7 @@ typedef struct{
 typedef struct{
 	int cod_act,cod_turno;
 	float precio;
+	int estado;//1(activa), 0(inactiva a activar), -1(inactiva a eliminar);
 	hora hora_inicio_turno,hora_fin_turno;
 	int dias[5];/*
 	cada espacio en el vector representa un dia de la semana (de lunes a viernes). EL 0 represente no y el 1 representa si.
@@ -37,7 +38,7 @@ typedef struct{
 }tipo_turno;
 
 typedef struct{
-	int cod_turno;
+	int cod_turno,cod_actividad;
 	long int dni;
 	fecha f_ultima_vez;
 	struct turno_cliente *sgte;
@@ -51,10 +52,12 @@ typedef struct{
 }profesor;
 
 typedef struct{
+	int cod_act,cod_turno;
 	long int dni,telefono;
 	fecha f_nacimiento;
 	char nombre[100];
 	struct reserva *sgte;
+	struct reserva *ant;
 }reserva;
 
 #endif

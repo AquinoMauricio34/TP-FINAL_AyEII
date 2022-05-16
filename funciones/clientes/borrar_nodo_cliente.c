@@ -10,7 +10,8 @@
 
 void borrar_nodo_cliente(int dato,cliente **ini_cliente){
 cliente *bor=*ini_cliente,*ant=NULL;
-buscar_borrar_cliente(dato, bor,ant);
+//la funcion no está creada--------------------------------------------------
+// buscar_borrar_cliente(dato,&bor,&ant);
 if(bor != NULL){
     if(ant != NULL){
        *ini_cliente = (*ini_cliente)->sgte;
