@@ -6,16 +6,6 @@
 #include<string.h>
 #include"../../estructuras.h"
 #include"../../prototipos.h"
-/*
-tene en cuenta que al momento de borrar los nodos, puede que uno de los nodos a borrar
-sea el que es apuntado por el inicio de la lista, cuidado de no borrarlo
-y perder el inicio de la lista
-*/
-encontrado = 0;
-/*do{
-	encontrado = borrar_Tcliente();
-}while(encontrado == 1);
-//hasta aquí*/
 
 
 //aqui se encuentran las funciones que se de deben agregar

@@ -30,7 +30,9 @@
 #include"funciones/clientes/buscar_actividad.c"
 #include"funciones/clientes/buscar_dni_cliente.c"
 #include"funciones/clientes/modificar_cliente.c"
-#include"funciones/clientes/buscar_nodo_cliente.c"
+#include"funciones/clientes/borrar_nodo_cliente.c"
+#include"funciones/clientes/insertar_cliente.c"
+#include"funciones/clientes/borrar_Tcliente.c"
 
 
 //turno_clientes
@@ -44,13 +46,11 @@
 #include"funciones/turno_cliente/modificacion_clientesta.c"
 #include"funciones/turno_cliente/recorrer_turnos.c"
 #include"funciones/turno_cliente/listar_actividades.c"
-#endif
-#include"funciones/clientes/borrar_nodo_cliente.c"
-#include"funciones/clientes/insertar_cliente.c"
-#include"funciones/clientes/borrar_Tcliente.c"
+
+
 
 
 #include"funciones/numero_aleatorios.c"
 
-
 #endif
+

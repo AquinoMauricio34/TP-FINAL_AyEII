@@ -6,7 +6,7 @@
 #include<string.h>
 #include"../../estructuras.h"
 #include"../../prototipos.h"
-void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad){
+void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad,tipo_turno **ini_turno_cliente){
 	cliente *nv=NULL;
 	actividad *p=NULL;
 	int op,buscar=0,dni_cliente,buscar_dni=0,op_mod;
@@ -57,6 +57,10 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad){
 					printf("Esta seguro/a de que quiere eliminar al cliente (1. SI | 0. NO): ");
 					scanf("%d",&op_mod);
 					if(op_mod == 1){
+						encontrado = 0;
+						do{
+							encontrado = borrar_Tcliente();
+						}while(encontrado == 1);
 					//	borrar_Tcliente(buscar_borrar,&*ini_cliente);
 						borrar_nodo_cliente(buscar_borrar,&*ini_cliente);
 					}
