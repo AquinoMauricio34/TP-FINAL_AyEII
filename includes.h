@@ -32,6 +32,7 @@
 #include"funciones/clientes/modificar_cliente.c"
 #include"funciones/clientes/borrar_nodo_cliente.c"
 #include"funciones/clientes/insertar_cliente.c"
+#include"funciones/clientes/borrar_Tcliente.c"
 
 
 #include"funciones/numero_aleatorios.c"

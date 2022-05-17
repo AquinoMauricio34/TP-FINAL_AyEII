@@ -23,6 +23,8 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad);
 int buscar_dni_cliente(long int dni,cliente *ini_cliente);
 void insertar_cliente(cliente **nv, cliente **ini_cliente);
 void modificar_cliente(long int dato,int op,cliente **ini_cliente);
+int borrar_Tcliente(int dato,turno_cliente **ini_tcliente);
+void buscar_borrar_profeso(long int dato,turno_cliente **bor,turno_cliente **ant);
 
 int numero_aleatorio(int minimo, int maximo);
 #endif
