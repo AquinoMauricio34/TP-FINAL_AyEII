@@ -44,13 +44,20 @@
 #include"funciones/turno_cliente/buscar_turnos__clientes.c"
 #include"funciones/turno_cliente/insertar_clientesta.c"
 #include"funciones/turno_cliente/modificacion_clientesta.c"
+#include"funciones/turno_cliente/recorrer_actividades.c"
 #include"funciones/turno_cliente/recorrer_turnos.c"
 #include"funciones/turno_cliente/listar_actividades.c"
 
+/*<<<<<<< HEAD
+
+=======
+#include"funciones/clientes/borrar_nodo_cliente.c"
+#include"funciones/clientes/insertar_cliente.c"
+#include"funciones/clientes/borrar_Tcliente.c"
+>>>>>>> db80ca0314a21f47f54ab509c85f8d7b9e0a88ef
 
 
-
-#include"funciones/numero_aleatorios.c"
+#include"funciones/numero_aleatorios.c"*/
 
 #endif
 
