@@ -21,7 +21,7 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad,tipo_turno **i
 		
 		switch(op){
 			case 1://aniadir un nuevo cliente
-				//se debe pedir espacio en la memoria ------------------------------------------------------------------
+				
 				do{//mientras se encuentre el dni ingresado o el dni es igual a 0, el bucle se repetira
 					listar_actividades(*ini_actividad);
 					printf("ingrese el codigo de la actividad que desee\n");
@@ -29,7 +29,8 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad,tipo_turno **i
 					buscar = buscar_actividades(p->cod_act,*ini_actividad);
 				}while(buscar!=1 && p->cod_act !=0);
 
-				if(buscar == 1){
+				nv = malloc(sizeof( cliente));// espacio en la memoria ---------
+				if(buscar == 1 && nv != NULL){
 					do{
 						printf("ingrese el dni del cliente\n");
 						scanf("%ld",&nv->dni);
@@ -57,7 +58,7 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad,tipo_turno **i
 					printf("Esta seguro/a de que quiere eliminar al cliente (1. SI | 0. NO): ");
 					scanf("%d",&op_mod);
 					if(op_mod == 1){
-						encontrado = 0;
+						int encontrado = 0;
 						do{
 							encontrado = borrar_Tcliente();
 						}while(encontrado == 1);

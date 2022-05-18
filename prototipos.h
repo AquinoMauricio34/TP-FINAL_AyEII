@@ -29,6 +29,10 @@ int buscar_actividades(int codigo,actividad *ini_actividad);
 
 // actividades
 void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente);
+void modificar_actividad(long int dato,int op,actividad **ini_actividad);
+void insertar_actividad(actividad **nv, actividad **ini_actividad);
+int buscar_actividad(int codigo,actividad *ini_actividad);
+void borrar_nodo_actividad(int dato,actividad **ini_actividad);
 
 //turno_clientes
 void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad);
