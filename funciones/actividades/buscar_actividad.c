@@ -6,9 +6,9 @@
 #include<string.h>
 #include"../../estructuras.h"
 #include"../../prototipos.h"
-int buscar_actividad(int codigo,actividad *ini_actividad){
+int buscar_actividadx(int codigo,actividad *ini_actividad){
 	int buscar=0;
-	while(ini_actividad != NULL){
+	while(ini_actividad != NULL && buscar != 1){
 		if(ini_actividad->cod_act == codigo){
 			buscar = 1;
 		}else{

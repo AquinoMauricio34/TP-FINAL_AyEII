@@ -10,11 +10,11 @@
 
 //aqui se encuentran las funciones que se de deben agregar
 
-int borrar_Tcliente(int dato,turno_cliente **ini_tcliente){
+int borrar_Tcliente(int dato,turno_cliente **ini_tcliente,int *encontrado){
     turno_cliente *bor=*ini_tcliente,*ant=NULL;
-    buscar_borrar_Tcliete(dato,bor,ant);
+    buscar_borrar_Tcliete(dato,&bor,&ant);
     if(bor != NULL){
-		encontrado = 1;
+		*encontrado = 1;
         if(ant != NULL){
            *ini_tcliente = (*ini_tcliente)->sgte;
         }else{
@@ -29,7 +29,7 @@ int borrar_Tcliente(int dato,turno_cliente **ini_tcliente){
 }
 
 
-void buscar_borrar_profeso(long int dato,turno_cliente **bor,turno_cliente **ant){
+void buscar_borrar_Tcliete(long int dato,turno_cliente **bor,turno_cliente **ant){
     *ant = NULL;
     int encontrado=0;
     while(*bor != NULL && encontrado != 0){

@@ -26,7 +26,7 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad,tipo_turno **i
 					listar_actividades(*ini_actividad);
 					printf("ingrese el codigo de la actividad que desee\n");
                     scanf("%d",&p->cod_act);
-					buscar = buscar_actividades(p->cod_act,*ini_actividad);
+					buscar = buscar_actividades_clientes(p->cod_act,*ini_actividad);
 				}while(buscar!=1 && p->cod_act !=0);
 
 				nv = malloc(sizeof( cliente));// espacio en la memoria ---------
@@ -60,7 +60,7 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad,tipo_turno **i
 					if(op_mod == 1){
 						int encontrado = 0;
 						do{
-							encontrado = borrar_Tcliente();
+							encontrado = borrar_Tcliente(buscar_borrar,&*ini_turno_cliente,&encontrado);
 						}while(encontrado == 1);
 					//	borrar_Tcliente(buscar_borrar,&*ini_cliente);
 						borrar_nodo_cliente(buscar_borrar,&*ini_cliente);

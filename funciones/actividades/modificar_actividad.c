@@ -7,20 +7,34 @@
 #include"../../estructuras.h"
 #include"../../prototipos.h"
 void modificar_actividad(long int dato,int op,actividad **ini_actividad){
-	while(*ini_actividad != NULL){
+	int encontrado = 0;
+	actividad *aux = *ini_actividad;
+	while(aux != NULL && encontrado != 1){
 		
-		if((*ini_actividad)->cod_act== dato){
+		if(aux->cod_act== dato){
 		
 			if(op==1){
 				fflush(stdin);
-				gets((*ini_actividad)->nombre);
+				printf("NOMBRE DE LA ACTIVIDAD\n");
+				printf("Nombre actual: ");puts(aux->nombre);
+				printf("Nuevo nombre: ");
+				fflush(stdin);
+				gets(aux->nombre);
 			}else if(op==2){
-				scanf("%ld",&(*ini_actividad)->cant_personas);
+				printf("CANTIDAD DE CUPOS DE LA ACTIVIDAD\n");
+				printf("Cantidad actual: %d\n",aux->cant_personas);
+				printf("Nueva cantidad: ");
+				scanf("%d",&aux->cant_personas);
+			}else if(op==3){
+				printf("SEDE DE LA ACTIVIDAD\n");
+				printf("Sede actual: %d\n",aux->sede);
+				printf("Nueva sede: ");
+				scanf("%d",&aux->sede);
 			}
-			*ini_actividad = NULL;
+			encontrado = 1;
 		}
 		
-		*ini_actividad = (*ini_actividad)->sgte;	
+		aux = aux->sgte;	
 	}
 }
 #endif

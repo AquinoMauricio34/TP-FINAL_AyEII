@@ -12,7 +12,7 @@ void borrar_nodo_profesor(int dato,profesor **ini_profesor){
     profesor *bor=*ini_profesor,*ant=NULL;
     buscar_borrar_profesor(dato, &bor,&ant);
     if(bor != NULL){
-        if(ant != NULL){
+        if(ant == NULL){
            *ini_profesor = (*ini_profesor)->sgte;
         }else{
             ant->sgte = bor->sgte;

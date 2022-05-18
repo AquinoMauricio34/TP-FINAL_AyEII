@@ -24,7 +24,7 @@ void modificar_profesor(long int dato,int op,profesor **ini_profesor, actividad 
 					listar_actividades(ini_actividad);
 					printf("Ingresar codigo de la actividad deseada: \n");
 					scanf("%d",&codigo);
-					buscar = buscar_actividades(codigo,ini_actividad);
+					buscar = buscar_actividades_profesores(codigo,ini_actividad);
 				}while(buscar != 1 || codigo != 0);
 				
 				if(buscar == 1){

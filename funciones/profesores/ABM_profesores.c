@@ -39,7 +39,7 @@ void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad){
 				do{//mientras se encuentre el dni ingresado o el dni es igual a 0, el bucle se repetira
 					listar_actividades(ini_actividad);
 					printf("ingrese el codigo de la actividad que desee\n");scanf("%d",&nv->cod_act);
-					buscar = buscar_actividades(nv->cod_act,ini_actividad);
+					buscar = buscar_actividades_profesores(nv->cod_act,ini_actividad);
 				}while(buscar!=1 && nv->cod_act !=0);
 
 				if(buscar == 1){
