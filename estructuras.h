@@ -53,7 +53,6 @@ typedef struct{
 }turno_cliente;
 
 typedef struct{
-	int cod_act;
 	char nombre[100];
 	long int dni,telefono;
 	struct profesor *sgte;

@@ -12,6 +12,7 @@ int main(){
     actividad *ini_actividad=NULL;
     turno_cliente *ini_turno_cliente=NULL;
     cliente *ini_cliente=NULL;
+    profesor *ini_profesor=NULL;
 
     cargar_listas(&ini_actividad);
 
@@ -27,9 +28,11 @@ int main(){
             printf("4. ABM Actividades\n");
             printf("5. Listar Actividades\n");
             printf("6. Listar Clientes\n");
+            printf("7. ABM Profesores\n");
+            printf("8. Listar Profesores\n");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while(opcion<0 || opcion>6);
+        }while(opcion<0 || opcion>8);
 
         switch(opcion){
             case 1:
@@ -57,6 +60,15 @@ int main(){
             case 6:
                 system("cls");
                 listar_all_clientes(ini_cliente);
+                system("pause");
+            break;
+            case 7:
+                system("cls");
+                ABM_profesores(&ini_profesor);
+            break;
+            case 8:
+                system("cls");
+                listar_all_profesores(ini_profesor);
                 system("pause");
             break;
         }

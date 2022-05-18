@@ -37,6 +37,7 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 						scanf("%ld",&nv->telefono);
 						printf("Ingrese el fecha de nacimiento del cliente (dd/mm/aa): ");
 						scanf("%d/%d/%d",&nv->f_nacimiento.dd,&nv->f_nacimiento.mm,&nv->f_nacimiento.yy);
+						nv->sgte = NULL;
 						insertar_cliente(&nv,&*ini_cliente);
 						
 					}

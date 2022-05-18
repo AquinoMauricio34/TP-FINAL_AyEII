@@ -10,7 +10,7 @@
 void buscar_borrar_profesor(long int dato,profesor **bor,profesor **ant){
     *ant = NULL;
     int encontrado=0;
-    while(*bor != NULL && encontrado != 0){
+    while(*bor != NULL && encontrado != 1){
         if(dato == (*bor)->dni){
             encontrado = 1;
         }else{

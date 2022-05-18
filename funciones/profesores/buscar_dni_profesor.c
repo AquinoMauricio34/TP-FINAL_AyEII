@@ -9,10 +9,9 @@
 #include"../../prototipos.h"
 int buscar_dni_profesor(long int dni,profesor *ini_profesor){
     int buscar=0;
-	while(ini_profesor != NULL){
-		if(ini_profesor->cod_act == dni){
+	while(ini_profesor != NULL && buscar != 1){
+		if(ini_profesor->dni == dni){
 			buscar = 1;
-			ini_profesor = NULL;
 		}else{
 			buscar = 0;
 		}
