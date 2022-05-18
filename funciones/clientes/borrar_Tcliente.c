@@ -15,7 +15,7 @@ int borrar_Tcliente(int dato,turno_cliente **ini_tcliente,int *encontrado){
     buscar_borrar_Tcliete(dato,&bor,&ant);
     if(bor != NULL){
 		*encontrado = 1;
-        if(ant != NULL){
+        if(ant == NULL){
            *ini_tcliente = (*ini_tcliente)->sgte;
         }else{
             ant->sgte = bor->sgte;

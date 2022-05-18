@@ -11,6 +11,9 @@ int main(){
     reserva *ini_reserva=NULL;
     actividad *ini_actividad=NULL;
     turno_cliente *ini_turno_cliente=NULL;
+    cliente *ini_cliente=NULL;
+
+    cargar_listas(&ini_actividad);
 
     int opcion;
     //llamado a funciones de verificacion de fecha, borrado o activacion de actividades/tipo_turnos
@@ -18,18 +21,20 @@ int main(){
         do{
             system("cls");
         //opciones a elegir
-            printf("1. ABM Profesores\n");
+            printf("1. ABM Clientes\n");
             printf("2. ABM Reservas\n");
-            printf("3. Listas Reservas\n");
+            printf("3. Listar Reservas\n");
             printf("4. ABM Actividades\n");
-            printf("5. Listas Actividades\n");
+            printf("5. Listar Actividades\n");
+            printf("6. Listar Clientes\n");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while(opcion<0 || opcion>5);
+        }while(opcion<0 || opcion>6);
 
         switch(opcion){
             case 1:
-                // ABM_profesores();
+                system("cls");
+                ABM_clientes(&ini_cliente,ini_actividad,&ini_turno_cliente);
             break;
             case 2:
                 system("cls");
@@ -49,9 +54,15 @@ int main(){
                 listar_all_actividades(ini_actividad);
                 system("pause");
             break;
+            case 6:
+                system("cls");
+                listar_all_clientes(ini_cliente);
+                system("pause");
+            break;
         }
     }while(opcion != 0);
 
+    guardado_actividad(ini_actividad);
 
     return 0;
 }

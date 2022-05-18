@@ -10,6 +10,11 @@
 // #include"funciones/reservas/buscar_dni_reserva.c"
 // #include"funciones/reservas/listar_reservas.c"
 
+#include"funciones/carga_listas.c"
+#include"funciones/guardado_listas.c"
+
+
+
 // profesores
 
 

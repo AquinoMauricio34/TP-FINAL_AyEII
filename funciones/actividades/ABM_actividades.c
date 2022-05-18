@@ -1,6 +1,6 @@
 #ifndef ABM_ACTIVIDADES_C
 #define ABM_ACTIVIDADES_C
-
+//si elimino una actividad, todos los tipo turno y los turnos clientes con el codigo de esa actividad deben ser eliminados
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -51,6 +51,7 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente){
                         scanf("%d",&nv->sede);
                         printf("ingrese el estado en que se encuentra esta actividad: \n");
                         scanf("%d",&nv->estado);//por ahora 1
+                        nv->sgte = NULL;
 						insertar_actividad(&nv,&*ini_actividad);
 						
 					}

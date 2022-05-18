@@ -19,7 +19,7 @@ void insertar_profesor(profesor **nv, profesor **ini_profesor);
 void listar_actividades(actividad *ini);
 void modificar_profesor(long int dato,int op,profesor **ini_profesor,actividad *ini_actividad);
 // clientes
-void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad,tipo_turno **ini_turno_cliente);
+void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **ini_turno_cliente);
 int buscar_dni_cliente(long int dni,cliente *ini_cliente);
 void insertar_cliente(cliente **nv, cliente **ini_cliente);
 void modificar_cliente(long int dato,int op,cliente **ini_cliente);
@@ -27,6 +27,7 @@ void borrar_nodo_cliente(int dato,cliente **ini_cliente);
 int borrar_Tcliente(int dato,turno_cliente **ini_tcliente,int *encontrado);
 int buscar_actividades_clientes(int codigo,actividad *ini_actividad);
 void buscar_borrar_Tcliete(long int dato,turno_cliente **bor,turno_cliente **ant);
+void listar_all_clientes(cliente *ini);
 
 // actividades
 void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente);
@@ -53,4 +54,9 @@ void recorrer_turnos(int cod_act,tipo_turno *ini_turno);
 void buscar_borrar_profeso(long int dato,turno_cliente **bor,turno_cliente **ant);
 
 int numero_aleatorio(int minimo, int maximo);
+void guardado_listas(actividad *ini_actividad);
+void guardado_actividad(actividad *ini_actividad);
+void insertar_actividad_carga(actividad **nv,actividad **ini);
+void cargar_listas(actividad **ini_actividad);
+void carga_actividades(actividad **ini_actividad);
 #endif

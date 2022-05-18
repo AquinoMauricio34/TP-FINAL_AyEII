@@ -30,19 +30,19 @@ if(bor != NULL){
 
 void buscar_borrar_actividad(int dato,actividad **bor,actividad **ant){
     *ant = NULL;
-    printf("\naaa111\n");
+    // printf("\naaa111\n");
     int encontrado=0;
-    printf("\naaa222\n");
+    // printf("\naaa222\n");
     
     while(*bor != NULL && encontrado != 1){
-        printf("\naaa333\n");
-        printf("1bor->cod_act = %d, bor->nombre = \n",(*bor)->cod_act);puts((*bor)->nombre);
-        system("pause");
+        // printf("\naaa333\n");
+        // printf("1bor->cod_act = %d, bor->nombre = \n",(*bor)->cod_act);puts((*bor)->nombre);
+        // system("pause");
         if(dato == (*bor)->cod_act){
-            printf("\naaa444\n");
+            // printf("\naaa444\n");
             encontrado = 1;
         }else{
-            printf("\naaa555\n");
+            // printf("\naaa555\n");
             *ant = *bor;
             *bor = (*bor)->sgte;
         }
