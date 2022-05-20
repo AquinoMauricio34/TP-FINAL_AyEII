@@ -3,6 +3,7 @@
 
 #include"estructuras.h"
 
+void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *ini_tipo_turno);
 void insertar_reserva(reserva **nv,reserva **ini_reserva);
 void borrar_nodo_reserva(long int dni_borrar, reserva **ini);
 void buscar_borrar_reserva(long int dni_borrar,reserva **rc,reserva **ant,int *proceder);
@@ -22,6 +23,7 @@ void buscar_borrar_tipo_turno(long int tipo_turno_borrar,tipo_turno **rc,tipo_tu
 int buscar_codigo_turno(int codigo_turno,tipo_turno *ini_tipo_turno);
 void insertar_tipo_turno(tipo_turno **nv,tipo_turno **ini_tipo_turno);
 void listar_all_tipo_turnos(tipo_turno *ini);
+void modificar_tipo_turno(long int dato,int op,reserva **ini_tipo_turno);
 
 
 //profesor

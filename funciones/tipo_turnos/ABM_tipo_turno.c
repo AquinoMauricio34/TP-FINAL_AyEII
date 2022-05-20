@@ -12,7 +12,8 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
     int codigo_turno;
     int eleccion_sede,eleccion_actividad;
     int i;
-    char nombres_dias_sem[5][15]={"Lunes","Martes","Mierceles","Jueves","Vienes"};
+    long int dni_cliente;
+    char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Vienes"};
     tipo_turno *aux=NULL;
     tipo_turno *nv=NULL;
     do{
@@ -99,14 +100,26 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
                 }
             break;
             case 3:
-                // do{
-                //     printf("Ingresar dni del cliente: ");scanf("%ld",&dni_cliente);
-                //     buscar = buscar_dni_reserva(dni_cliente,*ini_reserva);
-                // }while(buscar != 1 && dni_cliente != 0);
+                do{
+                    printf("Ingresar el codigo del turno: ");scanf("%ld",&codigo_turno);
+                    buscar = buscar_codigo_turno(codigo_turno,*ini_tipo_turno);
+                }while(buscar != 1 && codigo_turno != 0);
 
-                // if(dni_cliente != 0){
-                //     printf("")
-                // }
+                if(codigo_turno != 0){
+                    do{
+						system("cls");
+						do{
+							printf("1-modificar precio del turno \n");
+							printf("2-modificar hora de inicio del turno \n");
+							printf("3-modificar hora de fin del turno \n");
+                            printf("4-modificar dias del turno\n");
+							printf("0-Finalizar\n>> ");
+							scanf("%d",&op);
+						}while(op<0 || op>4);
+						// system("cls");
+						modificar_tipo_turno(codigo_turno,op,&*ini_tipo_turno);
+					}while(op!=0);
+                }
                 
             break;
         }
@@ -240,37 +253,40 @@ void insertar_tipo_turno(tipo_turno **nv,tipo_turno **ini_tipo_turno){
 
 
 
-// void modificar_reserva(long int dato,int op,reserva **ini_reserva, actividad *ini_actividad){
-// 	int buscar,codigo;
-// 	while(*ini_reserva != NULL){
+void modificar_tipo_turno(long int dato,int op,reserva **ini_tipo_turno){
+	int buscar,codigo,encontrado=0;
+    char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Vienes"};
+    int i;
+    tipo_turno *aux = *ini_tipo_turno;
+	while(aux != NULL && encontrado != 1){
 		
-// 		if((*ini_reserva)->dni == dato){
+		if(aux->cod_turno == dato){
 		
-// 			if(op==1){
-// 				fflush(stdin);
-// 				gets((*ini_reserva)->nombre);
-// 			}else if(op==2){
-// 				scanf("%ld",&(*ini_reserva)->telefono);
-// 			}else if(op==3){
-// 				do{
-// 					system("cls");
-// 					printf("\nActividades Disponibles\n");
-// 					listar_actividades(ini_actividad);
-// 					printf("Ingresar codigo de la actividad deseada: \n");
-// 					scanf("%d",&codigo);
-// 					buscar = buscar_actividades(codigo,ini_actividad);
-// 				}while(buscar != 1 || codigo != 0);
-				
-// 				if(buscar == 1){
-// 					(*ini_reserva)->cod_act = codigo;
-// 				}
-// 			}
-// 			*ini_reserva = NULL;
-// 		}
+            // printf("1-modificar precio del turno \n");
+            // printf("2-modificar hora de inicio del turno \n");
+            // printf("2-modificar hora de fin del turno \n");
+            // printf("4-modificar dias del turno\n");
+
+			if(op==1){
+				scanf("%f",&aux->precio);
+			}else if(op==2){
+				scanf("%d:%d",&aux->hora_inicio_turno.hh,&aux->hora_inicio_turno.mm);
+			}else if(op==3){
+				scanf("%d:%d",&aux->hora_fin_turno.hh,&aux->hora_fin_turno.mm);
+			}else if(op==4){
+				printf("Dias de la semana del turno:\n");
+                for(i=0;i<5;i++){
+                    do{
+                        printf("%s: ",nombres_dias_sem[i]);scanf("%d",&aux->dias[i]);
+                    }while(aux->dias[i]<0 || aux->dias[i]>1);
+                }
+			}
+			encontrado = 1;
+		}
 		
-// 		*ini_reserva = (*ini_reserva)->sgte;	
-// 	}
-// }
+		aux = aux->sgte;	
+	}
+}
 
 
 
