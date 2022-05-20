@@ -111,7 +111,7 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente){
 void listar_all_actividades(actividad *ini){
 	if(ini!=NULL){
 		while(ini != NULL){
-			printf("%10d | %30s | %d\n",ini->cod_act,ini->nombre,ini->cant_personas);
+			printf("%10d | %30s | %7d | %d\n",ini->cod_act,ini->nombre,ini->cant_personas,ini->sede);
 			ini = ini->sgte;
 		}
 	}else

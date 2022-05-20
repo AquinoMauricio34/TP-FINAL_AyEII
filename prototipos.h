@@ -8,6 +8,23 @@ void borrar_nodo_reserva(long int dni_borrar, reserva **ini);
 void buscar_borrar_reserva(long int dni_borrar,reserva **rc,reserva **ant,int *proceder);
 int buscar_dni_reserva(long int dni,reserva *ini_reserva);
 void listar_reservas(reserva *ini);
+void listar_actividades_sede(actividad *ini_actividad,int eleccion_sede);
+int buscar_actividad_sede(int eleccion_actividad,int eleccion_sede,actividad *ini_actividad);
+void listar_tipo_turno(tipo_turno *ini_tipo_turno,int eleccion_actividad);
+int buscar_tipo_turno_actividad(int eleccion_tipo_turno,int eleccion_actividad,tipo_turno *ini_tipo_turno);
+
+//tipo_turno
+void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad);
+void listar_actividades_sede(actividad *ini_actividad,int eleccion_sede);
+int buscar_actividad_sede(int eleccion_actividad,int eleccion_sede,actividad *ini_actividad);
+void borrar_nodo_tipo_turno(long int tipo_turno_borrar, tipo_turno **ini);
+void buscar_borrar_tipo_turno(long int tipo_turno_borrar,tipo_turno **rc,tipo_turno **ant);
+int buscar_codigo_turno(int codigo_turno,tipo_turno *ini_tipo_turno);
+void insertar_tipo_turno(tipo_turno **nv,tipo_turno **ini_tipo_turno);
+void listar_all_tipo_turnos(tipo_turno *ini);
+
+
+//profesor
 
 void insertar_profesor(profesor **nv, profesor **ini_profesor);
 int buscar_dni_profesor(long int dni,profesor *ini_profesor);
@@ -55,9 +72,16 @@ void recorrer_turnos(int cod_act,tipo_turno *ini_turno);
 void buscar_borrar_profeso(long int dato,turno_cliente **bor,turno_cliente **ant);
 
 int numero_aleatorio(int minimo, int maximo);
-void guardado_listas(actividad *ini_actividad);
-void guardado_actividad(actividad *ini_actividad);
-void insertar_actividad_carga(actividad **nv,actividad **ini);
-void cargar_listas(actividad **ini_actividad);
+
+// carga de listas
+void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno);
 void carga_actividades(actividad **ini_actividad);
+void insertar_actividad_carga(actividad **nv,actividad **ini);
+void carga_tipo_turnos(tipo_turno **ini_tipo_turno);
+void insertar_tipo_turno_carga(tipo_turno **nv,tipo_turno **ini);
+
+// guardado de listas
+void guardado_listas(actividad *ini_actividad,tipo_turno *ini_tipo_turno);
+void guardado_actividad(actividad *ini_actividad);
+void guardado_tipo_turno(tipo_turno *ini_tipo_turno);
 #endif

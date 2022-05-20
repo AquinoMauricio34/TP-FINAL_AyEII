@@ -7,8 +7,9 @@
 #include"../estructuras.h"
 #include"../prototipos.h"
 
-void cargar_listas(actividad **ini_actividad){
+void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno){
     carga_actividades(&*ini_actividad);
+    carga_tipo_turnos(&*ini_tipo_turno);
 }
 
 void carga_actividades(actividad **ini_actividad){
@@ -52,6 +53,76 @@ void carga_actividades(actividad **ini_actividad){
 }
 
 void insertar_actividad_carga(actividad **nv,actividad **ini){
+	(*nv)->sgte = *ini;
+	*ini = *nv;
+	*nv = NULL;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void carga_tipo_turnos(tipo_turno **ini_tipo_turno){
+	FILE *a_tipo_turnos;
+	if((a_tipo_turnos=fopen("tipo_turnos.dat","rb"))!=NULL){
+		
+		tipo_turno c_tipo_turno;
+		tipo_turno *nv=NULL;
+		
+		// printf("\n111\n");
+		
+		fread(&c_tipo_turno,sizeof(tipo_turno),1,a_tipo_turnos);
+		// printf("\n111\n");
+		while(!feof(a_tipo_turnos)){
+			// printf("%s | %d | %d\n",c_actividad.nombre,c_actividad.cant_personas,c_actividad.sede);
+			// printf("\n222\n");
+			nv = malloc(sizeof(tipo_turno));
+			if(nv!=NULL){
+				// printf("\n333\n");
+				//carga datos
+				nv->cod_act = c_tipo_turno.cod_act;
+				nv->cod_turno = c_tipo_turno.cod_turno;
+				nv->dias[0] = c_tipo_turno.dias[0];
+				nv->dias[1] = c_tipo_turno.dias[1];
+				nv->dias[2] = c_tipo_turno.dias[2];
+				nv->dias[3] = c_tipo_turno.dias[3];
+				nv->dias[4] = c_tipo_turno.dias[4];
+				nv->estado = c_tipo_turno.estado;
+				nv->hora_fin_turno.hh = c_tipo_turno.hora_fin_turno.hh;
+				nv->hora_fin_turno.mm = c_tipo_turno.hora_fin_turno.mm;
+				nv->hora_inicio_turno.hh = c_tipo_turno.hora_inicio_turno.hh;
+				nv->hora_inicio_turno.mm = c_tipo_turno.hora_inicio_turno.mm;
+				nv->precio = c_tipo_turno.precio;
+				nv->sgte = NULL;
+				//insertar
+				insertar_tipo_turno_carga(&nv,&*ini_tipo_turno);
+			}
+			
+			
+			fread(&c_tipo_turno,sizeof(tipo_turno),1,a_tipo_turnos);
+		}
+		fclose(a_tipo_turnos);
+	}else{
+		// printf("\naaaa111\n");
+		if((a_tipo_turnos=fopen("tipo_turnos.dat","wb"))!=NULL){
+			fclose(a_tipo_turnos);
+		}
+	}
+}
+
+void insertar_tipo_turno_carga(tipo_turno **nv,tipo_turno **ini){
 	(*nv)->sgte = *ini;
 	*ini = *nv;
 	*nv = NULL;

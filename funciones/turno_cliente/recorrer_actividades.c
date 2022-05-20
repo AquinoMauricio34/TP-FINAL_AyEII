@@ -10,7 +10,7 @@
 void recorrer_actividades(int sede,actividad *ini){
 	while(ini != NULL){
 		if(ini == sede){
-		printf("%-10d| %s\n",ini->cod_act,ini->nombre);
+			printf("%-10d| %s\n",ini->cod_act,ini->nombre);
 		}
 		ini = ini->sgte;
 	}

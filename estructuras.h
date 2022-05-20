@@ -6,7 +6,7 @@ typedef struct{
 }fecha;
 
 typedef struct{
-	int hh,mm,ss;
+	int hh,mm;
 }hora;
 
 typedef struct{
