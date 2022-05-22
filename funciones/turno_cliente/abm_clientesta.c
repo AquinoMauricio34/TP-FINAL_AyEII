@@ -9,8 +9,9 @@
 //controlar tope de alumnos permitidos
 void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad,cliente *ini_cliente){
 	turno_cliente *nv=NULL;
-	int op,buscar_act,sede,cod_act,buscara=0,opcion;
+	int op,buscar,sede,cod_act,buscara=0,opcion;
 	long int buscar_borrar,buscar_mod,buscar_dni,buscar_dni_clientest,buscar_dni_clientes;
+	int dni_cliente, eleccion_turno_cliente;
 	do{
 		printf("1-Ingresar un cliente del turno\n");
 		printf("2-Borrar un cliente del turno\n");
@@ -86,22 +87,30 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 
 
 			case 2:
-					// printf("ingrese el dni del cliente que se quiere dar de baja en el turno\n");
-					// scanf("%ld",&buscar_borrar);
-			     	// if(buscar_dni != 0){//si encontro el dni
-					// 	printf("Esta seguro/a de que quiere eliminar al cliente en este turno (1. SI | 0. NO): ");scanf("%d",&op);
-					// 		if(op == 1){
-					// 			borrar_nodo_clientest(buscar_borrar,&*ini_clientesta);
-					// 		}
-					// }
+					buscar = 0;
+					do{
+						printf("Ingresar dni del cliente: ");scanf("%ld",&dni_cliente);
+						buscar = buscar_dni_turno_cliente(dni_cliente,*ini_clientesta);
+					}while(buscar != 1 && dni_cliente != 0);
 
+					if(dni_cliente != 0){
 
-					// buscar = 0;
-					// do{
-					// 	printf("Ingresar dni guardado en el reserva: ");scanf("%ld",&dni_cliente);
-					// 	buscar = buscar_dni_reserva(dni_cliente,*ini_reserva);
-					// }while(buscar != 1 && dni_cliente != 0);
+						listar_turnos_cliente(dni_cliente,*ini_clientesta);
 
+						do{
+							printf("Ingresar codigo del tipo turno: ");scanf("%d",&eleccion_turno_cliente);
+							buscar = buscar_turno_cliente(eleccion_turno_cliente,dni_cliente,*ini_clientesta);
+						}while(buscar != 1 && eleccion_turno_cliente != 0);
+
+						if(eleccion_turno_cliente != 0){
+							printf("Esta seguro/a de que quiere eliminar el turno del cliente (1. SI | 0. NO): ");
+							scanf("%d",&op);
+							if(op == 1){
+								borrar_nodo_clientest(eleccion_turno_cliente,&*ini_clientesta);
+							}
+						}
+
+					}
 					// if(dni_cliente!=0){
 					// 	printf("Esta seguro/a de que quiere eliminar al cliente (1. SI | 0. NO): ");
 					// 	scanf("%d",&op);
@@ -132,12 +141,52 @@ void listar_all_turnos_clientes(turno_cliente *ini){
 	if(ini!=NULL){
 		while(ini != NULL){
 			printf("cod_t: %d | cod_a: %d | cod_clientesta: %d | dni: %ld |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni);
-			printf("debe: %d | ult_v: %d/%d",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy);
+			printf("debe: %d | ult_v: %d/%d\n",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy);
             printf("--------------");
 			ini = ini->sgte;
 		}
 	}else
-		printf("\nSIN RESERVAS\n");
+		printf("\nSIN TURNOS CLIENTES\n");
+}
+
+
+void listar_turnos_cliente(long int dni_cliente,turno_cliente *ini){
+	if(ini!=NULL){
+		while(ini != NULL){
+			if(ini->dni == dni_cliente){
+				printf("cod_t: %d | cod_a: %d | cod_clientesta: %d | dni: %ld |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni);
+				printf("debe: %d | ult_v: %d/%d\n",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy);
+				printf("--------------");
+			}
+			ini = ini->sgte;
+		}
+	}
+}
+
+int buscar_turno_cliente(int eleccion_turno_cliente,long int dni_cliente,turno_cliente *ini_clientesta){
+	int buscar=0;
+	printf("1Eleccion: %d, dni cliente: %ld\n",eleccion_turno_cliente,dni_cliente);
+	while(ini_clientesta != NULL && buscar != 1){
+		printf("Eleccion: %d, dni cliente: %ld\n",ini_clientesta->cod_clientesta,ini_clientesta->dni);
+		if(ini_clientesta->cod_clientesta == eleccion_turno_cliente && ini_clientesta->dni == dni_cliente){
+			buscar = 1;
+		}
+		ini_clientesta = ini_clientesta->sgte;
+	}
+	
+	return buscar;
+}
+
+int buscar_dni_turno_cliente(long int dni,turno_cliente *ini_turno_cliente){
+    int encontrado=0;
+	while(ini_turno_cliente != NULL && encontrado != 1){
+		if(ini_turno_cliente->dni == dni){
+			encontrado = 1;
+		}
+		ini_turno_cliente = ini_turno_cliente->sgte;
+	}
+	
+	return encontrado;
 }
 
 #endif

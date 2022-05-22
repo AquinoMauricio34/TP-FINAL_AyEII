@@ -8,18 +8,23 @@
 #include"../../estructuras.h"
 #include"../../prototipos.h"
 
-void borrar_nodo_clientest(long int buscar_borrar,turno_cliente **ini_clientest){
-turno_cliente *bor=*ini_clientest,*ant=NULL;
-buscar_borrar_clientest(buscar_borrar,bor,ant);
-if(bor != NULL){
-    if(ant != NULL){
-       *ini_clientest = (*ini_clientest)->sgte;
-    }else{
-    ant->sgte = bor->sgte;
-    }
-    bor->sgte = NULL;
-    free(bor);
-}else
-     printf("no existe el dato no esta en la lista\n");
+void borrar_nodo_clientest(int buscar_borrar,turno_cliente **ini_clientest){
+    turno_cliente *bor=*ini_clientest,*ant=NULL;
+    printf("\n111\n");
+    buscar_borrar_clientest(buscar_borrar,&bor,&ant);
+    printf("\n222\n");
+    if(bor != NULL){
+        if(ant == NULL){
+            *ini_clientest = (*ini_clientest)->sgte;
+            printf("\n333\n");
+        }else{
+        ant->sgte = bor->sgte;
+        printf("\n444\n");
+        }
+        bor->sgte = NULL;
+        free(bor);
+        printf("\n555\n");
+    }else
+        printf("no existe el dato no esta en la lista\n");
 }
 #endif
