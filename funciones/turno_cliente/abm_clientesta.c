@@ -6,6 +6,8 @@
 #include<string.h>
 #include"../../estructuras.h"
 #include"../../prototipos.h"
+
+extern fecha fecha_global;
 //controlar tope de alumnos permitidos
 void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad,cliente *ini_cliente,cuenta **ini_cuenta){
 	turno_cliente *nv=NULL;

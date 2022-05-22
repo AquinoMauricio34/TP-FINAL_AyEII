@@ -15,7 +15,7 @@ int main(){
     profesor *ini_profesor=NULL;
     tipo_turno *ini_tipo_turno=NULL;
     cuenta *ini_cuenta = NULL;
-    char nombres_dias_sem[7][15]={"Domingo","Lunes","Martes","Miercoles","Jueves","Vienes","Sabado"};
+    char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Vienes"};
 
     //cargado de las listas
     cargar_listas(&ini_actividad,&ini_tipo_turno,&ini_cliente);
