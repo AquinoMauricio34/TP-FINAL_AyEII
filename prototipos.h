@@ -59,7 +59,7 @@ void listar_all_actividades(actividad *ini);
 void buscar_borrar_actividad(int dato,actividad **bor,actividad **ant);
 
 //turno_clientes
-void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad,cliente *ini_cliente);
+void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad,cliente *ini_cliente,cuenta **ini_cuenta);
 void insertar_codigo_cliente(turno_cliente **nv,turno_cliente **ini_clientesta);
 void borrar_nodo_clientest(int buscar_borrar,turno_cliente **ini_clientest);
 int buscar_actividades_clientesta(int cod_act,int sede,actividad *ini_actividad);
@@ -76,8 +76,13 @@ void listar_turnos_cliente(long int dni_cliente,turno_cliente *ini);
 int buscar_turno_cliente(int eleccion_turno_cliente,long int dni_cliente,turno_cliente *ini_clientesta);
 int buscar_dni_turno_cliente(long int dni,turno_cliente *ini_turno_cliente);
 
+//cuentas
+
+void insertar_cuenta(cuenta **nv,cuenta **ini_cuenta);
+
 
 int numero_aleatorio(int minimo, int maximo);
+void fecha_actual();
 
 // carga de listas
 void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente);

@@ -18,7 +18,6 @@ typedef struct{
 
 typedef struct{
 	int cod_clientesta;
-	int mes,anio;
 	float precio;
 	fecha f_pago;
 	struct cuenta *sgte;

@@ -14,14 +14,19 @@ int main(){
     cliente *ini_cliente=NULL;
     profesor *ini_profesor=NULL;
     tipo_turno *ini_tipo_turno=NULL;
+    cuenta *ini_cuenta = NULL;
+    char nombres_dias_sem[7][15]={"Domingo","Lunes","Martes","Miercoles","Jueves","Vienes","Sabado"};
 
+    //cargado de las listas
     cargar_listas(&ini_actividad,&ini_tipo_turno,&ini_cliente);
-
+    
     int opcion;
     //llamado a funciones de verificacion de fecha, borrado o activacion de actividades/tipo_turnos
     do{
         do{
             system("cls");
+            fecha_actual();
+            printf("%d/%d/%d %d:%d %s\n\n",fecha_global.dd,fecha_global.mm,fecha_global.yy,hora_global.hh,hora_global.mm,nombres_dias_sem[dia_sem_actual-1]);
         //opciones a elegir
             printf("1. ABM Clientes\n");
             printf("2. ABM Reservas\n");
@@ -87,7 +92,7 @@ int main(){
             break;
             case 11:
                 system("cls");
-                abm_clientes_ta(&ini_turno_cliente,&ini_tipo_turno,ini_actividad,ini_cliente);
+                abm_clientes_ta(&ini_turno_cliente,&ini_tipo_turno,ini_actividad,ini_cliente,&ini_cuenta);
             break;
             case 12:
                 system("cls");

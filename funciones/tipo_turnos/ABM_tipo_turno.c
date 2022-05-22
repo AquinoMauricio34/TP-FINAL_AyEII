@@ -13,7 +13,7 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
     int eleccion_sede,eleccion_actividad;
     int i;
     long int dni_cliente;
-    char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Vienes"};
+    char nombres_dias_sem[7][15]={"Domingo","Lunes","Martes","Miercoles","Jueves","Vienes","Sabado"};
     tipo_turno *aux=NULL;
     tipo_turno *nv=NULL;
     do{
@@ -67,7 +67,7 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
                             printf("Ingresar la hora de fin del turno (formato hh:mm): ");scanf("%d:%d",&nv->hora_fin_turno.hh,&nv->hora_fin_turno.mm);
                             //cargar dias
                             printf("Dias de la semana del turno:\n");
-                            for(i=0;i<5;i++){
+                            for(i=1;i<6;i++){
                                 do{
                                     printf("%s: ",nombres_dias_sem[i]);scanf("%d",&nv->dias[i]);
                                 }while(nv->dias[i]<0 || nv->dias[i]>1);
@@ -116,7 +116,7 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
 							printf("0-Finalizar\n>> ");
 							scanf("%d",&op);
 						}while(op<0 || op>4);
-						// system("cls");
+						system("cls");
 						modificar_tipo_turno(codigo_turno,op,&*ini_tipo_turno);
 					}while(op!=0);
                 }

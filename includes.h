@@ -62,5 +62,14 @@
 #include"funciones/actividades/insertar_actividad.c"
 #include"funciones/actividades/modificar_actividad.c"
 
+
+//cuentas
+#include"funciones/cuentas/pago_cuenta.c"
+
+
+//sin categoría
+#include"funciones/fecha_actual.c"
+
+
 #endif
 
