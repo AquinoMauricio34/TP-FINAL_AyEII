@@ -46,9 +46,10 @@ typedef struct{
 }tipo_turno;
 
 typedef struct{
-	int cod_turno,cod_actividad,cod_clientesta;
+	int cod_turno,cod_act,cod_clientesta;
 	long int dni;
 	fecha f_ultima_vez;
+	float debe;
 	struct turno_cliente *sgte;
 }turno_cliente;
 

@@ -15,7 +15,7 @@ int main(){
     profesor *ini_profesor=NULL;
     tipo_turno *ini_tipo_turno=NULL;
 
-    cargar_listas(&ini_actividad,&ini_tipo_turno);
+    cargar_listas(&ini_actividad,&ini_tipo_turno,&ini_cliente);
 
     int opcion;
     //llamado a funciones de verificacion de fecha, borrado o activacion de actividades/tipo_turnos
@@ -33,9 +33,11 @@ int main(){
             printf("8. Listar Profesores\n");
             printf("9. ABM T.Turnos\n");
             printf("10. Listar T.Turnos\n");
+            printf("11. ABM T.Clientes\n");
+            printf("12. Listar T.Clientes\n");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while(opcion<0 || opcion>10);
+        }while(opcion<0 || opcion>12);
 
         switch(opcion){
             case 1:
@@ -83,11 +85,20 @@ int main(){
                 listar_all_tipo_turnos(ini_tipo_turno);
                 system("pause");
             break;
+            case 11:
+                system("cls");
+                abm_clientes_ta(&ini_turno_cliente,&ini_tipo_turno,ini_actividad,ini_cliente);
+            break;
+            case 12:
+                system("cls");
+                listar_all_turnos_clientes(ini_turno_cliente);
+                system("pause");
+            break;
             
         }
     }while(opcion != 0);
 
-    guardado_listas(ini_actividad,ini_tipo_turno);
+    guardado_listas(ini_actividad,ini_tipo_turno,ini_cliente);
 
     return 0;
 }

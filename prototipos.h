@@ -59,31 +59,35 @@ void listar_all_actividades(actividad *ini);
 void buscar_borrar_actividad(int dato,actividad **bor,actividad **ant);
 
 //turno_clientes
-void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad);
+void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad,cliente *ini_cliente);
 void insertar_codigo_cliente(turno_cliente **nv,turno_cliente **ini_clientesta);
 void borrar_nodo_clientest(long int buscar_borrar,turno_cliente **ini_clientest);
 int buscar_actividades_clientesta(int cod_act,int sede,actividad *ini_actividad);
 void buscar_borrar_clientest(long int dato,turno_cliente **bor,turno_cliente **ant);
 int buscar_dni_clientesta(long int dni,turno_cliente *ini_clientesta);
-int buscar_turno_clientesta(int turno,tipo_turno *ini_turno);
 void insertar_clientesta(turno_cliente **nv,turno_cliente **ini_clientesta);
 int buscar_dni_clientest(long int dni,turno_cliente *ini_clientesta,tipo_turno *ini_turno,actividad *ini_actividad);
 void recorrer_actividades(int sede,actividad *ini);
 void recorrer_turnos(int cod_act,tipo_turno *ini_turno);
+int buscar_turno(int turno,int cod_actividad,tipo_turno *ini_turno);
+void listar_all_turnos_clientes(turno_cliente *ini);
 // int borrar_Tcliente(int dato,turno_cliente **ini_tcliente);
 void buscar_borrar_profeso(long int dato,turno_cliente **bor,turno_cliente **ant);
 
 int numero_aleatorio(int minimo, int maximo);
 
 // carga de listas
-void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno);
+void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente);
 void carga_actividades(actividad **ini_actividad);
 void insertar_actividad_carga(actividad **nv,actividad **ini);
 void carga_tipo_turnos(tipo_turno **ini_tipo_turno);
 void insertar_tipo_turno_carga(tipo_turno **nv,tipo_turno **ini);
+void carga_clientes(cliente **ini_cliente);
+void insertar_cliente_carga(cliente **nv,cliente **ini);
 
 // guardado de listas
-void guardado_listas(actividad *ini_actividad,tipo_turno *ini_tipo_turno);
+void guardado_listas(actividad *ini_actividad,tipo_turno *ini_tipo_turno,cliente *ini_cliente);
 void guardado_actividad(actividad *ini_actividad);
 void guardado_tipo_turno(tipo_turno *ini_tipo_turno);
+void guardado_cliente(cliente *ini_cliente);
 #endif

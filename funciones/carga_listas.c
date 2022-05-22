@@ -7,9 +7,10 @@
 #include"../estructuras.h"
 #include"../prototipos.h"
 
-void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno){
+void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente){
     carga_actividades(&*ini_actividad);
     carga_tipo_turnos(&*ini_tipo_turno);
+	carga_clientes(&*ini_cliente);
 }
 
 void carga_actividades(actividad **ini_actividad){
@@ -127,5 +128,64 @@ void insertar_tipo_turno_carga(tipo_turno **nv,tipo_turno **ini){
 	*ini = *nv;
 	*nv = NULL;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+void carga_clientes(cliente **ini_cliente){
+	FILE *a_clientes;
+	if((a_clientes=fopen("clientes.dat","rb"))!=NULL){
+		
+		cliente c_cliente;
+		cliente *nv=NULL;
+		
+		// printf("\n111\n");
+		
+		fread(&c_cliente,sizeof(cliente),1,a_clientes);
+		// printf("\n111\n");
+		while(!feof(a_clientes)){
+			// printf("%s | %d | %d\n",c_cliente.nombre,c_cliente.cant_personas,c_cliente.sede);
+			// printf("\n222\n");
+			nv = malloc(sizeof(cliente));
+			if(nv!=NULL){
+				// printf("\n333\n");
+				//carga datos
+				strcpy(nv->nombre,c_cliente.nombre);
+				nv->dni = c_cliente.dni;
+				nv->telefono = c_cliente.telefono;
+				nv->f_nacimiento.dd = c_cliente.f_nacimiento.dd;
+				nv->f_nacimiento.mm = c_cliente.f_nacimiento.mm;
+				nv->f_nacimiento.yy = c_cliente.f_nacimiento.yy;
+				nv->sgte = NULL;
+				//insertar
+				insertar_cliente_carga(&nv,&*ini_cliente);
+			}
+			
+			
+			fread(&c_cliente,sizeof(cliente),1,a_clientes);
+		}
+		fclose(a_clientes);
+	}else{
+		// printf("\naaaa111\n");
+		if((a_clientes=fopen("clientes.dat","wb"))!=NULL){
+			fclose(a_clientes);
+		}
+	}
+}
+
+void insertar_cliente_carga(cliente **nv,cliente **ini){
+	(*nv)->sgte = *ini;
+	*ini = *nv;
+	*nv = NULL;
+}
+
 
 #endif

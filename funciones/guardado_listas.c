@@ -7,9 +7,10 @@
 #include"../estructuras.h"
 #include"../prototipos.h"
 
-void guardado_listas(actividad *ini_actividad,tipo_turno *ini_tipo_turno){
+void guardado_listas(actividad *ini_actividad,tipo_turno *ini_tipo_turno,cliente *ini_cliente){
     guardado_actividad(ini_actividad);
 	guardado_tipo_turno(ini_tipo_turno);
+	guardado_cliente(ini_cliente);
 }
 
 void guardado_actividad(actividad *ini_actividad){
@@ -41,6 +42,24 @@ void guardado_tipo_turno(tipo_turno *ini_tipo_turno){
 		}
 
 		fclose(a_tipo_turnos);
+	}else{
+		printf("El archivo no se pudo abrir.");
+	}
+}
+
+
+void guardado_cliente(cliente *ini_cliente){
+	FILE *a_clientes;
+	if((a_clientes=fopen("clientes.dat","wb"))!=NULL){
+		cliente c_cliente;
+		cliente *aux = ini_cliente;
+		while(aux != NULL){
+			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
+			fwrite(aux,sizeof(cliente),1,a_clientes);
+			aux = aux->sgte;
+		}
+
+		fclose(a_clientes);
 	}else{
 		printf("El archivo no se pudo abrir.");
 	}
