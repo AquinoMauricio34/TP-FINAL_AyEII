@@ -63,9 +63,10 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 
 							if(nv->dni !=0){
 								nv->debe = 0;
-								nv->f_ultima_vez.dd =0;
-								nv->f_ultima_vez.mm = 0;
-								nv->f_ultima_vez.yy = 0;
+								fecha_actual();
+								nv->f_ultima_vez.dd = fecha_global.dd;
+								nv->f_ultima_vez.mm = fecha_global.mm;
+								nv->f_ultima_vez.yy = fecha_global.yy;
 								
 								do{
 									printf("Esta seguro de que quiere realizar la reserva? (1.Si | 0.No): ");scanf("%d",&opcion);
@@ -76,6 +77,7 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 									//crear cuenta pagada
 									nv_cuenta = malloc(sizeof(cuenta));
 									if(nv_cuenta != NULL){
+										nv_cuenta->sgte = NULL;
 										nv_cuenta->cod_clientesta = nv->cod_clientesta;
 										nv_cuenta->f_pago.dd = fecha_global.dd;
 										nv_cuenta->f_pago.mm = fecha_global.mm;
