@@ -6,40 +6,38 @@
 #include<string.h>
 #include"../../estructuras.h"
 #include"../../prototipos.h"
-void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad){
+void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **ini_turno_cliente){
 	cliente *nv=NULL;
 	actividad *p=NULL;
-	int op,buscar=0,dni_cliente,buscar_dni=0,op_mod;
+	int op,buscar=0,dni_cliente,buscar_dni=0,op_mod,encontrado;
 	long int buscar_borrar,modificar;
 	do{
 		system("cls");
 		printf("1-Aniadir un nuevo cliente\n");
 		printf("2-Eliminar un cliente\n");
 		printf("3-Modificar un cliente\n");
-		printf("0-Finalizar");
+		printf("0-Finalizar\n>> ");
 		scanf("%d",&op);
 		
 		switch(op){
 			case 1://aniadir un nuevo cliente
-				//se debe pedir espacio en la memoria ------------------------------------------------------------------
-				do{//mientras se encuentre el dni ingresado o el dni es igual a 0, el bucle se repetira
-					listar_actividades(*ini_actividad);
-					printf("ingrese el codigo de la actividad que desee\n");
-                    scanf("%d",&p->cod_act);
-					buscar = buscar_actividades(p->cod_act,*ini_actividad);
-				}while(buscar!=1 && p->cod_act !=0);
-
-				if(buscar == 1){
+				nv = malloc(sizeof(cliente));// espacio en la memoria ---------
+				if(nv != NULL){
 					do{
-						printf("ingrese el dni del cliente\n");
+						printf("ingrese el dni del cliente: ");
 						scanf("%ld",&nv->dni);
+						printf("\naaa = %ld\n",nv->dni);
 						buscar_dni = buscar_dni_cliente(nv->dni,*ini_cliente);
-					}while(buscar_dni != 1 && nv->dni !=0);
+					}while(buscar_dni == 1 && nv->dni !=0);
 					if(nv->dni != 0){
-						printf("ingrese el nombre del cliente\n");
+						fflush(stdin);
+						printf("ingrese el nombre del cliente: ");
 						gets(nv->nombre);
-						printf("ingrese el telefono del cliente\n");
+						printf("ingrese el telefono del cliente: \n");
 						scanf("%ld",&nv->telefono);
+						printf("Ingrese el fecha de nacimiento del cliente (dd/mm/aa): ");
+						scanf("%d/%d/%d",&nv->f_nacimiento.dd,&nv->f_nacimiento.mm,&nv->f_nacimiento.yy);
+						nv->sgte = NULL;
 						insertar_cliente(&nv,&*ini_cliente);
 						
 					}
@@ -57,6 +55,10 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad){
 					printf("Esta seguro/a de que quiere eliminar al cliente (1. SI | 0. NO): ");
 					scanf("%d",&op_mod);
 					if(op_mod == 1){
+						encontrado = 0;
+						do{
+							encontrado = borrar_Tcliente(buscar_borrar,&*ini_turno_cliente,&encontrado);
+						}while(encontrado == 1);
 					//	borrar_Tcliente(buscar_borrar,&*ini_cliente);
 						borrar_nodo_cliente(buscar_borrar,&*ini_cliente);
 					}
@@ -82,5 +84,15 @@ void ABM_clientes(cliente **ini_cliente,actividad **ini_actividad){
 		}	
 	}while(op != 0);
 	free(nv);
+}
+
+void listar_all_clientes(cliente *ini){
+	if(ini!=NULL){
+		while(ini != NULL){
+			printf("%15ld | %30s | %15ld | %d/%d/%d\n",ini->dni,ini->nombre,ini->telefono,ini->f_nacimiento.dd,ini->f_nacimiento.mm,ini->f_nacimiento.yy);
+			ini = ini->sgte;
+		}
+	}else
+		printf("\nSIN CLIENTES\n");
 }
 #endif

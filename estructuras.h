@@ -6,7 +6,7 @@ typedef struct{
 }fecha;
 
 typedef struct{
-	int hh,mm,ss;
+	int hh,mm;
 }hora;
 
 typedef struct{
@@ -15,6 +15,13 @@ typedef struct{
 	char nombre[100];
 	struct cliente *sgte;
 }cliente;
+
+typedef struct{
+	int cod_clientesta;
+	float precio;
+	fecha f_pago;
+	struct cuenta *sgte;
+}cuenta;
 
 typedef struct{
 	int cod_act;
@@ -38,14 +45,14 @@ typedef struct{
 }tipo_turno;
 
 typedef struct{
-	int cod_turno,cod_actividad,cod_clientesta;
+	int cod_turno,cod_act,cod_clientesta;
 	long int dni;
 	fecha f_ultima_vez;
+	float debe;
 	struct turno_cliente *sgte;
 }turno_cliente;
 
 typedef struct{
-	int cod_act;
 	char nombre[100];
 	long int dni,telefono;
 	struct profesor *sgte;

@@ -9,13 +9,9 @@
 #include"../../prototipos.h"
 int buscar_dni_clientesta(long int dni,turno_cliente *ini_clientesta){
     int buscar=0;
-	while(ini_clientesta != NULL){
-		if(ini_clientesta->dni == dni){
+	while(ini_clientesta != NULL && buscar != 1){
+		if(ini_clientesta->dni == dni)
 			buscar = 1;
-			ini_clientesta = NULL;
-		}else{
-			buscar = 0;
-		}
 		ini_clientesta = ini_clientesta->sgte;
 	}
 	return buscar;

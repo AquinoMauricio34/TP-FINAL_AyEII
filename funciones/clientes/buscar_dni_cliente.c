@@ -8,8 +8,10 @@
 #include"../../estructuras.h"
 #include"../../prototipos.h"
 int buscar_dni_cliente(long int dni,cliente *ini_cliente){
+	printf("\naaaa11\n");
     int buscar=0;
-	while(ini_cliente != NULL){
+	while(ini_cliente != NULL && buscar != 1){
+		printf("\nbbbb\n");
 		if(ini_cliente->dni == dni){
 			buscar = 1;
 		}else{
@@ -17,6 +19,7 @@ int buscar_dni_cliente(long int dni,cliente *ini_cliente){
 		}
 		ini_cliente = ini_cliente->sgte;
 	}
+	printf("\nccc\n");
 	return buscar;
 }
 #endif

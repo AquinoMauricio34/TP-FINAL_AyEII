@@ -13,7 +13,7 @@ cliente *bor=*ini_cliente,*ant=NULL;
 //la funcion no está creada--------------------------------------------------
 // buscar_borrar_cliente(dato,&bor,&ant);
 if(bor != NULL){
-    if(ant != NULL){
+    if(ant == NULL){
        *ini_cliente = (*ini_cliente)->sgte;
     }else{
     ant->sgte = bor->sgte;

@@ -10,6 +10,11 @@
 // #include"funciones/reservas/buscar_dni_reserva.c"
 // #include"funciones/reservas/listar_reservas.c"
 
+#include"funciones/carga_listas.c"
+#include"funciones/guardado_listas.c"
+
+
+
 // profesores
 
 
@@ -30,7 +35,9 @@
 #include"funciones/clientes/buscar_actividad.c"
 #include"funciones/clientes/buscar_dni_cliente.c"
 #include"funciones/clientes/modificar_cliente.c"
-#include"funciones/clientes/buscar_nodo_cliente.c"
+#include"funciones/clientes/borrar_nodo_cliente.c"
+#include"funciones/clientes/insertar_cliente.c"
+#include"funciones/clientes/borrar_Tcliente.c"
 
 
 //turno_clientes
@@ -39,19 +46,30 @@
 #include"funciones/turno_cliente/buscar_actividades_clientesta.c"
 #include"funciones/turno_cliente/buscar_borrar_clientesta.c"
 #include"funciones/turno_cliente/buscar_dni_clientesta.c"
-#include"funciones/turno_cliente/buscar_turnos__clientes.c"
+#include"funciones/turno_cliente/buscar_turnos_clientes.c"
 #include"funciones/turno_cliente/insertar_clientesta.c"
 #include"funciones/turno_cliente/modificacion_clientesta.c"
 #include"funciones/turno_cliente/recorrer_actividades.c"
 #include"funciones/turno_cliente/recorrer_turnos.c"
-#include"funciones/turno_cliente/listar_actividades.c"
+#include"funciones/turno_cliente/codigo_turno_clientesta.c"
+// #include"funciones/turno_cliente/listar_actividades.c"
 
-#include"funciones/clientes/borrar_nodo_cliente.c"
-#include"funciones/clientes/insertar_cliente.c"
-#include"funciones/clientes/borrar_Tcliente.c"
+//actividades
+
+#include"funciones/actividades/ABM_actividades.c"
+#include"funciones/actividades/borrar_actividad.c"
+#include"funciones/actividades/buscar_actividad.c"
+#include"funciones/actividades/insertar_actividad.c"
+#include"funciones/actividades/modificar_actividad.c"
 
 
-#include"funciones/numero_aleatorios.c"
+//cuentas
+#include"funciones/cuentas/pago_cuenta.c"
+
+
+//sin categoría
+#include"funciones/fecha_actual.c"
 
 
 #endif
+

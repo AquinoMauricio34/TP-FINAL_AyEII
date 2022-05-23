@@ -7,20 +7,22 @@
 #include"../../estructuras.h"
 #include"../../prototipos.h"
 void modificar_cliente(long int dato,int op,cliente **ini_cliente){
-	while(*ini_cliente != NULL){
+	int encontrado = 0;
+	cliente *aux = *ini_cliente;
+	while(*ini_cliente != NULL && encontrado != 1){
 		
-		if((*ini_cliente)->dni == dato){
+		if(aux->dni == dato){
 		
 			if(op==1){
 				fflush(stdin);
-				gets((*ini_cliente)->nombre);
+				gets(aux->nombre);
 			}else if(op==2){
-				scanf("%ld",&(*ini_cliente)->telefono);
+				scanf("%ld",&aux->telefono);
 			}
-			*ini_cliente = NULL;
+			encontrado = 1;
 		}
 		
-		*ini_cliente = (*ini_cliente)->sgte;	
+		aux = aux->sgte;	
 	}
 }
 #endif

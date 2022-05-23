@@ -1,14 +1,14 @@
-#ifndef buscar_actividades_clientes_C
-#define buscar_actividades_clientes_C
+#ifndef buscar_actividades_C
+#define buscar_actividades_C
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include"../../estructuras.h"
 #include"../../prototipos.h"
-int buscar_actividades_clientes(int codigo,actividad *ini_actividad){
+int buscar_actividadx(int codigo,actividad *ini_actividad){
 	int buscar=0;
-	while(ini_actividad != NULL){
+	while(ini_actividad != NULL && buscar != 1){
 		if(ini_actividad->cod_act == codigo){
 			buscar = 1;
 		}else{
