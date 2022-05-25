@@ -13,7 +13,7 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 	turno_cliente *nv=NULL;
 	tipo_turno *aux_tipo_turno=NULL;
 	cuenta *nv_cuenta=NULL;
-	int op,buscar,sede,cod_act,buscara=0,opcion;
+	int op,buscar,sede,cod_act,buscara=0,opcion,numero_cod_clientesta,numero_cod_turno;
 	long int buscar_borrar,buscar_mod,buscar_dni,buscar_dni_clientest,buscar_dni_clientes;
 	int dni_cliente, eleccion_turno_cliente;
 	do{
@@ -73,25 +73,37 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 								}while(opcion<0 || opcion>1);
 								if(opcion){
 									insertar_codigo_cliente(&nv,&*ini_clientesta);
+									numero_cod_clientesta = nv->cod_clientesta;
+									numero_cod_turno = nv->cod_turno;;
 									insertar_clientesta(&nv,&*ini_clientesta);
-									//crear cuenta pagada
+									// crear cuenta pagada
+									printf("\n111\n");
 									nv_cuenta = malloc(sizeof(cuenta));
 									if(nv_cuenta != NULL){
+										printf("\n222\n");
 										nv_cuenta->sgte = NULL;
-										nv_cuenta->cod_clientesta = nv->cod_clientesta;
+										// printf("\n222111 %d\n",nv->cod_clientesta);
+										nv_cuenta->cod_clientesta = numero_cod_clientesta;
+										printf("\n333\n");
 										nv_cuenta->f_pago.dd = fecha_global.dd;
 										nv_cuenta->f_pago.mm = fecha_global.mm;
 										nv_cuenta->f_pago.yy = fecha_global.yy;
+										printf("\n444\n");
 										aux_tipo_turno=*ini_turno;
+										printf("\n555\n");
 										while(aux_tipo_turno != NULL && buscar != 1){
-											if(nv->cod_turno == aux_tipo_turno->cod_turno){
+											// printf("\ncod_t: %d, aux: %d\n",nv->cod_turno,aux_tipo_turno->cod_turno);
+											if(numero_cod_turno == aux_tipo_turno->cod_turno){
 												nv_cuenta->precio = aux_tipo_turno->precio;
 												// break;
 												buscar = 1;//reutilizo la variable para no crear otra
 											}
+											aux_tipo_turno = aux_tipo_turno->sgte;
 										}
+										printf("\n666\n");
 										insertar_cuenta(&nv_cuenta,&*ini_cuenta);
-									}
+									}else
+										printf("No se puede crear la cuenta");
 								}
 							}
 

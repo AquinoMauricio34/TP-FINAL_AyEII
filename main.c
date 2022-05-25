@@ -40,9 +40,10 @@ int main(){
             printf("10. Listar T.Turnos\n");
             printf("11. ABM T.Clientes\n");
             printf("12. Listar T.Clientes\n");
+            printf("13. Listar Cuentas\n");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while(opcion<0 || opcion>12);
+        }while(opcion<0 || opcion>13);
 
         switch(opcion){
             case 1:
@@ -97,6 +98,11 @@ int main(){
             case 12:
                 system("cls");
                 listar_all_turnos_clientes(ini_turno_cliente);
+                system("pause");
+            break;
+            case 13:
+                system("cls");
+                listar_all_cuentas(ini_cuenta);
                 system("pause");
             break;
             

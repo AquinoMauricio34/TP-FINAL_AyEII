@@ -81,6 +81,7 @@ int buscar_dni_turno_cliente(long int dni,turno_cliente *ini_turno_cliente);
 void insertar_cuenta(cuenta **nv,cuenta **ini_cuenta);
 void listar_turnos_cliente_segunactividad(long int dni_cliente,int eleccion_actividad,turno_cliente *ini);
 int buscar_turno_cliente_cuenta(int eleccion_turno_cliente,int eleccion_actividad,long int dni_cliente,turno_cliente **ini_clientesta);
+void listar_all_cuentas(cuenta *ini);
 
 
 int numero_aleatorio(int minimo, int maximo);
