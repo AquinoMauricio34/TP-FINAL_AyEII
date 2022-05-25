@@ -70,6 +70,8 @@
 //sin categoría
 #include"funciones/fecha_actual.c"
 
+// mostrar lista
+#include"funciones/listar_cliente_sd_act_tur/listar_csat.c"
 
 #endif
 
