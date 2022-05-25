@@ -5,6 +5,7 @@
 #include"includes.h"
 #include"estructuras.h"
 
+extern int fecha_modificada;
 
 int main(){
     //reserva
@@ -16,7 +17,11 @@ int main(){
     tipo_turno *ini_tipo_turno=NULL;
     cuenta *ini_cuenta = NULL;
     char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Vienes"};
+    int persona;
+    fecha_modificada = 0;
 
+    opcion_persona(&persona);
+    printf("\npersona = %d\n",persona);
     //cargado de las listas
     cargar_listas(&ini_actividad,&ini_tipo_turno,&ini_cliente);
     
@@ -26,8 +31,12 @@ int main(){
         do{
             system("cls");
             fecha_actual();
+            printf("\nsem = %d\n",dia_sem_actual);
             printf("%d/%d/%d %d:%d %s\n\n",fecha_global.dd,fecha_global.mm,fecha_global.yy,hora_global.hh,hora_global.mm,nombres_dias_sem[dia_sem_actual-1]);
         //opciones a elegir
+            if(persona == 1){
+                printf("111. Fecha actual\n");
+            }
             printf("1. ABM Clientes\n");
             printf("2. ABM Reservas\n");
             printf("3. Listar Reservas\n");
@@ -43,9 +52,17 @@ int main(){
             printf("13. Listar Cuentas\n");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while(opcion<0 || opcion>13);
+        }while((opcion<0 || opcion>13) && opcion!= 111);
 
         switch(opcion){
+//        	printf("\npersona = %d\n",persona);
+//        	system("pause");
+	    	case 111:
+        	if(persona == 1){
+	                system("cls");
+	                modificar_fecha();
+			}
+	        break;
             case 1:
                 system("cls");
                 ABM_clientes(&ini_cliente,ini_actividad,&ini_turno_cliente);

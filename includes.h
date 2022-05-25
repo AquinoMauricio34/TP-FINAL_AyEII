@@ -69,6 +69,8 @@
 
 //sin categoría
 #include"funciones/fecha_actual.c"
+#include"funciones/opcion_persona.c"
+
 
 // mostrar lista
 #include"funciones/listar_cliente_sd_act_tur/listar_csat.c"

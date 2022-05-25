@@ -1,5 +1,5 @@
-#ifndef listar_reservas_C
-#define listar_reservas_C
+#ifndef NUMEROS_ALEATORIOS_C
+#define NUMEROS_ALEATORIOS_C
 
 #include<stdio.h>
 #include<stdlib.h>

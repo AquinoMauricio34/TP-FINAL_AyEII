@@ -63,7 +63,6 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 
 							if(nv->dni !=0){
 								nv->debe = 0;
-								fecha_actual();
 								nv->f_ultima_vez.dd = fecha_global.dd;
 								nv->f_ultima_vez.mm = fecha_global.mm;
 								nv->f_ultima_vez.yy = fecha_global.yy;

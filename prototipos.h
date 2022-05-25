@@ -86,6 +86,8 @@ void listar_all_cuentas(cuenta *ini);
 
 int numero_aleatorio(int minimo, int maximo);
 void fecha_actual();
+void opcion_persona(int *persona);
+void modificar_fecha();
 
 // carga de listas
 void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente);
