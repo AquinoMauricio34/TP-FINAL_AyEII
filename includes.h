@@ -75,6 +75,7 @@
 
 // mostrar lista
 #include"funciones/listar_cliente_sd_act_tur/listar_csat.c"
+#include"funciones/reservas/listar_reservas.c"
 
 #endif
 
