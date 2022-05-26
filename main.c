@@ -38,7 +38,7 @@ int main(){
             if(persona == 1){
                 printf("111. Fecha actual\n");
             }
-            printf("1. ABM Clientes\n");
+            printf("1. ABM Clientes\n");	
             printf("2. ABM Reservas\n");
             printf("3. Listar Reservas\n");
             printf("4. ABM Actividades\n");

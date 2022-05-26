@@ -54,9 +54,20 @@ void carga_actividades(actividad **ini_actividad){
 }
 
 void insertar_actividad_carga(actividad **nv,actividad **ini){
-	(*nv)->sgte = *ini;
-	*ini = *nv;
-	*nv = NULL;
+	// (*nv)->sgte = *ini;
+	// *ini = *nv;
+	// *nv = NULL;
+	actividad *aux = *ini;
+    if(*ini != NULL){
+		while(aux->sgte!= NULL){
+            aux = aux->sgte;
+        }
+        aux->sgte = *nv;
+        *nv = NULL;
+    }else{
+        *ini = *nv;
+        *nv = NULL;
+    }
 }
 
 
@@ -124,9 +135,20 @@ void carga_tipo_turnos(tipo_turno **ini_tipo_turno){
 }
 
 void insertar_tipo_turno_carga(tipo_turno **nv,tipo_turno **ini){
-	(*nv)->sgte = *ini;
-	*ini = *nv;
-	*nv = NULL;
+	// (*nv)->sgte = *ini;
+	// *ini = *nv;
+	// *nv = NULL;
+	tipo_turno *aux = *ini;
+    if(*ini != NULL){
+		while(aux->sgte!= NULL){
+            aux = aux->sgte;
+        }
+        aux->sgte = *nv;
+        *nv = NULL;
+    }else{
+        *ini = *nv;
+        *nv = NULL;
+    }
 }
 
 
@@ -182,9 +204,20 @@ void carga_clientes(cliente **ini_cliente){
 }
 
 void insertar_cliente_carga(cliente **nv,cliente **ini){
-	(*nv)->sgte = *ini;
-	*ini = *nv;
-	*nv = NULL;
+	// (*nv)->sgte = *ini;
+	// *ini = *nv;
+	// *nv = NULL;
+	cliente *aux = *ini;
+    if(*ini != NULL){
+		while(aux->sgte!= NULL){
+            aux = aux->sgte;
+        }
+        aux->sgte = *nv;
+        *nv = NULL;
+    }else{
+        *ini = *nv;
+        *nv = NULL;
+    }
 }
 
 

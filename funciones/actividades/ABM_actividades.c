@@ -1,3 +1,4 @@
+//verificacion de que se ingresen los datos correctamente
 #ifndef ABM_ACTIVIDADES_C
 #define ABM_ACTIVIDADES_C
 //si elimino una actividad, todos los tipo turno y los turnos clientes con el codigo de esa actividad deben ser eliminados

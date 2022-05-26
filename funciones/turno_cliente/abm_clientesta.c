@@ -33,10 +33,14 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 				if(sede == 1 ||sede == 2 ){
 					recorrer_actividades(sede,ini_actividad);
 					do{//mientras se encuentre el dni ingresado o el dni es igual a 0, el bucle se repetira
+						system("cls");
+						if(buscara == -1){
+							printf("Cupo de actividad lleno.\nTiene la posibilidad de realizar una reserva.\n");
+						}
 						printf("ingrese el codigo de la actividad que desee\n");
                    		scanf("%d",&cod_act);//codigo y sede 
 						printf("\n111\n");
-						buscara = buscar_actividades_clientesta(cod_act,sede,ini_actividad);
+						buscara = buscar_actividades_clientesta(cod_act,sede,ini_actividad,*ini_clientesta);
 						printf("\n222 = %d\n",buscara);
 				}while(buscara!=1 && cod_act !=0);//modifcar por un or
 				if(buscara == 1){

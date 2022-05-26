@@ -149,7 +149,7 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
 void listar_actividades_sede(actividad *ini_actividad,int eleccion_sede){
     while(ini_actividad != NULL){
         printf("elecc = %d, ini = %d\n",eleccion_sede,ini_actividad->sede);
-        if(eleccion_sede == ini_actividad->sede/* && ini_actividad->estado == 1*/){
+        if(eleccion_sede == ini_actividad->sede || ini_actividad->sede == -1/* && ini_actividad->estado == 1*/){
             printf("%-10d| %s\n",ini_actividad->cod_act,ini_actividad->nombre);
         }
         ini_actividad = ini_actividad->sgte;
@@ -158,10 +158,8 @@ void listar_actividades_sede(actividad *ini_actividad,int eleccion_sede){
 int buscar_actividad_sede(int eleccion_actividad,int eleccion_sede,actividad *ini_actividad){
     int buscar=0;
 	while(ini_actividad != NULL && buscar != 1){
-		if(ini_actividad->cod_act == eleccion_actividad && ini_actividad->sede == eleccion_sede){
+		if(ini_actividad->cod_act == eleccion_actividad && (ini_actividad->sede == eleccion_sede || ini_actividad->sede == -1)){
 			buscar = 1;
-		}else{
-			buscar = 0;
 		}
 		ini_actividad = ini_actividad->sgte;
 	}
