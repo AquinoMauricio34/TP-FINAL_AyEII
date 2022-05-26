@@ -16,7 +16,7 @@ int main(){
     profesor *ini_profesor=NULL;
     tipo_turno *ini_tipo_turno=NULL;
     cuenta *ini_cuenta = NULL;
-    char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Vienes"};
+    char nombres_dias_sem[7][15]={"Domingo","Lunes","Martes","Miercoles","Jueves","Vienes","Sabado"};
     int persona;
     fecha_modificada = 0;
 
@@ -29,10 +29,11 @@ int main(){
     //llamado a funciones de verificacion de fecha, borrado o activacion de actividades/tipo_turnos
     do{
         do{
+            deudas(&ini_turno_cliente,ini_tipo_turno,ini_cuenta);
             system("cls");
             fecha_actual();
             printf("\nsem = %d\n",dia_sem_actual);
-            printf("%d/%d/%d %d:%d %s\n\n",fecha_global.dd,fecha_global.mm,fecha_global.yy,hora_global.hh,hora_global.mm,nombres_dias_sem[dia_sem_actual-1]);
+            printf("%d/%d/%d %d:%d %s\n\n",fecha_global.dd,fecha_global.mm,fecha_global.yy,hora_global.hh,hora_global.mm,nombres_dias_sem[dia_sem_actual]);
         //opciones a elegir
             if(persona == 1){
                 printf("111. Fecha actual\n");

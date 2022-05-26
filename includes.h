@@ -70,6 +70,7 @@
 //sin categoría
 #include"funciones/fecha_actual.c"
 #include"funciones/opcion_persona.c"
+#include"funciones/deudas.c"
 
 
 // mostrar lista

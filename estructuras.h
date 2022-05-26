@@ -13,6 +13,7 @@ typedef struct{
 	long int dni,telefono;
 	fecha f_nacimiento;
 	char nombre[100];
+	int baja;
 	struct cliente *sgte;
 }cliente;
 
@@ -45,7 +46,7 @@ typedef struct{
 }tipo_turno;
 
 typedef struct{
-	int cod_turno,cod_act,cod_clientesta;
+	int cod_turno,cod_act,cod_clientesta,baja,incrementado;
 	long int dni;
 	fecha f_ultima_vez;
 	float debe;

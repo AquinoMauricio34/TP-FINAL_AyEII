@@ -48,6 +48,8 @@ int borrar_Tcliente(int dato,turno_cliente **ini_tcliente,int *encontrado);
 int buscar_actividades_clientes(int codigo,actividad *ini_actividad);
 void buscar_borrar_Tcliete(long int dato,turno_cliente **bor,turno_cliente **ant);
 void listar_all_clientes(cliente *ini);
+void baja_nodo_cliente(long int buscar_borrar,cliente **ini_cliente);
+void baja_turnos_cliente(long int buscar_borrar,turno_cliente **ini_turno_cliente);
 
 // actividades
 void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente);
@@ -88,6 +90,7 @@ int numero_aleatorio(int minimo, int maximo);
 void fecha_actual();
 void opcion_persona(int *persona);
 void modificar_fecha();
+void deudas(turno_cliente **ini_turno_cliente,tipo_turno *ini_tipo_turno,cuenta *ini_cuenta);
 
 // carga de listas
 void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente);

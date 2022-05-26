@@ -66,7 +66,8 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 								nv->f_ultima_vez.dd = fecha_global.dd;
 								nv->f_ultima_vez.mm = fecha_global.mm;
 								nv->f_ultima_vez.yy = fecha_global.yy;
-								
+								nv->baja = 0;
+								nv->incrementado = 0;
 								do{
 									printf("Esta seguro de que quiere realizar la reserva? (1.Si | 0.No): ");scanf("%d",&opcion);
 								}while(opcion<0 || opcion>1);
@@ -198,7 +199,7 @@ void listar_all_turnos_clientes(turno_cliente *ini){
 	if(ini!=NULL){
 		while(ini != NULL){
 			printf("cod_t: %d | cod_a: %d | cod_clientesta: %d | dni: %ld |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni);
-			printf("debe: %d | ult_v: %d/%d\n",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy);
+			printf("debe: %f | ult_v: %d/%d/%d | estado: %d\n",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy,ini->baja);
             printf("--------------");
 			ini = ini->sgte;
 		}

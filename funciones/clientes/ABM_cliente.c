@@ -37,6 +37,7 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 						scanf("%ld",&nv->telefono);
 						printf("Ingrese el fecha de nacimiento del cliente (dd/mm/aa): ");
 						scanf("%d/%d/%d",&nv->f_nacimiento.dd,&nv->f_nacimiento.mm,&nv->f_nacimiento.yy);
+						nv->baja = 0;
 						nv->sgte = NULL;
 						insertar_cliente(&nv,&*ini_cliente);
 						
@@ -52,15 +53,17 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 				}while(buscar_dni != 1 && buscar_borrar !=0);
 
 				if(buscar_borrar != 0){//si ebcontro el dni
-					printf("Esta seguro/a de que quiere eliminar al cliente (1. SI | 0. NO): ");
+					printf("Esta seguro/a de que quiere dar de baja al cliente (1. SI | 0. NO): ");
 					scanf("%d",&op_mod);
 					if(op_mod == 1){
-						encontrado = 0;
-						do{
-							encontrado = borrar_Tcliente(buscar_borrar,&*ini_turno_cliente,&encontrado);
-						}while(encontrado == 1);
+						// encontrado = 0;
+						// do{
+						// 	encontrado = borrar_Tcliente(buscar_borrar,&*ini_turno_cliente,&encontrado);
+						// }while(encontrado == 1);
 					//	borrar_Tcliente(buscar_borrar,&*ini_cliente);
-						borrar_nodo_cliente(buscar_borrar,&*ini_cliente);
+						// borrar_nodo_cliente(buscar_borrar,&*ini_cliente);
+						baja_nodo_cliente(buscar_borrar,&*ini_cliente);
+						baja_turnos_cliente(buscar_borrar,&*ini_turno_cliente);
 					}
 				}
 			break;
@@ -86,10 +89,34 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 	free(nv);
 }
 
+void baja_nodo_cliente(long int buscar_borrar,cliente **ini_cliente){
+	cliente *aux = *ini_cliente;
+	int encontrado=0;
+	while(aux != NULL && encontrado != 1){
+		if(aux->dni == buscar_borrar){
+			aux->baja = 1;
+			encontrado = 1;
+		}
+		aux = aux->sgte;
+	}
+}
+
+void baja_turnos_cliente(long int buscar_borrar,turno_cliente **ini_turno_cliente){
+	turno_cliente *aux = *ini_turno_cliente;
+	while(aux != NULL){
+
+		if(buscar_borrar == aux->dni){
+			aux->baja = 1;
+		}
+
+		aux = aux->sgte;
+	}
+}
+
 void listar_all_clientes(cliente *ini){
 	if(ini!=NULL){
 		while(ini != NULL){
-			printf("%15ld | %30s | %15ld | %d/%d/%d\n",ini->dni,ini->nombre,ini->telefono,ini->f_nacimiento.dd,ini->f_nacimiento.mm,ini->f_nacimiento.yy);
+			printf("%15ld | %30s | %15ld | %d/%d/%d | estado: %d\n",ini->dni,ini->nombre,ini->telefono,ini->f_nacimiento.dd,ini->f_nacimiento.mm,ini->f_nacimiento.yy,ini->baja);
 			ini = ini->sgte;
 		}
 	}else
