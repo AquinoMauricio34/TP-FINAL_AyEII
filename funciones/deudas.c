@@ -24,7 +24,7 @@ void deudas(turno_cliente **ini_turno_cliente,tipo_turno *ini_tipo_turno,cuenta 
                 cuenta_encontrada = 0;
                 while(aux_cuenta != NULL && cuenta_encontrada != 1){
                     printf("\n4\n");
-                    if(aux_cuenta->cod_clientesta == aux->cod_clientesta && aux_cuenta->f_pago.mm == fecha_global.mm){
+                    if(aux_cuenta->cod_clientesta == aux->cod_clientesta && aux_cuenta->f_pago.mm == fecha_global.mm && aux_cuenta->f_pago.yy && fecha_global.yy){
                         cuenta_encontrada = 1;
                         printf("\n5\n");
                     }

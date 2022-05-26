@@ -37,13 +37,14 @@ void pago_cuenta(turno_cliente **ini_turno_cliente,actividad *ini_actividad,tipo
         }while(buscar != 1 && eleccion_actividad != 0);
 
         if(eleccion_actividad != 0){
-            aux_turno_cliente = *ini_turno_cliente;
+            buscar = 0;
             do{
 				system("cls");
             	listar_turnos_cliente_segunactividad(dni_cliente,eleccion_actividad,*ini_turno_cliente);
 				if(buscar == -1){
 					printf("Cuenta ya pagada.\n");
 				}
+                aux_turno_cliente = *ini_turno_cliente;
                 printf("Ingresar codigo del turno cliente: ");scanf("%d",&eleccion_turno_cliente);
                 buscar = buscar_turno_cliente_cuenta(eleccion_turno_cliente,eleccion_actividad,dni_cliente,&aux_turno_cliente);
             }while(buscar != 1 && eleccion_turno_cliente != 0);
@@ -100,15 +101,17 @@ void insertar_cuenta(cuenta **nv,cuenta **ini_cuenta){
 int buscar_turno_cliente_cuenta(int eleccion_turno_cliente,int eleccion_actividad,long int dni_cliente,turno_cliente **ini_clientesta){
 	int buscar=0;
 	printf("1Eleccion: %d, dni cliente: %ld\n",eleccion_turno_cliente,dni_cliente);
-	while(*ini_clientesta != NULL && buscar != 1){
+	while(*ini_clientesta != NULL && buscar != 1 && buscar != -1){
 		printf("Eleccion: %d, dni cliente: %ld\n",(*ini_clientesta)->cod_clientesta,(*ini_clientesta)->dni);
 		if((*ini_clientesta)->cod_clientesta == eleccion_turno_cliente && (*ini_clientesta)->cod_act == eleccion_actividad && (*ini_clientesta)->dni == dni_cliente){
+            printf("\nabc\n");
 			if((*ini_clientesta)->debe > 0)
 				buscar = 1;
 			else
 				buscar = -1;
+                system("pause");
 		}else
-		    *ini_clientesta =(*ini_clientesta)->sgte;
+	        *ini_clientesta =(*ini_clientesta)->sgte;
 	}
 	
 	return buscar;
