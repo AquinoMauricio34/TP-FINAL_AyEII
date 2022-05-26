@@ -71,4 +71,36 @@ void deudas(turno_cliente **ini_turno_cliente,tipo_turno *ini_tipo_turno,cuenta 
     printf("\n123412341234123412342134\n");
 }
 
+
+
+
+// void pago_deuda(turno_cliente **ini_turno_cliente,actividad *ini_actividad){
+//     int buscar,eleccion_sede,eleccion_actividad;
+//     long int dni_cliente;
+//     //ingreso y verificacion de dni (se lo busca en turnos_cliente)
+//     buscar = 0;
+//     do{
+//         printf("Ingresar dni del cliente: ");scanf("%ld",&dni_cliente);
+//         buscar = buscar_dni_turno_cliente(dni_cliente,*ini_turno_cliente);
+//     }while(buscar != 1 && dni_cliente != 0);
+
+//     if(dni_cliente != 0){
+//         do{
+//             printf("Ingresar sede 1 | 2 : ");scanf("%d",&eleccion_sede);
+//         }while(eleccion_sede < 1 || eleccion_sede > 2);
+//         listar_actividades_sede(ini_actividad,eleccion_sede);
+
+//         do{
+//             printf("Ingresar codigo de la actividad: ");scanf("%d",&eleccion_actividad);
+//             buscar = buscar_actividad_sede(eleccion_actividad,eleccion_sede,ini_actividad);
+//         }while(buscar != 1 && eleccion_actividad != 0);
+
+
+
+//     }
+//     //listar, leer y verificar actividad
+//     //listar , leer y verificar los tipo turnos
+//     //Hacer pregunta, CONFIRMACION DE PAGO 1. SI | 2. NO
+// }
+
 #endif

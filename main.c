@@ -51,9 +51,10 @@ int main(){
             printf("11. ABM T.Clientes\n");
             printf("12. Listar T.Clientes\n");
             printf("13. Listar Cuentas\n");
+            printf("14. Pago Cuota\n");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while((opcion<0 || opcion>13) && opcion!= 111);
+        }while((opcion<0 || opcion>14) && opcion!= 111);
 
         switch(opcion){
 //        	printf("\npersona = %d\n",persona);
@@ -123,7 +124,10 @@ int main(){
                 listar_all_cuentas(ini_cuenta);
                 system("pause");
             break;
-            
+            case 14:
+                system("cls");
+                pago_cuenta(&ini_turno_cliente,ini_actividad,ini_tipo_turno,&ini_cuenta);
+            break;
         }
     }while(opcion != 0);
 

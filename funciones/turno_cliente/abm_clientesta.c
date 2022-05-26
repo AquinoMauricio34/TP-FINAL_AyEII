@@ -31,9 +31,9 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 				scanf("%d",&sede);
 					//chequear si no existe el codigo
 				if(sede == 1 ||sede == 2 ){
-					recorrer_actividades(sede,ini_actividad);
 					do{//mientras se encuentre el dni ingresado o el dni es igual a 0, el bucle se repetira
 						system("cls");
+						recorrer_actividades(sede,ini_actividad);
 						if(buscara == -1){
 							printf("Cupo de actividad lleno.\nTiene la posibilidad de realizar una reserva.\n");
 						}
@@ -46,8 +46,9 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 				if(buscara == 1){
 					buscara = 0;
 					nv->cod_act = cod_act;
-					recorrer_turnos(cod_act,*ini_turno);
 					do{//mientra no se encuentre el turno ingresado o es igual a 0, el bucle se repetira
+						system("cls");
+						recorrer_turnos(cod_act,*ini_turno);
 						printf("ingrese el turno que desee\n");
 						scanf("%d",&nv->cod_turno);
 						printf("\n000\n");

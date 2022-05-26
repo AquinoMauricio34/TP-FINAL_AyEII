@@ -46,8 +46,9 @@ void modificar_fecha(){
     int op;
     do{
         printf("1. Fecha actual\n");
-        printf("2. Fecha modificada\n>> ");scanf("%d",&op);
-    }while(op<1 || op>2);
+        printf("2. Fecha modificada\n>> ");
+        printf("0. Atras\n>> ");scanf("%d",&op);
+    }while(op<0 || op>2);
 
     if(op == 1)
         fecha_modificada = 0;
