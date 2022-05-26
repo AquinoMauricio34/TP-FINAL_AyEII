@@ -105,5 +105,5 @@ void guardado_tipo_turno(tipo_turno *ini_tipo_turno);
 void guardado_cliente(cliente *ini_cliente);
 // mostrar lista
 void listar_sede_actividades_turno(actividad *ini_actividad,turno_cliente *ini_turno, turno_cliente *ini_turno_cliente);
-
+void listar_reservas_actividad(actividad *ini_actividad,reserva *ini_reserva);
 #endif
