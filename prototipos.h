@@ -3,6 +3,9 @@
 
 #include"estructuras.h"
 
+//listas
+void listar_sede_actividades(actividad *ini_actividad,turno_cliente *ini_turno);
+
 void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *ini_tipo_turno);
 void insertar_reserva(reserva **nv,reserva **ini_reserva);
 void borrar_nodo_reserva(long int dni_borrar, reserva **ini);
@@ -108,6 +111,6 @@ void guardado_actividad(actividad *ini_actividad);
 void guardado_tipo_turno(tipo_turno *ini_tipo_turno);
 void guardado_cliente(cliente *ini_cliente);
 // mostrar lista
-void listar_sede_actividades_turno(actividad *ini_actividad,turno_cliente *ini_turno, turno_cliente *ini_turno_cliente);
+void listar_sede_actividades_turno(actividad *ini_actividad,tipo_turno *ini_turno, turno_cliente *ini_turno_cliente);
 void listar_reservas_actividad(actividad *ini_actividad,reserva *ini_reserva);
 #endif

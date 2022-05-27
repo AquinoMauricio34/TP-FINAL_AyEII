@@ -54,7 +54,7 @@ int main(){
             printf("14. Pago Cuota\n");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while((opcion<0 || opcion>14) && opcion!= 111);
+        }while((opcion<0 || opcion>15) && opcion!= 111);
 
         switch(opcion){
 //        	printf("\npersona = %d\n",persona);
@@ -128,10 +128,21 @@ int main(){
                 system("cls");
                 pago_cuenta(&ini_turno_cliente,ini_actividad,ini_tipo_turno,&ini_cuenta);
             break;
+            case 15:
+                system("cls");
+                listar_sede_actividades_turno(ini_actividad,ini_tipo_turno,ini_turno_cliente);
+                system("pause");
+            break;
         }
     }while(opcion != 0);
-
-    guardado_listas(ini_actividad,ini_tipo_turno,ini_cliente);
+    do{
+        system("cls");
+        printf("DESEA GUARDAR LOS CAMBIOS REALIZADOS EN EL PROGRAMA? (1. SI | 0. NO): ");
+        scanf("%d",&opcion);
+    }while(opcion < 0 || opcion > 1);
+    if(opcion == 1){
+        guardado_listas(ini_actividad,ini_tipo_turno,ini_cliente);
+    }
 
     return 0;
 }
