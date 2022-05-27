@@ -7,11 +7,13 @@
 #include"../../estructuras.h"
 #include"../../prototipos.h"
 
-void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *ini_tipo_turno){
-    int opcion,encontrado,buscar,op;
+void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *ini_tipo_turno,turno_cliente *ini_turno_cliente){
+    int opcion,encontrado,buscar,op,cont;
     long int dni_cliente;
     int eleccion_sede,eleccion_actividad,eleccion_tipo_turno;
     reserva *nv=NULL;
+    actividad *aux_actividad = NULL;
+    turno_cliente *aux_turno_cliente = NULL;
     do{
 
         do{
@@ -19,6 +21,7 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
             printf("1. Alta reserva\n");
             printf("2. Baja reserva\n");
             printf("3. Modificacion reserva\n");
+            printf("4. Verificar lugar Disponible\n");
             printf("0.Atras\n");
             printf(">> ");scanf("%d",&opcion);
         }while(opcion<0 || opcion>3);
@@ -136,6 +139,55 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
 					}while(op!=0);
                 }
                 
+            break;
+
+
+
+            case 4:
+                if(*ini_reserva != NULL){
+
+                    cont = -1;//por si no existe la actividad
+                    encontrado = 0;
+                    eleccion_actividad = (*ini_reserva)->cod_act;
+                    aux_actividad = ini_actividad;
+                    while(aux_actividad != NULL){
+
+                        if(aux_actividad->cod_act == eleccion_actividad){
+                            aux_turno_cliente = ini_turno_cliente;
+                            cont = 0;//se verifica que existe la actividad, entonces cont = 0
+                            while(aux_turno_cliente != NULL){
+                                if(aux_turno_cliente->cod_act == eleccion_actividad){
+                                    cont++;
+                                }
+                                aux_turno_cliente = aux_turno_cliente->sgte;
+                            }
+
+                            if(cont < aux_actividad->cant_personas){
+                                encontrado = 1;
+                            }
+
+                            aux_actividad = NULL;
+                        }else
+                            aux_actividad = aux_actividad->sgte;
+                    }
+                    if(encontrado == 1){
+                        do{
+                            system("cls");
+                            printf("Lugar disponibles para reserva con dni: %ld\n",(*ini_reserva)->dni);
+                            scanf("Desea dar de alta al turno? (1. SI | 2. NO | 0. SALIR): ");
+                            scanf("%d",&op);
+                        }while(op<0 || op>2);
+
+                        if(op == 1){
+                            //antes de subir a la lista, de debe crear cuenta
+                        }else if(op == 2){
+                            //eliminar el nodo
+                        }
+                    }
+
+                }else
+                    printf("\nSIN RESERVAS\n");
+                    system("pause");
             break;
         }
     }while(opcion != 0);
