@@ -205,7 +205,7 @@ void listar_all_turnos_clientes(turno_cliente *ini){
 		while(ini != NULL){
 			printf("cod_t: %d | cod_a: %d | cod_clientesta: %d | dni: %ld |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni);
 			printf("debe: %f | ult_v: %d/%d/%d | estado: %d\n",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy,ini->baja);
-            printf("--------------");
+            printf("--------------\n");
 			ini = ini->sgte;
 		}
 	}else

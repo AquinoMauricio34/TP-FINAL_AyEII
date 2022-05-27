@@ -7,21 +7,29 @@
 #include"../../estructuras.h"
 #include"../../prototipos.h"
 void listar_sede_actividades(actividad *ini_actividad,turno_cliente *ini_turno){
-	int i=1,cod_act,cont=0;
+	int i=-1,cod_act,cont=0;
+	actividad *aux_actividad=NULL;
+	turno_cliente *aux_turno_cliente=NULL;
 	while(i <= 2){
-		printf("sede %d \n",i);
-		while(ini_actividad != NULL){
-			if(ini_actividad->sede == i){
-				cod_act = ini_actividad->cod_act;
-				printf("\t %-7d %s",ini_actividad->cod_act,ini_actividad->nombre);
-				if(ini_turno != NULL){
-					if(ini_turno->cod_act == cod_act){
-						cont++;
+		if(i != 0){
+			printf("sede %d \n",i);
+			aux_actividad = ini_actividad;
+			while(aux_actividad != NULL){
+				if(aux_actividad->sede == i){
+					cod_act = aux_actividad->cod_act;
+					printf("\t %-7d %s |",aux_actividad->cod_act,aux_actividad->nombre);
+					aux_turno_cliente = ini_turno;
+					cont = 0;
+					while(aux_turno_cliente != NULL){
+							// printf("\ndni = \"%ld\"\n",aux_turno_cliente->dni);
+						if(aux_turno_cliente->cod_act == cod_act){
+							cont++;
+						}
+						aux_turno_cliente = aux_turno_cliente->sgte;
 					}
-					ini_turno = ini_turno->sgte;
+					printf("\t %-4d personas\n",cont);
 				}
-				printf("\t %-7d personas",cont);
-				ini_actividad = ini_actividad->sgte;
+				aux_actividad = aux_actividad->sgte;
 			}
 		}
 		i++;

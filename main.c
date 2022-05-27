@@ -54,7 +54,7 @@ int main(){
             printf("14. Pago Cuota\n");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while((opcion<0 || opcion>15) && opcion!= 111);
+        }while((opcion<0 || opcion>16) && opcion!= 111);
 
         switch(opcion){
 //        	printf("\npersona = %d\n",persona);
@@ -131,6 +131,11 @@ int main(){
             case 15:
                 system("cls");
                 listar_sede_actividades_turno(ini_actividad,ini_tipo_turno,ini_turno_cliente);
+                system("pause");
+            break;
+            case 16:
+                system("cls");
+                listar_sede_actividades(ini_actividad,ini_turno_cliente);
                 system("pause");
             break;
         }
