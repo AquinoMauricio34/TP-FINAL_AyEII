@@ -10,7 +10,7 @@
 extern fecha fecha_global;
 //controlar tope de alumnos permitidos
 void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad,cliente *ini_cliente,cuenta **ini_cuenta){
-	turno_cliente *nv=NULL;
+	turno_cliente *nv=NULL, *aux_turno_cliente;
 	tipo_turno *aux_tipo_turno=NULL;
 	cuenta *nv_cuenta=NULL;
 	int op,buscar,sede,cod_act,buscara=0,opcion,numero_cod_clientesta,numero_cod_turno;
@@ -79,7 +79,7 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 								if(opcion){
 									insertar_codigo_cliente(&nv,&*ini_clientesta);
 									numero_cod_clientesta = nv->cod_clientesta;
-									numero_cod_turno = nv->cod_turno;;
+									numero_cod_turno = nv->cod_turno;
 									insertar_clientesta(&nv,&*ini_clientesta);
 									// crear cuenta pagada
 									printf("\n111\n");
@@ -87,7 +87,6 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 									if(nv_cuenta != NULL){
 										printf("\n222\n");
 										nv_cuenta->sgte = NULL;
-										// printf("\n222111 %d\n",nv->cod_clientesta);
 										nv_cuenta->cod_clientesta = numero_cod_clientesta;
 										printf("\n333\n");
 										nv_cuenta->f_pago.dd = fecha_global.dd;
@@ -96,9 +95,12 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 										printf("\n444\n");
 										aux_tipo_turno=*ini_turno;
 										printf("\n555\n");
+										buscar = 0;
 										while(aux_tipo_turno != NULL && buscar != 1){
 											// printf("\ncod_t: %d, aux: %d\n",nv->cod_turno,aux_tipo_turno->cod_turno);
 											if(numero_cod_turno == aux_tipo_turno->cod_turno){
+												
+												printf("\n222111 %f\n",aux_tipo_turno->precio);
 												nv_cuenta->precio = aux_tipo_turno->precio;
 												// break;
 												buscar = 1;//reutilizo la variable para no crear otra
@@ -138,15 +140,26 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 						listar_turnos_cliente(dni_cliente,*ini_clientesta);
 
 						do{
-							printf("Ingresar codigo del tipo turno: ");scanf("%d",&eleccion_turno_cliente);
+							printf("Ingresar codigo del turno del cliente: ");scanf("%d",&eleccion_turno_cliente);
 							buscar = buscar_turno_cliente(eleccion_turno_cliente,dni_cliente,*ini_clientesta);
 						}while(buscar != 1 && eleccion_turno_cliente != 0);
 
 						if(eleccion_turno_cliente != 0){
-							printf("Esta seguro/a de que quiere eliminar el turno del cliente (1. SI | 0. NO): ");
+							printf("Esta seguro/a de que quiere dar de baja el turno del cliente (1. SI | 0. NO): ");
 							scanf("%d",&op);
 							if(op == 1){
-								borrar_nodo_clientest(eleccion_turno_cliente,&*ini_clientesta);
+								// borrar_nodo_clientest(eleccion_turno_cliente,&*ini_clientesta);
+								buscar = 0;
+								aux_turno_cliente = *ini_clientesta;
+								while(aux_turno_cliente != NULL && buscar != 1){
+
+									if(aux_turno_cliente->cod_clientesta == eleccion_turno_cliente){
+										aux_turno_cliente->baja = 1;
+										buscar = 1;
+									}
+
+									aux_turno_cliente = aux_turno_cliente->sgte;
+								}
 							}
 						}
 
@@ -204,7 +217,7 @@ void listar_all_turnos_clientes(turno_cliente *ini){
 	if(ini!=NULL){
 		while(ini != NULL){
 			printf("cod_t: %d | cod_a: %d | cod_clientesta: %d | dni: %ld |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni);
-			printf("debe: %f | ult_v: %d/%d/%d | estado: %d\n",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy,ini->baja);
+			printf("debe: %f | ult_v: %d/%d/%d | baja: %d\n",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy,ini->baja);
             printf("--------------\n");
 			ini = ini->sgte;
 		}

@@ -1,7 +1,7 @@
 #ifndef ESTRUCTURAS_C
 #define ESTRUCTURAS_C
 
-typedef struct{
+typedef struct fecha{
 	int dd,mm,yy;
 }fecha;
 

@@ -22,7 +22,7 @@ void listar_sede_actividades(actividad *ini_actividad,turno_cliente *ini_turno){
 					cont = 0;
 					while(aux_turno_cliente != NULL){
 							// printf("\ndni = \"%ld\"\n",aux_turno_cliente->dni);
-						if(aux_turno_cliente->cod_act == cod_act){
+						if(aux_turno_cliente->cod_act == cod_act && aux_turno_cliente->baja != 1){
 							cont++;
 						}
 						aux_turno_cliente = aux_turno_cliente->sgte;
