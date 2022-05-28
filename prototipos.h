@@ -95,6 +95,7 @@ void fecha_actual();
 void opcion_persona(int *persona);
 void modificar_fecha();
 void deudas(turno_cliente **ini_turno_cliente,tipo_turno *ini_tipo_turno,cuenta *ini_cuenta);
+void asistencia(actividad *ini_actividad,turno_cliente *ini_turno_cliente,tipo_turno *ini_tipo_turno);
 
 // carga de listas
 void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente);

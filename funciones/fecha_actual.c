@@ -10,7 +10,7 @@
 
 fecha fecha_global;
 hora hora_global;
-int dia_sem_actual,fecha_modificada;
+int dia_sem_actual/*,fecha_modificada*/;
 extern int fecha_modificada;
 
 void fecha_actual(){

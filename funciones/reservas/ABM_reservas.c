@@ -278,7 +278,7 @@ void listar_actividades_sede(actividad *ini_actividad,int eleccion_sede){
 int buscar_actividad_sede(int eleccion_actividad,int eleccion_sede,actividad *ini_actividad){
     int buscar=0;
 	while(ini_actividad != NULL && buscar != 1){
-		if(ini_actividad->cod_act == eleccion_actividad && (ini_actividad->sede == eleccion_sede || ini_actividad->sede == -1)){
+		if(ini_actividad->cod_act == eleccion_actividad && (ini_actividad->sede == eleccion_sede || ini_actividad->sede == -1) && ini_actividad->estado != 0){
 			buscar = 1;
 		}
 		ini_actividad = ini_actividad->sgte;

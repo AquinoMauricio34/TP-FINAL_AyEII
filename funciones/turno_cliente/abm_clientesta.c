@@ -256,7 +256,7 @@ int buscar_turno_cliente(int eleccion_turno_cliente,long int dni_cliente,turno_c
 int buscar_dni_turno_cliente(long int dni,turno_cliente *ini_turno_cliente){
     int encontrado=0;
 	while(ini_turno_cliente != NULL && encontrado != 1){
-		if(ini_turno_cliente->dni == dni){
+		if(ini_turno_cliente->dni == dni && ini_turno_cliente->baja == 0){
 			encontrado = 1;
 		}
 		ini_turno_cliente = ini_turno_cliente->sgte;
