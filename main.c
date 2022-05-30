@@ -55,7 +55,7 @@ int main(){
             printf("17. Listar Reservas");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while((opcion<0 || opcion>16) && opcion!= 111);
+        }while((opcion<0 || opcion>17) && opcion!= 111);
 
         switch(opcion){
 //        	printf("\npersona = %d\n",persona);
