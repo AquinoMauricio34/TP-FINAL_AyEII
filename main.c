@@ -55,9 +55,10 @@ int main(){
             printf("12. Listar T.Clientes\n");
             printf("13. Listar Cuentas\n");
             printf("14. Pago Cuota\n");
+            printf("17. Listar Reservas");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while((opcion<0 || opcion>18) && opcion!= 111);
+        }while((opcion<0 || opcion>17) && opcion!= 111);
 
         switch(opcion){
 //        	printf("\npersona = %d\n",persona);
@@ -143,6 +144,11 @@ int main(){
             case 16:
                 system("cls");
                 listar_sede_actividades(ini_actividad,ini_turno_cliente);
+                system("pause");
+            break;
+            case 17:
+                system("cls");
+                listar_reservas_actividad(ini_actividad,ini_reserva);
                 system("pause");
             break;
         }
