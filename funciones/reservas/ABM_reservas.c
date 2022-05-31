@@ -1,4 +1,5 @@
 //tenemos que comprobar que el cliente exista
+//quitar los datos personales de la estructura
 #ifndef ABM_RESERVAS_C
 #define ABM_RESERVAS_C
 
@@ -65,10 +66,10 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
                         }while(buscar != 1 && eleccion_actividad != 0);
                         //ya elegida la actividad entra en un if(eleccion_actividad != 0)
                         if(eleccion_actividad != 0){
-                            printf("\nmmmmmmmmm\n");
-                            if(ini_tipo_turno==NULL){
-                                printf("\nqwetqwetqr\n");
-                            }
+                            // printf("\nmmmmmmmmm\n");
+                            // if(ini_tipo_turno==NULL){
+                            //     printf("\nqwetqwetqr\n");
+                            // }
                             listar_tipo_turno(ini_tipo_turno,eleccion_actividad);
                             //elegimos tipo turno
                             do{
@@ -160,26 +161,26 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
                     while(aux_actividad != NULL){
 
                         if(aux_actividad->cod_act == eleccion_actividad){
-                            printf("\ncod: %d | %s\n",aux_actividad->cod_act,aux_actividad->nombre);
+                            // printf("\ncod: %d | %s\n",aux_actividad->cod_act,aux_actividad->nombre);
                             aux_turno_cliente = *ini_turno_cliente;
                             cont = 0;//se verifica que existe la actividad, entonces cont = 0
                             while(aux_turno_cliente != NULL){
-                                if(aux_turno_cliente->cod_act == eleccion_actividad){
+                                if(aux_turno_cliente->cod_act == eleccion_actividad && aux_turno_cliente->baja == 0){
                                     cont++;
                                 }
                                 aux_turno_cliente = aux_turno_cliente->sgte;
                             }
-                            printf("\ncont = %d\n",cont);
+                            // printf("\ncont = %d\n",cont);
                             if(cont < aux_actividad->cant_personas){
                                 encontrado = 1;
-                                printf("\n111\n");
+                                // printf("\n111\n");
                             }
 
                             aux_actividad = NULL;
                         }else
                             aux_actividad = aux_actividad->sgte;
                     }
-                    system("pause");
+                    // system("pause");
                     if(encontrado == 1){
                         do{
                             system("cls");
@@ -193,21 +194,21 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
                             if(*ini_reserva != NULL){
                                 nv_t_cliente = malloc(sizeof(turno_cliente));
                                 if(nv_t_cliente!= NULL){
-                                printf("\naaa %d\n",(*ini_reserva)->cod_act);
+                                // printf("\naaa %d\n",(*ini_reserva)->cod_act);
                             
                                 nv_t_cliente->cod_act = (*ini_reserva)->cod_act;
-                                printf("\naaa111\n");
+                                // printf("\naaa111\n");
                                 nv_t_cliente->cod_turno = (*ini_reserva)->cod_turno;
                                 nv_t_cliente->dni = (*ini_reserva)->dni;
                                 nv_t_cliente->debe = 0;
 								nv_t_cliente->f_ultima_vez.dd = fecha_global.dd;
 								nv_t_cliente->f_ultima_vez.mm = fecha_global.mm;
 								nv_t_cliente->f_ultima_vez.yy = fecha_global.yy;
-                                printf("\naaa22222\n");
+                                // printf("\naaa22222\n");
 								nv_t_cliente->baja = 0;
 								nv_t_cliente->incrementado = 0;
                                 nv_t_cliente->sgte = NULL;
-printf("\nbbb\n");
+// printf("\nbbb\n");
                                 *ini_reserva = (*ini_reserva)->sgte;
 
 								
@@ -216,31 +217,31 @@ printf("\nbbb\n");
 									numero_cod_turno = nv_t_cliente->cod_turno;
 									insertar_clientesta(&nv_t_cliente,&*ini_turno_cliente);
 									// crear cuenta pagada
-									printf("\n111\n");
+									// printf("\n111\n");
 									nv_cuenta = malloc(sizeof(cuenta));
 									if(nv_cuenta != NULL){
-										printf("\n222\n");
+										// printf("\n222\n");
 										nv_cuenta->sgte = NULL;
 										// printf("\n222111 %d\n",nv_t_cliente->cod_clientesta);
 										nv_cuenta->cod_clientesta = numero_cod_clientesta;
-										printf("\n333\n");
+										// printf("\n333\n");
 										nv_cuenta->f_pago.dd = fecha_global.dd;
 										nv_cuenta->f_pago.mm = fecha_global.mm;
 										nv_cuenta->f_pago.yy = fecha_global.yy;
-										printf("\n444\n");
+										// printf("\n444\n");
 										aux_tipo_turno=ini_tipo_turno;
-										printf("\n555\n");
+										// printf("\n555\n");
 										while(aux_tipo_turno != NULL && buscar != 1){
 											// printf("\ncod_t: %d, aux: %d\n",nv_t_cliente->cod_turno,aux_tipo_turno->cod_turno);
 											if(numero_cod_turno == aux_tipo_turno->cod_turno){
-                                                printf("\n56565\n");
+                                                // printf("\n56565\n");
 												nv_cuenta->precio = aux_tipo_turno->precio;
 												// break;
 												buscar = 1;//reutilizo la variable para no crear otra
 											}
 											aux_tipo_turno = aux_tipo_turno->sgte;
 										}
-										printf("\n666\n");
+										// printf("\n666\n");
 										insertar_cuenta(&nv_cuenta,&*ini_cuenta);
 									}else
 										printf("No se puede crear la cuenta");
@@ -268,7 +269,7 @@ printf("\nbbb\n");
 
 void listar_actividades_sede(actividad *ini_actividad,int eleccion_sede){
     while(ini_actividad != NULL){
-        printf("elecc = %d, ini = %d\n",eleccion_sede,ini_actividad->sede);
+        // printf("elecc = %d, ini = %d\n",eleccion_sede,ini_actividad->sede);
         if(eleccion_sede == ini_actividad->sede || ini_actividad->sede == -1/* && ini_actividad->estado == 1*/){
             printf("%-10d| %s\n",ini_actividad->cod_act,ini_actividad->nombre);
         }
@@ -290,7 +291,7 @@ int buscar_actividad_sede(int eleccion_actividad,int eleccion_sede,actividad *in
 
 
 void listar_tipo_turno(tipo_turno *ini_tipo_turno,int eleccion_actividad){
-    char nombres_dias_sem[5][15]={"Lunes","Martes","Mierceles","Jueves","Vienes"};
+    char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Vienes"};
     int i;
     
     // printf("\n111\n");
@@ -354,7 +355,7 @@ void borrar_nodo_reserva(long int dni_borrar, reserva **ini){
 			if(*ini!=NULL){
 				(*ini)->ant = NULL;
 			}
-			printf("d\n");
+			// printf("d\n");
 		}else{
 			ant->sgte = bor->sgte;
 			if(bor->sgte != NULL){

@@ -9,7 +9,7 @@
 void listar_reservas_actividad(actividad *ini_actividad,reserva *ini_reserva){
 	int i=1,cod_act,cont=0;
 	while(i <= 2){
-		printf("sede %d \n",i);
+		printf("Sede %d \n",i);
 		while(ini_actividad != NULL){
 			if(ini_actividad->sede == i){
 				cod_act = ini_actividad->cod_act;

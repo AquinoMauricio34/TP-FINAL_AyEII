@@ -11,9 +11,9 @@
 void borrar_nodo_actividad(int dato,actividad **ini_actividad){
 actividad *bor=*ini_actividad,*ant=NULL;
 //la funcion no está creada--------------------------------------------------
-printf("\naaa\n");
+// printf("\naaa\n");
 buscar_borrar_actividad(dato,&bor,&ant);
-printf("\nbbb\n");
+// printf("\nbbb\n");
 if(bor != NULL){
     // printf("bor->nombre = ");puts(bor->nombre);
     if(ant == NULL){

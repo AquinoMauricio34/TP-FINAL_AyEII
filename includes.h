@@ -34,10 +34,12 @@
 #include"funciones/clientes/ABM_cliente.c"
 #include"funciones/clientes/buscar_actividad.c"
 #include"funciones/clientes/buscar_dni_cliente.c"
+#include"funciones/clientes/buscar_dni_cliente_2.c"
 #include"funciones/clientes/modificar_cliente.c"
 #include"funciones/clientes/borrar_nodo_cliente.c"
 #include"funciones/clientes/insertar_cliente.c"
 #include"funciones/clientes/borrar_Tcliente.c"
+
 
 
 //turno_clientes
@@ -71,6 +73,7 @@
 #include"funciones/fecha_actual.c"
 #include"funciones/opcion_persona.c"
 #include"funciones/deudas.c"
+#include"funciones/asistencia.c"
 
 
 // mostrar lista

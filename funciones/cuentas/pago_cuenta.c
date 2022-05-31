@@ -20,7 +20,7 @@ void pago_cuenta(turno_cliente **ini_turno_cliente,actividad *ini_actividad,tipo
     buscar = 0;
     do{
         printf("Ingresar dni del cliente: ");scanf("%ld",&dni_cliente);
-        buscar = buscar_dni_turno_cliente(dni_cliente,*ini_turno_cliente);
+        buscar = buscar_dni_turno_cliente_cuenta(dni_cliente,*ini_turno_cliente);
     }while(buscar != 1 && dni_cliente != 0);
 
     if(dni_cliente != 0){
@@ -73,7 +73,7 @@ void pago_cuenta(turno_cliente **ini_turno_cliente,actividad *ini_actividad,tipo
 					aux_turno_cliente->debe = 0;
 					aux_turno_cliente = NULL;
 					aux_tipo_turno = NULL;
-					printf("\nHOLAAAAA\n");
+					// printf("\nHOLAAAAA\n");
                 }
             }
         }
@@ -100,21 +100,33 @@ void insertar_cuenta(cuenta **nv,cuenta **ini_cuenta){
 
 int buscar_turno_cliente_cuenta(int eleccion_turno_cliente,int eleccion_actividad,long int dni_cliente,turno_cliente **ini_clientesta){
 	int buscar=0;
-	printf("1Eleccion: %d, dni cliente: %ld\n",eleccion_turno_cliente,dni_cliente);
+	// printf("1Eleccion: %d, dni cliente: %ld\n",eleccion_turno_cliente,dni_cliente);
 	while(*ini_clientesta != NULL && buscar != 1 && buscar != -1){
-		printf("Eleccion: %d, dni cliente: %ld\n",(*ini_clientesta)->cod_clientesta,(*ini_clientesta)->dni);
+		// printf("Eleccion: %d, dni cliente: %ld\n",(*ini_clientesta)->cod_clientesta,(*ini_clientesta)->dni);
 		if((*ini_clientesta)->cod_clientesta == eleccion_turno_cliente && (*ini_clientesta)->cod_act == eleccion_actividad && (*ini_clientesta)->dni == dni_cliente){
-            printf("\nabc\n");
+            // printf("\nabc\n");
 			if((*ini_clientesta)->debe > 0)
 				buscar = 1;
 			else
 				buscar = -1;
-                system("pause");
+                // system("pause");
 		}else
 	        *ini_clientesta =(*ini_clientesta)->sgte;
 	}
 	
 	return buscar;
+}
+
+int buscar_dni_turno_cliente_cuenta(long int dni,turno_cliente *ini_turno_cliente){
+    int encontrado=0;
+	while(ini_turno_cliente != NULL && encontrado != 1){
+		if(ini_turno_cliente->dni == dni){
+			encontrado = 1;
+		}
+		ini_turno_cliente = ini_turno_cliente->sgte;
+	}
+	
+	return encontrado;
 }
 
 void listar_turnos_cliente_segunactividad(long int dni_cliente,int eleccion_actividad,turno_cliente *ini){

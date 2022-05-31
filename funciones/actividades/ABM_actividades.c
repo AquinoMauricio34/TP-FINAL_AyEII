@@ -25,22 +25,22 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente){
 				//se pide espacio en la memoria ------------------------------------------------------------------
                  nv = malloc(sizeof( actividad));
                  if(nv != NULL){
-					 printf("\naaa\n");
+					//  printf("\naaa\n");
                     if(*ini_actividad == NULL){
-						printf("\naaa111\n");
+						// printf("\naaa111\n");
                         nv->cod_act = 1;
                     }else{
-						printf("\naaa222\n");
+						// printf("\naaa222\n");
                         aux=*ini_actividad;
                         while(aux->sgte!=NULL){
                             aux = aux->sgte;
-							printf("\naaa2233\n");
+							// printf("\naaa2233\n");
                         }
-						printf("\naaa333\n");
+						// printf("\naaa333\n");
                         nv->cod_act= aux->cod_act + 1;
-						printf("\naaa444\n");
+						// printf("\naaa444\n");
                     }
-					printf("\nbbb\n");
+					// printf("\nbbb\n");
 					if(nv->cod_act != 0 ){
                         fflush(stdin);
 						printf("ingrese el nombre de la actividad: \n");

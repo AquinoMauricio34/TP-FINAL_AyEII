@@ -26,21 +26,23 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 					do{
 						printf("ingrese el dni del cliente: ");
 						scanf("%ld",&nv->dni);
-						printf("\naaa = %ld\n",nv->dni);
-						buscar_dni = buscar_dni_cliente(nv->dni,*ini_cliente);
-					}while(buscar_dni == 1 && nv->dni !=0);
-					if(nv->dni != 0){
-						fflush(stdin);
-						printf("ingrese el nombre del cliente: ");
-						gets(nv->nombre);
-						printf("ingrese el telefono del cliente: \n");
-						scanf("%ld",&nv->telefono);
-						printf("Ingrese el fecha de nacimiento del cliente (dd/mm/aa): ");
-						scanf("%d/%d/%d",&nv->f_nacimiento.dd,&nv->f_nacimiento.mm,&nv->f_nacimiento.yy);
-						nv->baja = 0;
-						nv->sgte = NULL;
-						insertar_cliente(&nv,&*ini_cliente);
-						
+						// printf("\naaa = %ld\n",nv->dni);
+						buscar_dni = buscar_dni_cliente_2(nv->dni,&*ini_cliente,*ini_turno_cliente);
+					}while(buscar_dni == 1 && buscar_dni != 2 && nv->dni !=0);
+					if(buscar_dni != 2){
+						if(nv->dni != 0){
+							fflush(stdin);
+							printf("ingrese el nombre del cliente: ");
+							gets(nv->nombre);
+							printf("ingrese el telefono del cliente: \n");
+							scanf("%ld",&nv->telefono);
+							printf("Ingrese el fecha de nacimiento del cliente (dd/mm/aa): ");
+							scanf("%d/%d/%d",&nv->f_nacimiento.dd,&nv->f_nacimiento.mm,&nv->f_nacimiento.yy);
+							nv->baja = 0;
+							nv->sgte = NULL;
+							insertar_cliente(&nv,&*ini_cliente);
+							
+						}
 					}
 				}
 

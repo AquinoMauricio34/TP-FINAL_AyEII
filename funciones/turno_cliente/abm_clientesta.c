@@ -39,9 +39,9 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 						}
 						printf("ingrese el codigo de la actividad que desee\n");
                    		scanf("%d",&cod_act);//codigo y sede 
-						printf("\n111\n");
+						// printf("\n111\n");
 						buscara = buscar_actividades_clientesta(cod_act,sede,ini_actividad,*ini_clientesta);
-						printf("\n222 = %d\n",buscara);
+						// printf("\n222 = %d\n",buscara);
 				}while(buscara!=1 && cod_act !=0);//modifcar por un or
 				if(buscara == 1){
 					buscara = 0;
@@ -51,9 +51,9 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 						recorrer_turnos(cod_act,*ini_turno);
 						printf("ingrese el turno que desee\n");
 						scanf("%d",&nv->cod_turno);
-						printf("\n000\n");
+						// printf("\n000\n");
 						buscara = buscar_turno(nv->cod_turno,nv->cod_act,*ini_turno);
-						printf("\naaa\n");
+						// printf("\naaa\n");
 					}while(buscara!=1 && nv->cod_turno !=0);
 					
  		
@@ -82,32 +82,32 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 									numero_cod_turno = nv->cod_turno;
 									insertar_clientesta(&nv,&*ini_clientesta);
 									// crear cuenta pagada
-									printf("\n111\n");
+									// printf("\n111\n");
 									nv_cuenta = malloc(sizeof(cuenta));
 									if(nv_cuenta != NULL){
-										printf("\n222\n");
+										// printf("\n222\n");
 										nv_cuenta->sgte = NULL;
 										nv_cuenta->cod_clientesta = numero_cod_clientesta;
-										printf("\n333\n");
+										// printf("\n333\n");
 										nv_cuenta->f_pago.dd = fecha_global.dd;
 										nv_cuenta->f_pago.mm = fecha_global.mm;
 										nv_cuenta->f_pago.yy = fecha_global.yy;
-										printf("\n444\n");
+										// printf("\n444\n");
 										aux_tipo_turno=*ini_turno;
-										printf("\n555\n");
+										// printf("\n555\n");
 										buscar = 0;
 										while(aux_tipo_turno != NULL && buscar != 1){
 											// printf("\ncod_t: %d, aux: %d\n",nv->cod_turno,aux_tipo_turno->cod_turno);
 											if(numero_cod_turno == aux_tipo_turno->cod_turno){
 												
-												printf("\n222111 %f\n",aux_tipo_turno->precio);
+												// printf("\n222111 %f\n",aux_tipo_turno->precio);
 												nv_cuenta->precio = aux_tipo_turno->precio;
 												// break;
 												buscar = 1;//reutilizo la variable para no crear otra
 											}
 											aux_tipo_turno = aux_tipo_turno->sgte;
 										}
-										printf("\n666\n");
+										// printf("\n666\n");
 										insertar_cuenta(&nv_cuenta,&*ini_cuenta);
 									}else
 										printf("No se puede crear la cuenta");
