@@ -5,7 +5,7 @@
 #include"includes.h"
 #include"estructuras.h"
 
-extern int fecha_modificada;
+extern int fecha_modificada,hora_modificada;
 
 int main(){
     //reserva
@@ -16,12 +16,13 @@ int main(){
     profesor *ini_profesor=NULL;
     tipo_turno *ini_tipo_turno=NULL;
     cuenta *ini_cuenta = NULL;
-    char nombres_dias_sem[7][15]={"Domingo","Lunes","Martes","Miercoles","Jueves","Vienes","Sabado"};
+    char nombres_dias_sem[7][15]={"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
     int persona;
     fecha_modificada = 0;
+    hora_modificada = 0;
 
     opcion_persona(&persona);
-    printf("\npersona = %d\n",persona);
+    // printf("\npersona = %d\n",persona);
     //cargado de las listas
     cargar_listas(&ini_actividad,&ini_tipo_turno,&ini_cliente);
     
@@ -30,9 +31,11 @@ int main(){
     do{
         do{
             deudas(&ini_turno_cliente,ini_tipo_turno,ini_cuenta);
+            baja_mes(ini_cliente,ini_turno_cliente);
+            borrar_nodo_baja(&ini_turno_cliente);//borra los nodos que esten de baja y con debe 0.
             system("cls");
             fecha_actual();
-            printf("\nsem = %d\n",dia_sem_actual);
+            // printf("\nsem = %d\n",dia_sem_actual);
             printf("%d/%d/%d %d:%d %s\n\n",fecha_global.dd,fecha_global.mm,fecha_global.yy,hora_global.hh,hora_global.mm,nombres_dias_sem[dia_sem_actual]);
         //opciones a elegir
             if(persona == 1){
@@ -54,7 +57,7 @@ int main(){
             printf("14. Pago Cuota\n");
             printf("0. Cerrar Programa\n");
             printf(">> ");scanf("%d",&opcion);
-        }while((opcion<0 || opcion>16) && opcion!= 111);
+        }while((opcion<0 || opcion>18) && opcion!= 111);
 
         switch(opcion){
 //        	printf("\npersona = %d\n",persona);
@@ -65,6 +68,10 @@ int main(){
 	                modificar_fecha();
 			}
 	        break;
+            case 18:
+                system("cls");
+                asistencia(ini_actividad,&ini_turno_cliente,ini_tipo_turno);
+            break;
             case 1:
                 system("cls");
                 ABM_clientes(&ini_cliente,ini_actividad,&ini_turno_cliente);
