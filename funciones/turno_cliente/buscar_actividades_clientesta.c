@@ -12,7 +12,7 @@ int buscar_actividades_clientesta(int cod_act,int sede,actividad *ini_actividad,
 	// printf("\naaa\n");
 	while(ini_actividad != NULL && buscar!=1 && buscar!=-1){
 		// printf("\nbbb\n");
-		if(ini_actividad->cod_act == cod_act && (ini_actividad->sede == sede || ini_actividad->sede == -1)){
+		if(ini_actividad->cod_act == cod_act && ini_actividad->estado == 1 && (ini_actividad->sede == sede || ini_actividad->sede == -1)){
 			// printf("\nccc\n");
 			aux_t_cliente = ini_turno_cliente;
 			cont = 0;

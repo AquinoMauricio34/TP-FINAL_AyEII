@@ -30,6 +30,12 @@ void modificar_actividad(long int dato,int op,actividad **ini_actividad){
 				printf("Sede actual: %d\n",aux->sede);
 				printf("Nueva sede: ");
 				scanf("%d",&aux->sede);
+			}else if(op==4){
+				printf("DNI PROFESOR DE LA ACTIVIDAD\n");
+				printf("Dni profesor actual: %d\n",aux->dni_profesor);
+				printf("Nueva dni profesor: ");
+				scanf("%d",&aux->dni_profesor);
+
 			}
 			encontrado = 1;
 		}

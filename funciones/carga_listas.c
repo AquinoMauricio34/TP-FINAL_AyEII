@@ -187,6 +187,7 @@ void carga_clientes(cliente **ini_cliente){
 				strcpy(nv->nombre,c_cliente.nombre);
 				nv->dni = c_cliente.dni;
 				nv->telefono = c_cliente.telefono;
+				nv->baja = c_cliente.baja;
 				nv->f_nacimiento.dd = c_cliente.f_nacimiento.dd;
 				nv->f_nacimiento.mm = c_cliente.f_nacimiento.mm;
 				nv->f_nacimiento.yy = c_cliente.f_nacimiento.yy;

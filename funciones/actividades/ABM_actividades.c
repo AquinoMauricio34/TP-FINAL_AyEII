@@ -140,9 +140,10 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 							printf("1-modificar nombre de la actividad \n");
 							printf("2-modificar la cantidad de personas \n");
 							printf("3-modificar la sede de la actividad \n");
+							printf("4-modificar dni del profesor \n");
 							printf("0-Finalizar\n");
 							scanf("%d",&op_mod);
-						}while(op_mod<0 || op_mod>3);
+						}while(op_mod<0 || op_mod>4);
 						system("cls");
 						modificar_actividad(modificar,op_mod,&*ini_actividad);
 					}while(op_mod!=0);
@@ -165,12 +166,36 @@ void baja_actividad_estado(actividad **ini_actividad,tipo_turno **ini_tipo_turno
 	while(aux_actividad != NULL){
 		if(aux_actividad->estado == -1 && aux_actividad->fecha_baja.dd != 0 && aux_actividad->fecha_baja.mm != 0 && aux_actividad->fecha_baja.yy != 0){
 			if((aux_actividad->fecha_baja.yy < fecha_global.yy) || aux_actividad->fecha_baja.mm+1 <= fecha_global.mm && aux_actividad->fecha_baja.yy == fecha_global.yy){
-				
+				aux_actividad->estado = 0;
+				baja_tipo_turnos_actividad(aux_actividad->cod_act,&*ini_tipo_turno,&*ini_turno_cliente);
 			}
 		}
+		aux_actividad = aux_actividad->sgte;
 	}
 }
 
+void baja_tipo_turnos_actividad(int codigo_actividad,tipo_turno **ini_tipo_turno,turno_cliente **ini_turno_cliente){
+	tipo_turno *aux_tipo_turno=*ini_tipo_turno;
+	while(aux_tipo_turno != NULL){
+
+		if(aux_tipo_turno->cod_act == codigo_actividad && aux_tipo_turno->estado == 1){
+			aux_tipo_turno->estado = 0;
+			baja_turnos_cliente_seguntturno(aux_tipo_turno->cod_turno,&*ini_turno_cliente);
+		}
+
+		aux_tipo_turno = aux_tipo_turno->sgte;
+	}
+}
+
+void baja_turnos_cliente_seguntturno(int codigo_tt,turno_cliente **ini_turno_cliente){
+	turno_cliente *aux_turno_cliente=*ini_turno_cliente;
+	while(aux_turno_cliente != NULL){
+		if(aux_turno_cliente->baja == 0 && aux_turno_cliente->cod_turno == codigo_tt){
+			aux_turno_cliente->baja = 1;
+		}
+		aux_turno_cliente = aux_turno_cliente->sgte;
+	}
+}
 
 
 

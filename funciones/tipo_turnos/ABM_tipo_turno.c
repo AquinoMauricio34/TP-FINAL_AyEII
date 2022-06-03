@@ -73,7 +73,7 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
                                 }while(nv->dias[i]<0 || nv->dias[i]>1);
                             }
                             //el estado será 1, pero solo para pruebas, luego lo arreglaremos
-                            printf("Ingresar el estado del tipo turno: ");scanf("%d",&nv->estado);
+                            nv->estado = 1;
                             //guardamos el codigo de la actividad elegida
                             nv->cod_act = eleccion_actividad;
                             //insertamos

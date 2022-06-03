@@ -63,6 +63,9 @@ int buscar_actividadx(int codigo,actividad *ini_actividad);
 void borrar_nodo_actividad(int dato,actividad **ini_actividad);
 void listar_all_actividades(actividad *ini);
 void buscar_borrar_actividad(int dato,actividad **bor,actividad **ant);
+void baja_actividad_estado(actividad **ini_actividad,tipo_turno **ini_tipo_turno,turno_cliente **ini_turno_cliente);
+void baja_tipo_turnos_actividad(int codigo_actividad,tipo_turno **ini_tipo_turno,turno_cliente **ini_turno_cliente);
+void baja_turnos_cliente_seguntturno(int codigo_tt,turno_cliente **ini_turno_cliente);
 
 //turno_clientes
 void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,actividad *ini_actividad,cliente *ini_cliente,cuenta **ini_cuenta);
