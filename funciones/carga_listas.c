@@ -36,6 +36,10 @@ void carga_actividades(actividad **ini_actividad){
 				nv->sede = c_actividad.sede;
                 nv->cod_act = c_actividad.cod_act;
                 nv->estado = c_actividad.estado;
+				nv->dni_profesor = c_actividad.dni_profesor;
+				nv->fecha_baja.dd = c_actividad.fecha_baja.dd;
+				nv->fecha_baja.mm = c_actividad.fecha_baja.mm;
+				nv->fecha_baja.yy = c_actividad.fecha_baja.yy;
 				nv->sgte = NULL;
 				//insertar
 				insertar_actividad_carga(&nv,&*ini_actividad);

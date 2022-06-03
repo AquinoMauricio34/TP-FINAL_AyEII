@@ -260,6 +260,7 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
             break;
         }
     }while(opcion != 0);
+    free(nv);
 }
 
 

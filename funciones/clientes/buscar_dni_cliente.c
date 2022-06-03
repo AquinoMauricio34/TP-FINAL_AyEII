@@ -12,7 +12,7 @@ int buscar_dni_cliente(long int dni,cliente *ini_cliente){
     int buscar=0;
 	while(ini_cliente != NULL && buscar != 1){
 		// printf("\nbbbb\n");
-		if(ini_cliente->dni == dni){
+		if(ini_cliente->dni == dni && ini_cliente->baja == 0){
 			buscar = 1;
 		}else{
 			buscar = 0;

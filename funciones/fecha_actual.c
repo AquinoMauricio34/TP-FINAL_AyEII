@@ -1,12 +1,13 @@
+//derificar que la fecha y hora sea real
 #ifndef FECHA_ACTUAL_C
 #define FECHA_ACTUAL_C
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
-#include"../estructuras.h"
-#include"../prototipos.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include "../estructuras.h"
+#include "../prototipos.h"
 
 fecha fecha_global;
 hora hora_global;

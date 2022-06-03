@@ -118,7 +118,7 @@ void baja_turnos_cliente(long int buscar_borrar,turno_cliente **ini_turno_client
 void listar_all_clientes(cliente *ini){
 	if(ini!=NULL){
 		while(ini != NULL){
-			printf("%15ld | %30s | %15ld | %d/%d/%d | estado: %d\n",ini->dni,ini->nombre,ini->telefono,ini->f_nacimiento.dd,ini->f_nacimiento.mm,ini->f_nacimiento.yy,ini->baja);
+			printf("%15ld | %30s | %15ld | %d/%d/%d | baja: %d\n",ini->dni,ini->nombre,ini->telefono,ini->f_nacimiento.dd,ini->f_nacimiento.mm,ini->f_nacimiento.yy,ini->baja);
 			ini = ini->sgte;
 		}
 	}else

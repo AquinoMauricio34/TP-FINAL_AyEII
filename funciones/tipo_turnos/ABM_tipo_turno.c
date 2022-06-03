@@ -124,6 +124,7 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
             break;
         }
     }while(opcion != 0);
+    free(nv);
 }
 
 

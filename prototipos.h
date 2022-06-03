@@ -33,7 +33,7 @@ void modificar_tipo_turno(long int dato,int op,reserva **ini_tipo_turno);
 
 void insertar_profesor(profesor **nv, profesor **ini_profesor);
 int buscar_dni_profesor(long int dni,profesor *ini_profesor);
-void ABM_profesores(profesor **ini_profesor);
+void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad);
 void borrar_nodo_profesor(int dato,profesor **ini_profesor);
 int buscar_actividades_profesores(int codigo,actividad *ini_actividad);
 void buscar_borrar_profesor(long int dato,profesor **bor,profesor **ant);
@@ -56,7 +56,7 @@ void baja_nodo_cliente(long int buscar_borrar,cliente **ini_cliente);
 void baja_turnos_cliente(long int buscar_borrar,turno_cliente **ini_turno_cliente);
 
 // actividades
-void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente);
+void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,profesor *ini_profesor);
 void modificar_actividad(long int dato,int op,actividad **ini_actividad);
 void insertar_actividad(actividad **nv, actividad **ini_actividad);
 int buscar_actividadx(int codigo,actividad *ini_actividad);
@@ -92,7 +92,7 @@ void pago_cuenta(turno_cliente **ini_turno_cliente,actividad *ini_actividad,tipo
 
 
 int numero_aleatorio(int minimo, int maximo);
-void baja_mes(cliente *ini_cliente,turno_cliente *ini_turno_cliente);
+void baja_mes(cliente **ini_cliente,turno_cliente **ini_turno_cliente);
 void fecha_actual();
 void opcion_persona(int *persona);
 void modificar_fecha();

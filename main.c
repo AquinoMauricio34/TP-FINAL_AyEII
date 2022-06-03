@@ -5,9 +5,12 @@
 #include"includes.h"
 #include"estructuras.h"
 
-extern int fecha_modificada,hora_modificada;
+extern int fecha_modificada,hora_modificada,dia_sem_actual;
+extern fecha fecha_global;
+extern hora hora_global;
 
 int main(){
+	
     //reserva
     reserva *ini_reserva=NULL;
     actividad *ini_actividad=NULL;
@@ -30,8 +33,9 @@ int main(){
     //llamado a funciones de verificacion de fecha, borrado o activacion de actividades/tipo_turnos
     do{
         do{
+        	
             deudas(&ini_turno_cliente,ini_tipo_turno,ini_cuenta);
-            baja_mes(ini_cliente,ini_turno_cliente);
+            baja_mes(&ini_cliente,&ini_turno_cliente);
             borrar_nodo_baja(&ini_turno_cliente);//borra los nodos que esten de baja y con debe 0.
             system("cls");
             fecha_actual();
@@ -55,10 +59,11 @@ int main(){
             printf("12. Listar T.Clientes\n");
             printf("13. Listar Cuentas\n");
             printf("14. Pago Cuota\n");
-            printf("17. Listar Reservas");
+            printf("17. Listar Reservas\n");
             printf("0. Cerrar Programa\n");
+            fflush(stdin);
             printf(">> ");scanf("%d",&opcion);
-        }while((opcion<0 || opcion>17) && opcion!= 111);
+        }while((opcion<0 || opcion>18) && opcion!= 111);
 
         switch(opcion){
 //        	printf("\npersona = %d\n",persona);
@@ -88,7 +93,7 @@ int main(){
             break;
             case 4:
                 system("cls");
-                ABM_actividades(&ini_actividad,&ini_turno_cliente);
+                ABM_actividades(&ini_actividad,&ini_turno_cliente,ini_profesor);
             break;
             case 5:
                 system("cls");
@@ -102,7 +107,7 @@ int main(){
             break;
             case 7:
                 system("cls");
-                ABM_profesores(&ini_profesor);
+                ABM_profesores(&ini_profesor,ini_actividad);
             break;
             case 8:
                 system("cls");

@@ -25,11 +25,13 @@ typedef struct{
 }cuenta;
 
 typedef struct{
+	long int dni_profesor;
 	int cod_act;
 	int cant_personas;
 	int sede;
 	int estado;//1(activa), 0(inactiva a activar), -1(inactiva a eliminar);
 	char nombre[100];
+	fecha fecha_baja;
 	struct actividad *sgte;
 }actividad;
 

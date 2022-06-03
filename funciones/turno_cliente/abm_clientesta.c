@@ -211,6 +211,7 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 			// break;
 		}
 	}while(op != 0);
+	free(nv);
 }
 
 void listar_all_turnos_clientes(turno_cliente *ini){

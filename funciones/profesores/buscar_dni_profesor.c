@@ -10,11 +10,8 @@
 int buscar_dni_profesor(long int dni,profesor *ini_profesor){
     int buscar=0;
 	while(ini_profesor != NULL && buscar != 1){
-		if(ini_profesor->dni == dni){
+		if(ini_profesor->dni == dni)
 			buscar = 1;
-		}else{
-			buscar = 0;
-		}
 		ini_profesor = ini_profesor->sgte;
 	}
 	return buscar;
