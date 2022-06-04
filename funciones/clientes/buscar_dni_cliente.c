@@ -15,8 +15,6 @@ int buscar_dni_cliente(long int dni,cliente *ini_cliente){
 		// printf("\nbbbb\n");
 		if(ini_cliente->dni == dni && ini_cliente->baja == 0){
 			buscar = 1;
-		}else{
-			buscar = 0;
 		}
 		ini_cliente = ini_cliente->sgte;
 	}

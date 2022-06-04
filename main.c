@@ -93,7 +93,7 @@ int main(){
             break;
             case 3:
                 system("cls");
-                ABM_reservas(&ini_reserva,ini_actividad,ini_tipo_turno,&ini_turno_cliente,&ini_cuenta);
+                ABM_reservas(&ini_reserva,ini_actividad,ini_tipo_turno,&ini_turno_cliente,&ini_cuenta,ini_cliente);
             break;
             case 4:
                 system("cls");

@@ -64,8 +64,8 @@ typedef struct{
 typedef struct{
 	int cod_act,cod_turno;
 	long int dni,telefono;
-	fecha f_nacimiento;
-	char nombre[100];
+	// fecha f_nacimiento;
+	// char nombre[100];
 	struct reserva *sgte;
 	struct reserva *ant;
 }reserva;

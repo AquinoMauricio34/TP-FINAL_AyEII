@@ -61,57 +61,63 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 						if(buscara == 1){
 							//ingresar dni
 							do{//no se saldra del bucle a no ser de que, se encuentre un cliente o el dni ingresado sea 0
-									printf("ingrese el dni del cliente: ");
+									printf("Ingrese el dni del cliente: ");
 									scanf("%ld",&nv->dni);
 									buscar_dni = buscar_dni_cliente(nv->dni,ini_cliente);
 							}while(buscar_dni != 1 && nv->dni !=0);
 
-							if(nv->dni !=0){
-								nv->debe = 0;
-								nv->f_ultima_vez.dd = fecha_global.dd;
-								nv->f_ultima_vez.mm = fecha_global.mm;
-								nv->f_ultima_vez.yy = fecha_global.yy;
-								nv->baja = 0;
-								nv->incrementado = 0;
-								do{
-									printf("Esta seguro de que quiere guardar el turno? (1.Si | 0.No): ");scanf("%d",&opcion);
-								}while(opcion<0 || opcion>1);
-								if(opcion){
-									insertar_codigo_cliente(&nv,&*ini_clientesta);
-									numero_cod_clientesta = nv->cod_clientesta;
-									numero_cod_turno = nv->cod_turno;
-									insertar_clientesta(&nv,&*ini_clientesta);
-									// crear cuenta pagada
-									// printf("\n111\n");
-									nv_cuenta = malloc(sizeof(cuenta));
-									if(nv_cuenta != NULL){
-										// printf("\n222\n");
-										nv_cuenta->sgte = NULL;
-										nv_cuenta->cod_clientesta = numero_cod_clientesta;
-										// printf("\n333\n");
-										nv_cuenta->f_pago.dd = fecha_global.dd;
-										nv_cuenta->f_pago.mm = fecha_global.mm;
-										nv_cuenta->f_pago.yy = fecha_global.yy;
-										// printf("\n444\n");
-										aux_tipo_turno=*ini_turno;
-										// printf("\n555\n");
-										buscar = 0;
-										while(aux_tipo_turno != NULL && buscar != 1){
-											// printf("\ncod_t: %d, aux: %d\n",nv->cod_turno,aux_tipo_turno->cod_turno);
-											if(numero_cod_turno == aux_tipo_turno->cod_turno){
-												
-												// printf("\n222111 %f\n",aux_tipo_turno->precio);
-												nv_cuenta->precio = aux_tipo_turno->precio;
-												// break;
-												buscar = 1;//reutilizo la variable para no crear otra
+							if(nv->dni != 0){
+								buscar = 0;
+								buscar = buscar_dni_clientesta_turno_repetido(nv->dni,nv->cod_turno,*ini_clientesta);
+								if(buscar == 0){
+									nv->debe = 0;
+									nv->f_ultima_vez.dd = fecha_global.dd;
+									nv->f_ultima_vez.mm = fecha_global.mm;
+									nv->f_ultima_vez.yy = fecha_global.yy;
+									nv->baja = 0;
+									nv->incrementado = 0;
+									do{
+										printf("Esta seguro de que quiere guardar el turno? (1.Si | 0.No): ");scanf("%d",&opcion);
+									}while(opcion<0 || opcion>1);
+									if(opcion == 1){
+										insertar_codigo_cliente(&nv,&*ini_clientesta);
+										numero_cod_clientesta = nv->cod_clientesta;
+										numero_cod_turno = nv->cod_turno;
+										insertar_clientesta(&nv,&*ini_clientesta);
+										// crear cuenta pagada
+										// printf("\n111\n");
+										nv_cuenta = malloc(sizeof(cuenta));
+										if(nv_cuenta != NULL){
+											// printf("\n222\n");
+											nv_cuenta->sgte = NULL;
+											nv_cuenta->cod_clientesta = numero_cod_clientesta;
+											// printf("\n333\n");
+											nv_cuenta->f_pago.dd = fecha_global.dd;
+											nv_cuenta->f_pago.mm = fecha_global.mm;
+											nv_cuenta->f_pago.yy = fecha_global.yy;
+											// printf("\n444\n");
+											aux_tipo_turno=*ini_turno;
+											// printf("\n555\n");
+											buscar = 0;
+											while(aux_tipo_turno != NULL && buscar != 1){
+												// printf("\ncod_t: %d, aux: %d\n",nv->cod_turno,aux_tipo_turno->cod_turno);
+												if(numero_cod_turno == aux_tipo_turno->cod_turno){
+													
+													// printf("\n222111 %f\n",aux_tipo_turno->precio);
+													nv_cuenta->precio = aux_tipo_turno->precio;
+													// break;
+													buscar = 1;//reutilizo la variable para no crear otra
+												}
+												aux_tipo_turno = aux_tipo_turno->sgte;
 											}
-											aux_tipo_turno = aux_tipo_turno->sgte;
-										}
-										// printf("\n666\n");
-										insertar_cuenta(&nv_cuenta,&*ini_cuenta);
-									}else
-										printf("No se puede crear la cuenta");
-								}
+											// printf("\n666\n");
+											insertar_cuenta(&nv_cuenta,&*ini_cuenta);
+										}else
+											printf("No se puede crear la cuenta");
+									}
+								}else
+									printf("EL CLIENTE YA ESTA REGISTRADO EN ESTE TURNO.\n");
+									system("pause");
 							}
 
 						}
@@ -169,6 +175,16 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 		}
 	}while(op != 0);
 	free(nv);
+}
+
+int buscar_dni_clientesta_turno_repetido(long int dni,int codigo_turno,turno_cliente *ini_clientesta){
+    int buscar=0;
+	while(ini_clientesta != NULL && buscar != 1){
+		if(ini_clientesta->dni == dni && ini_clientesta->cod_turno == codigo_turno)
+			buscar = 1;
+		ini_clientesta = ini_clientesta->sgte;
+	}
+	return buscar;
 }
 
 void listar_all_turnos_clientes(turno_cliente *ini){
