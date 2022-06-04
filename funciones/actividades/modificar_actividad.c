@@ -11,7 +11,7 @@ void modificar_actividad(long int dato,int op,actividad **ini_actividad){
 	actividad *aux = *ini_actividad;
 	while(aux != NULL && encontrado != 1){
 		
-		if(aux->cod_act== dato){
+		if(aux->cod_act== dato && aux->estado != 0){
 		
 			if(op==1){
 				fflush(stdin);

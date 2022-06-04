@@ -67,8 +67,9 @@ void deudas(turno_cliente **ini_turno_cliente,tipo_turno *ini_tipo_turno,cuenta 
             aux = aux->sgte;
         }
     
-    // system("pause");
-    // printf("\n123412341234123412342134\n");
+    aux = NULL;
+    aux_turno=NULL;
+    aux_cuenta=NULL;
 }
 
 void baja_mes(cliente **ini_cliente,turno_cliente **ini_turno_cliente){

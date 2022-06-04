@@ -13,7 +13,7 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
     int eleccion_sede,eleccion_actividad;
     int i;
     long int dni_cliente;
-    char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Vienes"};
+    char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Viernes"};
     tipo_turno *aux=NULL;
     tipo_turno *nv=NULL;
     do{
@@ -235,6 +235,7 @@ void insertar_tipo_turno(tipo_turno **nv,tipo_turno **ini_tipo_turno){
         *ini_tipo_turno = *nv;
         *nv = NULL;
     }
+    aux = NULL;
 }
 
 
@@ -287,6 +288,7 @@ void modificar_tipo_turno(long int dato,int op,reserva **ini_tipo_turno){
 		
 		aux = aux->sgte;	
 	}
+    aux = NULL;
 }
 
 

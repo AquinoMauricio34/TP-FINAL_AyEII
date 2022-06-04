@@ -36,6 +36,7 @@ int buscar_actividades_clientesta(int cod_act,int sede,actividad *ini_actividad,
 		// printf("\neee\n");
 	}
 	// printf("\nfff\n");
+	aux_t_cliente=NULL;
 	return (buscar);
 }
 #endif

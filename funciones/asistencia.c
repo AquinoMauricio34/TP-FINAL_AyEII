@@ -14,7 +14,7 @@ extern int dia_sem_actual;
 void asistencia(actividad *ini_actividad,turno_cliente **ini_turno_cliente,tipo_turno *ini_tipo_turno){
     long int dni_cliente;
     int buscar,eleccion_sede,eleccion_actividad;
-    int encontrado,verificado=0;
+    int encontrado,verificado=0,sede_encontrada;
     turno_cliente *aux_turno_cliente=NULL;
     tipo_turno *aux_tipo_turno=NULL;
     do{
@@ -48,8 +48,10 @@ void asistencia(actividad *ini_actividad,turno_cliente **ini_turno_cliente,tipo_
                                 // printf("\n333\n");
                                 encontrado = 1;
                                 if(aux_tipo_turno->dias[dia_sem_actual-1]==1){
-                                    // printf("\n444\n");
-                                    if(aux_tipo_turno->hora_inicio_turno.hh <= hora_global.hh && (aux_tipo_turno->hora_fin_turno.hh > hora_global.hh)){
+                                    sede_encontrada = buscar_sede(eleccion_actividad,ini_actividad);
+                                    printf("\nsede encontrada = %d\n",sede_encontrada);
+//                                    if((aux_tipo_turno->hora_inicio_turno.hh <= hora_global.hh && (aux_tipo_turno->hora_fin_turno.hh > hora_global.hh)) || sede_encontrada == -1){
+                                	if(((aux_tipo_turno->hora_inicio_turno.hh < hora_global.hh && (hora_global.hh < aux_tipo_turno->hora_fin_turno.hh || (hora_global.hh == aux_tipo_turno->hora_fin_turno.hh && hora_global.mm < aux_tipo_turno->hora_fin_turno.mm))) || (aux_tipo_turno->hora_inicio_turno.hh == hora_global.hh && hora_global.mm >= aux_tipo_turno->hora_inicio_turno.mm)) || sede_encontrada == -1){
                                         // printf("\n555\n");
                                         verificado = 1;
                                         printf("VERIFICADO\n");
@@ -78,6 +80,18 @@ void asistencia(actividad *ini_actividad,turno_cliente **ini_turno_cliente,tipo_
         printf("NO PUEDE ASISTIR\n");
         system("pause");
     }
+}
+
+int buscar_sede(int eleccion_actividad,actividad *ini_actividad){
+    int sede_encontrada=0;
+    while(ini_actividad != NULL){
+        if(ini_actividad->cod_act == eleccion_actividad){
+            sede_encontrada = ini_actividad->sede;
+            ini_actividad = NULL;
+        }else
+            ini_actividad=ini_actividad->sgte;
+    }
+    return sede_encontrada;
 }
 
 #endif

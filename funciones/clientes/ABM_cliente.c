@@ -1,3 +1,4 @@
+//estado verificado
 #ifndef ABM_CLIENTE_C
 #define ABM_CLIENTE_C
 

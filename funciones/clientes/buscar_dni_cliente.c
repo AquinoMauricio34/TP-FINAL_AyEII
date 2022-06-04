@@ -1,3 +1,4 @@
+//estado verificado
 #ifndef BUSCAR_DNI_CLIENTE_C
 #define BUSCAR_DNI_CLIENTE_C
 

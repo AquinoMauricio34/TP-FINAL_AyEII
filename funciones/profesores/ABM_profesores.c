@@ -1,3 +1,4 @@
+//estado verificado
 #ifndef ABM_PROFESORES_C
 #define ABM_PROFESORES_C
 

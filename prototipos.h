@@ -103,19 +103,22 @@ void deudas(turno_cliente **ini_turno_cliente,tipo_turno *ini_tipo_turno,cuenta 
 void asistencia(actividad *ini_actividad,turno_cliente **ini_turno_cliente,tipo_turno *ini_tipo_turno);
 
 // carga de listas
-void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente);
+void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente,profesor **ini_profesor);
 void carga_actividades(actividad **ini_actividad);
 void insertar_actividad_carga(actividad **nv,actividad **ini);
 void carga_tipo_turnos(tipo_turno **ini_tipo_turno);
 void insertar_tipo_turno_carga(tipo_turno **nv,tipo_turno **ini);
 void carga_clientes(cliente **ini_cliente);
 void insertar_cliente_carga(cliente **nv,cliente **ini);
+void carga_profesores(profesor **ini_profesor);
+void insertar_profesor_carga(profesor **nv,profesor **ini);
 
 // guardado de listas
-void guardado_listas(actividad *ini_actividad,tipo_turno *ini_tipo_turno,cliente *ini_cliente);
+void guardado_listas(actividad *ini_actividad,tipo_turno *ini_tipo_turno,cliente *ini_cliente,profesor *ini_profesor);
 void guardado_actividad(actividad *ini_actividad);
 void guardado_tipo_turno(tipo_turno *ini_tipo_turno);
 void guardado_cliente(cliente *ini_cliente);
+void guardado_profesor(profesor *ini_profesor);
 // mostrar lista
 void listar_sede_actividades_turno(actividad *ini_actividad,tipo_turno *ini_turno, turno_cliente *ini_turno_cliente);
 void listar_reservas_actividad(actividad *ini_actividad,reserva *ini_reserva);

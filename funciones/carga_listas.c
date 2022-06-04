@@ -7,10 +7,11 @@
 #include"../estructuras.h"
 #include"../prototipos.h"
 
-void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente){
+void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente,profesor **ini_profesor){
     carga_actividades(&*ini_actividad);
     carga_tipo_turnos(&*ini_tipo_turno);
 	carga_clientes(&*ini_cliente);
+	carga_profesores(&*ini_profesor);
 }
 
 void carga_actividades(actividad **ini_actividad){
@@ -213,6 +214,76 @@ void insertar_cliente_carga(cliente **nv,cliente **ini){
 	// *ini = *nv;
 	// *nv = NULL;
 	cliente *aux = *ini;
+    if(*ini != NULL){
+		while(aux->sgte!= NULL){
+            aux = aux->sgte;
+        }
+        aux->sgte = *nv;
+        *nv = NULL;
+    }else{
+        *ini = *nv;
+        *nv = NULL;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void carga_profesores(profesor **ini_profesor){
+	FILE *a_profesores;
+	if((a_profesores=fopen("profesores.dat","rb"))!=NULL){
+		
+		profesor c_profesor;
+		profesor *nv=NULL;
+		
+		// printf("\n111\n");
+		
+		fread(&c_profesor,sizeof(profesor),1,a_profesores);
+		// printf("\n111\n");
+		while(!feof(a_profesores)){
+			// printf("%s | %d | %d\n",c_profesor.nombre,c_profesor.cant_personas,c_profesor.sede);
+			// printf("\n222\n");
+			nv = malloc(sizeof(profesor));
+			if(nv!=NULL){
+				// printf("\n333\n");
+				//carga datos
+				nv->dni = c_profesor.dni;
+				strcpy(nv->nombre,c_profesor.nombre);
+				nv->telefono = c_profesor.telefono;
+				nv->sgte = NULL;
+				//insertar
+				insertar_profesor_carga(&nv,&*ini_profesor);
+			}
+			
+			
+			fread(&c_profesor,sizeof(profesor),1,a_profesores);
+		}
+		fclose(a_profesores);
+	}else{
+		// printf("\naaaa111\n");
+		if((a_profesores=fopen("profesores.dat","wb"))!=NULL){
+			fclose(a_profesores);
+		}
+	}
+}
+
+void insertar_profesor_carga(profesor **nv,profesor **ini){
+	// (*nv)->sgte = *ini;
+	// *ini = *nv;
+	// *nv = NULL;
+	profesor *aux = *ini;
     if(*ini != NULL){
 		while(aux->sgte!= NULL){
             aux = aux->sgte;
