@@ -47,6 +47,7 @@ void fecha_actual(){
 
 void modificar_fecha(){
     int op;
+    int dd,mm,yy,hh,min;
     do{
         printf("1. Fecha actual\n");
         printf("2. Fecha modificada\n");
@@ -59,13 +60,30 @@ void modificar_fecha(){
         fecha_modificada = 0;
     }
     else if(op == 2){
-        fecha_modificada = 1;
-        printf("Ingresar fecha con formato (dd/mm/yy): ");scanf("%d/%d/%d",&fecha_global.dd,&fecha_global.mm,&fecha_global.yy);
+        do{
+            printf("Ingresar fecha con formato (dd/mm/yy): ");scanf("%d/%d/%d",&dd,&mm,&yy);
+        }while((dd<0 || dd>31) || (mm<0 || mm>12) || (yy<0));
+        if(dd != 0 && mm != 0 && yy != 0){
+            fecha_modificada = 1;
+            fecha_global.dd = dd;
+            fecha_global.mm = mm;
+            fecha_global.yy = yy;
+        }
     }else if(op == 3){
         hora_modificada = 0;
     }else if(op == 4){
-        hora_modificada = 1;
-        printf("Ingresar la hora con formato (hh:mm): ");scanf("%d:%d",&hora_global.hh,&hora_global.mm);
+        // hora_modificada = 1;
+        // printf("Ingresar la hora con formato (hh:mm): ");scanf("%d:%d",&hora_global.hh,&hora_global.mm);
+
+
+        do{
+            printf("Ingresar la hora con formato (hh:mm): ");scanf("%d:%d",&hh,&min);
+        }while((hh<(-1) || hh>23) || (min<(-1) || min>59));
+        if(hh != -1 && min != -1){
+            hora_modificada = 1;
+            hora_global.hh = hh;
+            hora_global.mm = min;
+        }
     }
 
 

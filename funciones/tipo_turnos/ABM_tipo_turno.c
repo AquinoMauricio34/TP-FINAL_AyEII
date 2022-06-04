@@ -62,9 +62,16 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
                             //cargamos es precio
                             printf("Ingresar precio del turno: ");scanf("%f",&nv->precio);
                             //cargamos hora inicio turno
-                            printf("Ingresar la hora de inicio del turno (formato hh:mm): ");scanf("%d:%d",&nv->hora_inicio_turno.hh,&nv->hora_inicio_turno.mm);
+                            do{
+                                printf("Ingresar la hora de inicio del turno (formato hh:mm): ");scanf("%d:%d",&nv->hora_inicio_turno.hh,&nv->hora_inicio_turno.mm);
+                                // printf("Ingresar la hora con formato (hh:mm): ");scanf("%d:%d",&hh,&min);
+                            }while((nv->hora_inicio_turno.hh<0 || nv->hora_inicio_turno.hh>23) || (nv->hora_inicio_turno.mm<0 || nv->hora_inicio_turno.mm>59));
                             //cargamos hora fin turno
-                            printf("Ingresar la hora de fin del turno (formato hh:mm): ");scanf("%d:%d",&nv->hora_fin_turno.hh,&nv->hora_fin_turno.mm);
+                            do{
+                                printf("Ingresar la hora de fin del turno (formato hh:mm): ");scanf("%d:%d",&nv->hora_fin_turno.hh,&nv->hora_fin_turno.mm);
+                                // printf("Ingresar la hora de inicio del turno (formato hh:mm): ");scanf("%d:%d",&nv->hora_inicio_turno.hh,&nv->hora_inicio_turno.mm);
+                                // printf("Ingresar la hora con formato (hh:mm): ");scanf("%d:%d",&hh,&min);
+                            }while((nv->hora_fin_turno.hh<0 || nv->hora_fin_turno.hh>23) || (nv->hora_fin_turno.mm<0 || nv->hora_fin_turno.mm>59));
                             //cargar dias
                             printf("Dias de la semana del turno:\n");
                             for(i=0;i<5;i++){
