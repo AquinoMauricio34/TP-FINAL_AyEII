@@ -7,11 +7,65 @@
 #include"../estructuras.h"
 #include"../prototipos.h"
 
-void guardado_listas(actividad *ini_actividad,tipo_turno *ini_tipo_turno,cliente *ini_cliente,profesor *ini_profesor){
+void guardado_listas(actividad *ini_actividad,tipo_turno *ini_tipo_turno,cliente *ini_cliente,profesor *ini_profesor,cuenta *ini_cuenta,reserva *ini_reserva,turno_cliente *ini_turno_cliente){
     guardado_actividad(ini_actividad);
 	guardado_tipo_turno(ini_tipo_turno);
 	guardado_cliente(ini_cliente);
 	guardado_profesor(ini_profesor);
+	guardado_cuenta(ini_cuenta);
+	guardado_reserva(ini_reserva);
+	guardado_turno_cliente(ini_turno_cliente);
+}
+
+void guardado_turno_cliente(turno_cliente *ini_turno_cliente){
+	FILE *a_turnos_cliente;
+	if((a_turnos_cliente=fopen("turnos_cliente.dat","wb"))!=NULL){
+		turno_cliente c_turno_cliente;
+		turno_cliente *aux = ini_turno_cliente;
+		while(aux != NULL){
+			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
+			fwrite(aux,sizeof(turno_cliente),1,a_turnos_cliente);
+			aux = aux->sgte;
+		}
+
+		fclose(a_turnos_cliente);
+	}else{
+		printf("El archivo no se pudo abrir.");
+	}
+}
+
+void guardado_reserva(reserva *ini_reserva){
+	FILE *a_reservas;
+	if((a_reservas=fopen("reservas.dat","wb"))!=NULL){
+		reserva c_reserva;
+		reserva *aux = ini_reserva;
+		while(aux != NULL){
+			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
+			fwrite(aux,sizeof(reserva),1,a_reservas);
+			aux = aux->sgte;
+		}
+
+		fclose(a_reservas);
+	}else{
+		printf("El archivo no se pudo abrir.");
+	}
+}
+
+void guardado_cuenta(cuenta *ini_cuenta){
+	FILE *a_cuentas;
+	if((a_cuentas=fopen("cuentas.dat","wb"))!=NULL){
+		cuenta c_cuenta;
+		cuenta *aux = ini_cuenta;
+		while(aux != NULL){
+			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
+			fwrite(aux,sizeof(cuenta),1,a_cuentas);
+			aux = aux->sgte;
+		}
+
+		fclose(a_cuentas);
+	}else{
+		printf("El archivo no se pudo abrir.");
+	}
 }
 
 void guardado_actividad(actividad *ini_actividad){

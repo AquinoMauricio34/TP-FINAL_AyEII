@@ -7,13 +7,212 @@
 #include"../estructuras.h"
 #include"../prototipos.h"
 
-void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente,profesor **ini_profesor){
+void cargar_listas(actividad **ini_actividad,tipo_turno **ini_tipo_turno,cliente **ini_cliente,profesor **ini_profesor,turno_cliente **ini_turno_cliente,reserva **ini_reserva,cuenta **ini_cuenta){
     carga_actividades(&*ini_actividad);
     carga_tipo_turnos(&*ini_tipo_turno);
 	carga_clientes(&*ini_cliente);
 	carga_profesores(&*ini_profesor);
+	//turno_cliente
+	carga_turnos_cliente(&*ini_turno_cliente);
+	//reservas
+	carga_reservas(&*ini_reserva);
+	//cuentas
+	carga_cuentas(&*ini_cuenta);
 }
 
+void carga_turnos_cliente(turno_cliente **ini_turno_cliente){
+	FILE *a_turnos_cliente;
+	if((a_turnos_cliente=fopen("turnos_cliente.dat","rb"))!=NULL){
+		
+		turno_cliente c_turno_cliente;
+		turno_cliente *nv=NULL;
+		
+		// printf("\n111\n");
+		
+		fread(&c_turno_cliente,sizeof(turno_cliente),1,a_turnos_cliente);
+		// printf("\n111\n");
+		while(!feof(a_turnos_cliente)){
+			// printf("%s | %d | %d\n",c_turno_cliente.nombre,c_turno_cliente.cant_personas,c_turno_cliente.sede);
+			// printf("\n222\n");
+			nv = malloc(sizeof(turno_cliente));
+			if(nv!=NULL){
+				// printf("\n333\n");
+				//carga datos
+				nv->baja = c_turno_cliente.baja;
+				nv->cod_act = c_turno_cliente.cod_act;
+				nv->cod_clientesta = c_turno_cliente.cod_clientesta;
+				nv->dni = c_turno_cliente.dni;
+				nv->debe = c_turno_cliente.debe;
+				nv->incrementado = c_turno_cliente.incrementado;
+				nv->cod_turno = c_turno_cliente.cod_turno;
+				nv->dni = c_turno_cliente.dni;
+				nv->f_ultima_vez.dd = c_turno_cliente.f_ultima_vez.dd;
+				nv->f_ultima_vez.mm = c_turno_cliente.f_ultima_vez.mm;
+				nv->f_ultima_vez.yy = c_turno_cliente.f_ultima_vez.yy;
+				nv->sgte = NULL;
+				//insertar
+				insertar_turno_cliente_carga(&nv,&*ini_turno_cliente);
+			}
+			
+			
+			fread(&c_turno_cliente,sizeof(turno_cliente),1,a_turnos_cliente);
+		}
+		fclose(a_turnos_cliente);
+	}else{
+		// printf("\naaaa111\n");
+		if((a_turnos_cliente=fopen("turnos_cliente.dat","wb"))!=NULL){
+			fclose(a_turnos_cliente);
+		}
+	}
+}
+
+void insertar_turno_cliente_carga(turno_cliente **nv,turno_cliente **ini){
+	// (*nv)->sgte = *ini;
+	// *ini = *nv;
+	// *nv = NULL;
+	turno_cliente *aux = *ini;
+    if(*ini != NULL){
+		while(aux->sgte!= NULL){
+            aux = aux->sgte;
+        }
+        aux->sgte = *nv;
+        *nv = NULL;
+    }else{
+        *ini = *nv;
+        *nv = NULL;
+    }
+}
+
+
+
+void carga_reservas(reserva **ini_reserva){
+	FILE *a_reservas;
+	if((a_reservas=fopen("reservas.dat","rb"))!=NULL){
+		
+		reserva c_reserva;
+		reserva *nv=NULL;
+		
+		// printf("\n111\n");
+		
+		fread(&c_reserva,sizeof(reserva),1,a_reservas);
+		// printf("\n111\n");
+		while(!feof(a_reservas)){
+			// printf("%s | %d | %d\n",c_reserva.nombre,c_reserva.cant_personas,c_reserva.sede);
+			// printf("\n222\n");
+			nv = malloc(sizeof(reserva));
+			if(nv!=NULL){
+				// printf("\n333\n");
+				//carga datos
+				nv->cod_act = c_reserva.cod_act;
+				nv->cod_turno = c_reserva.cod_turno;
+				nv->dni = c_reserva.dni;
+				nv->telefono = c_reserva.telefono;
+				nv->ant = NULL;
+				nv->sgte = NULL;
+				//insertar
+				insertar_reserva_carga(&nv,&*ini_reserva);
+			}
+			
+			
+			fread(&c_reserva,sizeof(reserva),1,a_reservas);
+		}
+		fclose(a_reservas);
+	}else{
+		// printf("\naaaa111\n");
+		if((a_reservas=fopen("reservas.dat","wb"))!=NULL){
+			fclose(a_reservas);
+		}
+	}
+}
+
+void insertar_reserva_carga(reserva **nv,reserva **ini){
+	// (*nv)->sgte = *ini;
+	// *ini = *nv;
+	// *nv = NULL;
+	reserva *aux = *ini;
+    if(*ini != NULL){
+		while(aux->sgte!= NULL){
+            aux = aux->sgte;
+        }
+        aux->sgte = *nv;
+		(*nv)->ant = aux;
+        *nv = NULL;
+    }else{
+        *ini = *nv;
+        *nv = NULL;
+    }
+}
+
+
+
+
+void carga_cuentas(cuenta **ini_cuenta){
+	FILE *a_cuentas;
+	if((a_cuentas=fopen("cuentas.dat","rb"))!=NULL){
+		
+		cuenta c_cuenta;
+		cuenta *nv=NULL;
+		
+		// printf("\n111\n");
+		
+		fread(&c_cuenta,sizeof(cuenta),1,a_cuentas);
+		// printf("\n111\n");
+		while(!feof(a_cuentas)){
+			// printf("%s | %d | %d\n",c_cuenta.nombre,c_cuenta.cant_personas,c_cuenta.sede);
+			// printf("\n222\n");
+			nv = malloc(sizeof(cuenta));
+			if(nv!=NULL){
+				// printf("\n333\n");
+				//carga datos
+				nv->cod_clientesta = c_cuenta.cod_clientesta;
+				nv->precio = c_cuenta.precio;
+				nv->f_pago.dd = c_cuenta.f_pago.dd;
+				nv->f_pago.mm = c_cuenta.f_pago.mm;
+				nv->f_pago.yy = c_cuenta.f_pago.yy;
+				nv->sgte = NULL;
+				//insertar
+				insertar_cuenta_carga(&nv,&*ini_cuenta);
+			}
+			
+			
+			fread(&c_cuenta,sizeof(cuenta),1,a_cuentas);
+		}
+		fclose(a_cuentas);
+	}else{
+		// printf("\naaaa111\n");
+		if((a_cuentas=fopen("cuentas.dat","wb"))!=NULL){
+			fclose(a_cuentas);
+		}
+	}
+}
+
+void insertar_cuenta_carga(cuenta **nv,cuenta **ini){
+	// (*nv)->sgte = *ini;
+	// *ini = *nv;
+	// *nv = NULL;
+	cuenta *aux = *ini;
+    if(*ini != NULL){
+		while(aux->sgte!= NULL){
+            aux = aux->sgte;
+        }
+        aux->sgte = *nv;
+        *nv = NULL;
+    }else{
+        *ini = *nv;
+        *nv = NULL;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+//esto no
 void carga_actividades(actividad **ini_actividad){
 	FILE *a_actividades;
 	if((a_actividades=fopen("actividades.dat","rb"))!=NULL){

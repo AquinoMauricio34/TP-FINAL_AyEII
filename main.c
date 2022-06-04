@@ -27,7 +27,7 @@ int main(){
     opcion_persona(&persona);
     // printf("\npersona = %d\n",persona);
     //cargado de las listas
-    cargar_listas(&ini_actividad,&ini_tipo_turno,&ini_cliente,&ini_profesor);
+    cargar_listas(&ini_actividad,&ini_tipo_turno,&ini_cliente,&ini_profesor,&ini_turno_cliente,&ini_reserva,&ini_cuenta);
     
     int opcion;
     //llamado a funciones de verificacion de fecha, borrado o activacion de actividades/tipo_turnos
@@ -172,7 +172,7 @@ int main(){
         scanf("%d",&opcion);
     }while(opcion < 0 || opcion > 1);
     if(opcion == 1){
-        guardado_listas(ini_actividad,ini_tipo_turno,ini_cliente,ini_profesor);
+        guardado_listas(ini_actividad,ini_tipo_turno,ini_cliente,ini_profesor,ini_cuenta,ini_reserva,ini_turno_cliente);
     }
 
     return 0;
