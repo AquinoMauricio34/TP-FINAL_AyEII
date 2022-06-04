@@ -122,6 +122,9 @@ void carga_tipo_turnos(tipo_turno **ini_tipo_turno){
 				nv->hora_inicio_turno.hh = c_tipo_turno.hora_inicio_turno.hh;
 				nv->hora_inicio_turno.mm = c_tipo_turno.hora_inicio_turno.mm;
 				nv->precio = c_tipo_turno.precio;
+				nv->fecha_baja.dd = c_tipo_turno.fecha_baja.dd;
+				nv->fecha_baja.mm = c_tipo_turno.fecha_baja.mm;
+				nv->fecha_baja.yy = c_tipo_turno.fecha_baja.yy;
 				nv->sgte = NULL;
 				//insertar
 				insertar_tipo_turno_carga(&nv,&*ini_tipo_turno);

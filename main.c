@@ -39,6 +39,8 @@ int main(){
             deudas(&ini_turno_cliente,ini_tipo_turno,ini_cuenta);
             baja_mes(&ini_cliente,&ini_turno_cliente);
             baja_actividad_estado(&ini_actividad,&ini_tipo_turno,&ini_turno_cliente);
+            printf("\naaa\n");
+            baja_tipo_turno_estado(&ini_tipo_turno,&ini_turno_cliente);
             borrar_nodo_baja(&ini_turno_cliente);//borra los nodos que esten de baja y con debe 0.
             // printf("\nsem = %d\n",dia_sem_actual);
             printf("%d/%d/%d %d:%d %s\n\n",fecha_global.dd,fecha_global.mm,fecha_global.yy,hora_global.hh,hora_global.mm,nombres_dias_sem[dia_sem_actual]);

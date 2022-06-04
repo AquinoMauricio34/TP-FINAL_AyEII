@@ -7,6 +7,9 @@
 #include"../../estructuras.h"
 #include"../../prototipos.h"
 
+extern fecha fecha_global;
+extern hora hora_global;
+
 void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
     int opcion,encontrado,buscar,op;
     int codigo_turno;
@@ -83,6 +86,9 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
                             nv->estado = 1;
                             //guardamos el codigo de la actividad elegida
                             nv->cod_act = eleccion_actividad;
+                            nv->fecha_baja.dd = 0;
+                            nv->fecha_baja.mm = 0;
+                            nv->fecha_baja.yy = 0;
                             //insertamos
                             nv->sgte = NULL;
                             insertar_tipo_turno(&nv,&*ini_tipo_turno);
@@ -102,7 +108,19 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
                     printf("Esta seguro/a de que quiere eliminar al cliente (1. SI | 0. NO): ");
                     scanf("%d",&op);
                     if(op == 1){
-                        borrar_nodo_tipo_turno(codigo_turno,&*ini_tipo_turno);
+                        // borrar_nodo_tipo_turno(codigo_turno,&*ini_tipo_turno);
+                        aux=*ini_tipo_turno;
+						buscar = 0;
+						while(aux != NULL && buscar != 1){
+							if(aux->cod_turno == codigo_turno){
+								aux->estado = -1;
+								aux->fecha_baja.dd = fecha_global.dd;
+								aux->fecha_baja.mm = fecha_global.mm;
+								aux->fecha_baja.yy = fecha_global.yy;
+								buscar = 1;
+							}
+							aux = aux->sgte;
+						}
                     }
                 }
             break;
@@ -136,13 +154,29 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
 
 
 
-
-
-
-
-
-
-
+void baja_tipo_turno_estado(tipo_turno **ini_tipo_turno,turno_cliente **ini_turno_cliente){
+	tipo_turno *aux_tipo_turno;
+    printf("\nhola\n");
+	turno_cliente *aux_turno_cliente;
+    printf("\nholaa\n");
+    aux_tipo_turno=aux_turno_cliente=NULL;
+    printf("\nholaaa\n");
+	aux_tipo_turno = *ini_tipo_turno;
+    printf("\ncomo\n");
+	while(aux_tipo_turno != NULL){
+        printf("\n111\n");
+		if(aux_tipo_turno->estado == -1 && aux_tipo_turno->fecha_baja.dd != 0 && aux_tipo_turno->fecha_baja.mm != 0 && aux_tipo_turno->fecha_baja.yy != 0){
+            printf("\n222\n");
+			if((aux_tipo_turno->fecha_baja.yy < fecha_global.yy) || aux_tipo_turno->fecha_baja.mm+1 <= fecha_global.mm && aux_tipo_turno->fecha_baja.yy == fecha_global.yy){
+                printf("\n333\n");
+				aux_tipo_turno->estado = 0;
+				baja_turnos_cliente_seguntturno(aux_tipo_turno->cod_turno,&*ini_turno_cliente);
+			}
+		}
+		aux_tipo_turno = aux_tipo_turno->sgte;
+	}
+    printf("\nestas\n");
+}
 
 
 void borrar_nodo_tipo_turno(long int tipo_turno_borrar, tipo_turno **ini){

@@ -125,27 +125,27 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
                     }
                 }
             break;
-            case 3:
-                do{
-                    printf("Ingresar dni del cliente: ");scanf("%ld",&dni_cliente);
-                    buscar = buscar_dni_reserva(dni_cliente,*ini_reserva);
-                }while(buscar != 1 && dni_cliente != 0);
+            // case 3:
+            //     do{
+            //         printf("Ingresar dni del cliente: ");scanf("%ld",&dni_cliente);
+            //         buscar = buscar_dni_reserva(dni_cliente,*ini_reserva);
+            //     }while(buscar != 1 && dni_cliente != 0);
 
-                if(dni_cliente != 0){
-                    do{
-						system("cls");
-						do{
-							printf("1-modificar nombre del cliente \n");
-							printf("2-modificar el telefono del cliente \n");
-							printf("0-Finalizar\n>> ");
-							scanf("%d",&op);
-						}while(op<0 || op>2);
-						// system("cls");
-						modificar_reserva(dni_cliente,op,&*ini_reserva);
-					}while(op!=0);
-                }
+            //     if(dni_cliente != 0){
+            //         do{
+			// 			system("cls");
+			// 			do{
+			// 				printf("1-modificar nombre del cliente \n");
+			// 				printf("2-modificar el telefono del cliente \n");
+			// 				printf("0-Finalizar\n>> ");
+			// 				scanf("%d",&op);
+			// 			}while(op<0 || op>2);
+			// 			// system("cls");
+			// 			modificar_reserva(dni_cliente,op,&*ini_reserva);
+			// 		}while(op!=0);
+            //     }
                 
-            break;
+            // break;
 
 
 

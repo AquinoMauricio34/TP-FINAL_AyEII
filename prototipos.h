@@ -84,6 +84,8 @@ void listar_all_turnos_clientes(turno_cliente *ini);
 void listar_turnos_cliente(long int dni_cliente,turno_cliente *ini);
 int buscar_turno_cliente(int eleccion_turno_cliente,long int dni_cliente,turno_cliente *ini_clientesta);
 int buscar_dni_turno_cliente(long int dni,turno_cliente *ini_turno_cliente);
+int buscar_dni_clientesta_turno_repetido(long int dni,int codigo_turno,turno_cliente *ini_clientesta);
+void baja_tipo_turno_estado(tipo_turno **ini_tipo_turno,turno_cliente **ini_turno_cliente);
 
 //cuentas
 int buscar_dni_turno_cliente_cuenta(long int dni,turno_cliente *ini_turno_cliente);

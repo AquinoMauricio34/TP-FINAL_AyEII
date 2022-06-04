@@ -190,7 +190,9 @@ void baja_tipo_turnos_actividad(int codigo_actividad,tipo_turno **ini_tipo_turno
 void baja_turnos_cliente_seguntturno(int codigo_tt,turno_cliente **ini_turno_cliente){
 	turno_cliente *aux_turno_cliente=*ini_turno_cliente;
 	while(aux_turno_cliente != NULL){
+		printf("\n444\n");
 		if(aux_turno_cliente->baja == 0 && aux_turno_cliente->cod_turno == codigo_tt){
+			printf("\n555\n");
 			aux_turno_cliente->baja = 1;
 		}
 		aux_turno_cliente = aux_turno_cliente->sgte;
