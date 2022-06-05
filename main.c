@@ -63,9 +63,8 @@ int main(){
             printf("14. Listar Cuentas\n");
             printf("15. Lista general de Turnos de Clientes\n");
             printf("16. Personas por Actividad\n");
-            printf("17. Lista general de Reservas\n");
-            printf("18. Asistencia\n");
-            printf("19. Deudores Mayo\n");
+            printf("17. Asistencia\n");
+            printf("18. Deudores Mayo\n");
             printf("0. Cerrar Programa\n");
             fflush(stdin);
             printf(">> ");scanf("%d",&opcion);
@@ -80,7 +79,7 @@ int main(){
 	                modificar_fecha();
 			}
 	        break;
-            case 18:
+            case 17:
                 system("cls");
                 asistencia(ini_actividad,&ini_turno_cliente,ini_tipo_turno);
             break;
@@ -159,12 +158,7 @@ int main(){
                 listar_sede_actividades(ini_actividad,ini_turno_cliente);
                 system("pause");
             break;
-            case 17:
-                system("cls");
-                listar_reservas_actividad(ini_actividad,ini_reserva);
-                system("pause");
-            break;
-            case 19:
+            case 18:
                 system("cls");
                 deudores_mayo(ini_turno_cliente,ini_cuenta,ini_cliente);
             break;
