@@ -66,10 +66,11 @@ int main(){
             printf("16. Personas por Actividad\n");
             printf("17. Lista general de Reservas\n");
             printf("18. Asistencia\n");
+            printf("19. Deudores Mayo\n");
             printf("0. Cerrar Programa\n");
             fflush(stdin);
             printf(">> ");scanf("%d",&opcion);
-        }while((opcion<0 || opcion>18) && opcion!= 111);
+        }while((opcion<0 || opcion>19) && opcion!= 111);
 
         switch(opcion){
 //        	printf("\npersona = %d\n",persona);
@@ -163,6 +164,10 @@ int main(){
                 system("cls");
                 listar_reservas_actividad(ini_actividad,ini_reserva);
                 system("pause");
+            break;
+            case 19:
+                system("cls");
+                deudores_mayo(ini_turno_cliente,ini_cuenta,ini_cliente);
             break;
         }
     }while(opcion != 0);

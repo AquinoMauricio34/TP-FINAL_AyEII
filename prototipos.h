@@ -121,6 +121,14 @@ void insertar_reserva_carga(reserva **nv,reserva **ini);
 void carga_cuentas(cuenta **ini_cuenta);
 void insertar_cuenta_carga(cuenta **nv,cuenta **ini);
 
+//arbol
+void deudores_mayo(turno_cliente *ini_turno_cliente,cuenta *ini_cuenta,cliente *ini_cliente);
+deudores * borrar_nodo(deudores *borrar);
+deudores * vaciar_arbol(deudores *arbol);
+void inorder(deudores *arbol);
+deudores * insertar_deudor(deudores *arbol,deudores *nv);
+
+
 // guardado de listas
 void guardado_listas(actividad *ini_actividad,tipo_turno *ini_tipo_turno,cliente *ini_cliente,profesor *ini_profesor,cuenta *ini_cuenta,reserva *ini_reserva,turno_cliente *ini_turno_cliente);
 void guardado_actividad(actividad *ini_actividad);

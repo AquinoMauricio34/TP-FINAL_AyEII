@@ -1,6 +1,11 @@
 #ifndef ESTRUCTURAS_C
 #define ESTRUCTURAS_C
 
+typedef struct{
+	char nombre[100];
+	struct deudores *izq,*der;
+}deudores;
+
 typedef struct fecha{
 	int dd,mm,yy;
 }fecha;

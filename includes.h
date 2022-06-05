@@ -74,6 +74,7 @@
 #include"funciones/opcion_persona.c"
 #include"funciones/deudas.c"
 #include"funciones/asistencia.c"
+#include"funciones/deudores_mayo.c"
 
 
 // mostrar lista
