@@ -96,7 +96,6 @@ void listar_all_cuentas(cuenta *ini);
 void pago_cuenta(turno_cliente **ini_turno_cliente,actividad *ini_actividad,tipo_turno *ini_tipo_turno,cuenta **ini_cuenta);
 
 
-int numero_aleatorio(int minimo, int maximo);
 void baja_mes(cliente **ini_cliente,turno_cliente **ini_turno_cliente);
 void fecha_actual();
 void opcion_persona(int *persona);

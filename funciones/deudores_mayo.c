@@ -9,30 +9,23 @@
 
 
 void deudores_mayo(turno_cliente *ini_turno_cliente,cuenta *ini_cuenta,cliente *ini_cliente){
-	printf("DEUDORES\n");
 	deudores *nv=NULL,*arbol = NULL;
     cuenta *aux_cuenta=NULL;
 	cliente *aux_cliente=NULL;
-    int pagado,eleccion_yy;
-	printf("\naaa\n");
-	printf("Ingresar año: ");scanf("%d",&eleccion_yy);
+    int pagado,eleccion_yy,op;
+	printf("Ingresar anio: ");scanf("%d",&eleccion_yy);
 	while(ini_turno_cliente != NULL){
         pagado = 0;
-		printf("\ndni; %ld\n",ini_turno_cliente->dni);
 		aux_cuenta = ini_cuenta;
         while(aux_cuenta != NULL){
-			printf("\nbb\n");
             if(aux_cuenta->cod_clientesta == ini_turno_cliente->cod_clientesta){
-				printf("\ncc\n");
                 if(aux_cuenta->f_pago.mm == 5 && aux_cuenta->f_pago.yy == eleccion_yy){
-					printf("\ndd\n");
                     pagado = 1;
                 }
             }
             aux_cuenta = aux_cuenta->sgte;
         }
         if(pagado == 0){
-			printf("\nee\n");
 			aux_cliente = ini_cliente;
 			while(aux_cliente != NULL){
 				if(aux_cliente->dni == ini_turno_cliente->dni){
@@ -43,7 +36,6 @@ void deudores_mayo(turno_cliente *ini_turno_cliente,cuenta *ini_cuenta,cliente *
 				nv = malloc(sizeof(deudores));
 				if(nv != NULL){
 					puts(aux_cliente->nombre);
-					system("pause");
 					strcpy(nv->nombre,aux_cliente->nombre);
 					nv->der=NULL;
 					nv->izq=NULL;
@@ -61,14 +53,20 @@ void deudores_mayo(turno_cliente *ini_turno_cliente,cuenta *ini_cuenta,cliente *
         }
         ini_turno_cliente = ini_turno_cliente->sgte;
     }
+	printf("DEUDORES MAYO ANIO %d\n\n",eleccion_yy);
+	if(arbol != NULL){
+		do{
+			inorder(arbol);
+			printf("\n");
+			system("pause");
+			printf("Ingrese 0 para salir: \n>> ");
+			scanf("%d",&op);
+		}while(op != 0);
+		arbol = vaciar_arbol(arbol);
+	}else
+		printf("Sin deudores.\n");
 
-	inorder(arbol);
-	system("pause");
-	arbol = vaciar_arbol(arbol);
 
-
-	printf("\n");
-	system("pause");
 	return 0;
 }
 
@@ -107,7 +105,7 @@ deudores * vaciar_arbol(deudores *arbol){
 void inorder(deudores *arbol){
 	if(arbol != NULL){
 		inorder(arbol->izq);
-		puts(arbol->nombre);printf("----------------------------------------\n");
+		puts(arbol->nombre);printf("\n");
 		inorder(arbol->der);
 	}
 }

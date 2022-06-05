@@ -49,14 +49,16 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
 
                     //elegimos entre sede 1 y sede 2
                     do{
+                        system("cls");
                         printf("Eliga la sede 1 | 2 (0 para salir): ");scanf("%d",&eleccion_sede);
                     }while(eleccion_sede<0 || eleccion_sede>2);
                     //luego
                     if(eleccion_sede!=0){
 
-                        listar_actividades_sede(ini_actividad,eleccion_sede);
                         //elegimos una actividad
                         do{
+                            system("cls");
+                            listar_actividades_sede(ini_actividad,eleccion_sede);
                             printf("Ingresar codigo de la actividad: ");scanf("%d",&eleccion_actividad);
                             buscar = buscar_actividad_sede(eleccion_actividad,eleccion_sede,ini_actividad);
                         }while(buscar != 1 && eleccion_actividad != 0);
@@ -67,13 +69,10 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
                             //cargamos hora inicio turno
                             do{
                                 printf("Ingresar la hora de inicio del turno (formato hh:mm): ");scanf("%d:%d",&nv->hora_inicio_turno.hh,&nv->hora_inicio_turno.mm);
-                                // printf("Ingresar la hora con formato (hh:mm): ");scanf("%d:%d",&hh,&min);
                             }while((nv->hora_inicio_turno.hh<0 || nv->hora_inicio_turno.hh>23) || (nv->hora_inicio_turno.mm<0 || nv->hora_inicio_turno.mm>59));
                             //cargamos hora fin turno
                             do{
                                 printf("Ingresar la hora de fin del turno (formato hh:mm): ");scanf("%d:%d",&nv->hora_fin_turno.hh,&nv->hora_fin_turno.mm);
-                                // printf("Ingresar la hora de inicio del turno (formato hh:mm): ");scanf("%d:%d",&nv->hora_inicio_turno.hh,&nv->hora_inicio_turno.mm);
-                                // printf("Ingresar la hora con formato (hh:mm): ");scanf("%d:%d",&hh,&min);
                             }while((nv->hora_fin_turno.hh<0 || nv->hora_fin_turno.hh>23) || (nv->hora_fin_turno.mm<0 || nv->hora_fin_turno.mm>59));
                             //cargar dias
                             printf("Dias de la semana del turno:\n");
@@ -100,6 +99,7 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
             case 2:
                 buscar = 0;
                 do{
+                    system("cls");
                     printf("Ingresar codigo del turno a eliminar: ");scanf("%ld",&codigo_turno);
                     buscar = buscar_codigo_turno(codigo_turno,*ini_tipo_turno);
                 }while(buscar != 1 && codigo_turno != 0);
@@ -108,7 +108,6 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
                     printf("Esta seguro/a de que quiere eliminar al cliente (1. SI | 0. NO): ");
                     scanf("%d",&op);
                     if(op == 1){
-                        // borrar_nodo_tipo_turno(codigo_turno,&*ini_tipo_turno);
                         aux=*ini_tipo_turno;
 						buscar = 0;
 						while(aux != NULL && buscar != 1){
@@ -126,6 +125,7 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
             break;
             case 3:
                 do{
+                    system("cls");
                     printf("Ingresar el codigo del turno: ");scanf("%ld",&codigo_turno);
                     buscar = buscar_codigo_turno(codigo_turno,*ini_tipo_turno);
                 }while(buscar != 1 && codigo_turno != 0);
@@ -156,26 +156,18 @@ void ABM_tipo_turno(tipo_turno **ini_tipo_turno,actividad *ini_actividad){
 
 void baja_tipo_turno_estado(tipo_turno **ini_tipo_turno,turno_cliente **ini_turno_cliente){
 	tipo_turno *aux_tipo_turno;
-    printf("\nhola\n");
 	turno_cliente *aux_turno_cliente;
-    printf("\nholaa\n");
     aux_tipo_turno=aux_turno_cliente=NULL;
-    printf("\nholaaa\n");
 	aux_tipo_turno = *ini_tipo_turno;
-    printf("\ncomo\n");
 	while(aux_tipo_turno != NULL){
-        printf("\n111\n");
 		if(aux_tipo_turno->estado == -1 && aux_tipo_turno->fecha_baja.dd != 0 && aux_tipo_turno->fecha_baja.mm != 0 && aux_tipo_turno->fecha_baja.yy != 0){
-            printf("\n222\n");
 			if((aux_tipo_turno->fecha_baja.yy < fecha_global.yy) || aux_tipo_turno->fecha_baja.mm+1 <= fecha_global.mm && aux_tipo_turno->fecha_baja.yy == fecha_global.yy){
-                printf("\n333\n");
 				aux_tipo_turno->estado = 0;
 				baja_turnos_cliente_seguntturno(aux_tipo_turno->cod_turno,&*ini_turno_cliente);
 			}
 		}
 		aux_tipo_turno = aux_tipo_turno->sgte;
 	}
-    printf("\nestas\n");
 }
 
 
@@ -305,10 +297,6 @@ void modificar_tipo_turno(long int dato,int op,reserva **ini_tipo_turno){
 		
 		if(aux->cod_turno == dato){
 		
-            // printf("1-modificar precio del turno \n");
-            // printf("2-modificar hora de inicio del turno \n");
-            // printf("2-modificar hora de fin del turno \n");
-            // printf("4-modificar dias del turno\n");
 
 			if(op==1){
 				scanf("%f",&aux->precio);

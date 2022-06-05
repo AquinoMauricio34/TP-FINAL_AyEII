@@ -50,7 +50,6 @@
 #include"funciones/turno_cliente/buscar_dni_clientesta.c"
 #include"funciones/turno_cliente/buscar_turnos_clientes.c"
 #include"funciones/turno_cliente/insertar_clientesta.c"
-#include"funciones/turno_cliente/modificacion_clientesta.c"
 #include"funciones/turno_cliente/recorrer_actividades.c"
 #include"funciones/turno_cliente/recorrer_turnos.c"
 #include"funciones/turno_cliente/codigo_turno_clientesta.c"

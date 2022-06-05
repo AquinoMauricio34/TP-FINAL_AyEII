@@ -9,15 +9,11 @@
 
 int buscar_turno(int turno,int cod_actividad,tipo_turno *ini_turno){
 	int buscar=0;
-	// printf("\n111\n");
 	while(ini_turno != NULL && buscar != 1){
 		if(ini_turno->cod_turno == turno && ini_turno->cod_act == cod_actividad && ini_turno->estado == 1){
 			buscar = 1;
-			// printf("\nbbb\n");
 		}
-		// printf("\nccc\n");
 		ini_turno = ini_turno->sgte;
-		// printf("\nddd\n");
 	}
 	
 	return buscar;

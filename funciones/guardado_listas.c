@@ -23,7 +23,6 @@ void guardado_turno_cliente(turno_cliente *ini_turno_cliente){
 		turno_cliente c_turno_cliente;
 		turno_cliente *aux = ini_turno_cliente;
 		while(aux != NULL){
-			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
 			fwrite(aux,sizeof(turno_cliente),1,a_turnos_cliente);
 			aux = aux->sgte;
 		}
@@ -40,7 +39,6 @@ void guardado_reserva(reserva *ini_reserva){
 		reserva c_reserva;
 		reserva *aux = ini_reserva;
 		while(aux != NULL){
-			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
 			fwrite(aux,sizeof(reserva),1,a_reservas);
 			aux = aux->sgte;
 		}
@@ -57,7 +55,6 @@ void guardado_cuenta(cuenta *ini_cuenta){
 		cuenta c_cuenta;
 		cuenta *aux = ini_cuenta;
 		while(aux != NULL){
-			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
 			fwrite(aux,sizeof(cuenta),1,a_cuentas);
 			aux = aux->sgte;
 		}
@@ -74,7 +71,6 @@ void guardado_actividad(actividad *ini_actividad){
 		actividad c_actividad;
 		actividad *aux = ini_actividad;
 		while(aux != NULL){
-			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
 			fwrite(aux,sizeof(actividad),1,a_actividades);
 			aux = aux->sgte;
 		}
@@ -91,7 +87,6 @@ void guardado_tipo_turno(tipo_turno *ini_tipo_turno){
 		tipo_turno c_tipo_turno;
 		tipo_turno *aux = ini_tipo_turno;
 		while(aux != NULL){
-			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
 			fwrite(aux,sizeof(tipo_turno),1,a_tipo_turnos);
 			aux = aux->sgte;
 		}
@@ -109,7 +104,6 @@ void guardado_cliente(cliente *ini_cliente){
 		cliente c_cliente;
 		cliente *aux = ini_cliente;
 		while(aux != NULL){
-			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
 			fwrite(aux,sizeof(cliente),1,a_clientes);
 			aux = aux->sgte;
 		}
@@ -127,7 +121,6 @@ void guardado_profesor(profesor *ini_profesor){
 		profesor c_profesor;
 		profesor *aux = ini_profesor;
 		while(aux != NULL){
-			// printf("aux %s | %d | %d\n",aux->nombre,aux->cant_personas,aux->sede);
 			fwrite(aux,sizeof(profesor),1,a_profesores);
 			aux = aux->sgte;
 		}

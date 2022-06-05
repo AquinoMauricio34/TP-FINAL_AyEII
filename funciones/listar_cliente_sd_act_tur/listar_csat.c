@@ -17,7 +17,7 @@ void listar_sede_actividades_turno(actividad *ini_actividad,tipo_turno *ini_turn
 			printf("Sede %d \n",i);
 			aux_actividad = ini_actividad;
 			while(aux_actividad != NULL){
-				if(aux_actividad->sede == i){//debe incluir al -1
+				if(aux_actividad->sede == i){
 					cod_act = aux_actividad->cod_act;
 					printf("\n\t%-7d | %s\n\n",aux_actividad->cod_act,aux_actividad->nombre);
 					aux_tipo_turno = ini_turno;

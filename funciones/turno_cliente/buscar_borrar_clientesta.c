@@ -11,14 +11,11 @@ void buscar_borrar_clientest(long int dato,turno_cliente **bor,turno_cliente **a
     *ant = NULL;
     int encontrado=0;
     while(*bor != NULL && encontrado != 1){
-        // printf("\n111222\n");
         if(dato == (*bor)->cod_clientesta){
             encontrado = 1;
-            // printf("\n111333\n");
         }else{
             *ant = *bor;
             *bor = (*bor)->sgte;
-            // printf("\n111444\n");
         }
     }
 }

@@ -11,9 +11,6 @@ int buscar_dni_cliente_2(long int dni,cliente **ini_cliente,turno_cliente *ini_t
     int encontrado=0,salir;
     cliente *aux_cliente=*ini_cliente;
 	while(aux_cliente != NULL && encontrado != 1){
-		// if(ini_cliente->dni == dni)
-		// 	buscar = 1;
-        printf("\ndni: %ld, aux: %ld\n",dni,aux_cliente->dni);
 		if(dni == aux_cliente->dni){
 	
 			if(aux_cliente->baja == 1){

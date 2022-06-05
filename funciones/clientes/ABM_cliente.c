@@ -15,17 +15,19 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 	do{
 		system("cls");
 		printf("1-Aniadir un nuevo cliente\n");
-		printf("2-Eliminar un cliente\n");
+		printf("2-Baja cliente\n");
 		printf("3-Modificar un cliente\n");
 		printf("0-Finalizar\n>> ");
 		scanf("%d",&op);
 		
 		switch(op){
 			case 1://aniadir un nuevo cliente
+				system("cls");
 				nv = malloc(sizeof(cliente));// espacio en la memoria ---------
 				if(nv != NULL){
 					do{
-						printf("ingrese el dni del cliente: ");
+						system("cls");
+						printf("Ingrese el dni del cliente: ");
 						scanf("%ld",&nv->dni);
 						// printf("\naaa = %ld\n",nv->dni);
 						buscar_dni = buscar_dni_cliente_2(nv->dni,&*ini_cliente,*ini_turno_cliente);
@@ -33,16 +35,17 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 					if(buscar_dni != 2){
 						if(nv->dni != 0){
 							fflush(stdin);
-							printf("ingrese el nombre del cliente: ");
+							printf("Ingrese el nombre del cliente: ");
 							gets(nv->nombre);
-							printf("ingrese el telefono del cliente: \n");
+							printf("Ingrese el telefono del cliente: ");
 							scanf("%ld",&nv->telefono);
 							printf("Ingrese el fecha de nacimiento del cliente (dd/mm/aa): ");
 							scanf("%d/%d/%d",&nv->f_nacimiento.dd,&nv->f_nacimiento.mm,&nv->f_nacimiento.yy);
 							nv->baja = 0;
 							nv->sgte = NULL;
 							insertar_cliente(&nv,&*ini_cliente);
-							
+							printf("CLIENTE REGISTRADO CORRECTAMENTE\n");
+							system("pause");
 						}
 					}
 				}
@@ -50,7 +53,8 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 			break;
 			case 2://Eliminar un cliente
 				do{//no se saldra del bucle a no ser de que, se encuentre un cliente o el dni ingresado sea 0
-						printf("ingrese el dni del cliente que desee borrar\n");
+						system("cls");
+						printf("Ingrese el dni del cliente que desee borrar: ");
 						scanf("%ld",&buscar_borrar);
 						buscar_dni = buscar_dni_cliente(buscar_borrar,*ini_cliente);
 				}while(buscar_dni != 1 && buscar_borrar !=0);
@@ -59,12 +63,6 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 					printf("Esta seguro/a de que quiere dar de baja al cliente (1. SI | 0. NO): ");
 					scanf("%d",&op_mod);
 					if(op_mod == 1){
-						// encontrado = 0;
-						// do{
-						// 	encontrado = borrar_Tcliente(buscar_borrar,&*ini_turno_cliente,&encontrado);
-						// }while(encontrado == 1);
-					//	borrar_Tcliente(buscar_borrar,&*ini_cliente);
-						// borrar_nodo_cliente(buscar_borrar,&*ini_cliente);
 						baja_nodo_cliente(buscar_borrar,&*ini_cliente);
 						baja_turnos_cliente(buscar_borrar,&*ini_turno_cliente);
 					}
@@ -72,6 +70,7 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 			break;
 			case 3:
 				do{//no se saldra del bucle a no ser de que, se encuentre un cliente o el dni ingresado sea 0
+						system("cls");
 						printf("Ingrese el dni que desea buscar para modificarlo\n");
 						scanf("%d",&modificar);
 						buscar_dni = buscar_dni_cliente(modificar,*ini_cliente);
@@ -79,12 +78,16 @@ void ABM_clientes(cliente **ini_cliente,actividad *ini_actividad,tipo_turno **in
 
 				if(modificar != 0){
 					do{
-						printf("1-modificar nombre del cliente\n");
-						printf("2-modificar telefono del cliente\n");
-						printf("0-Finalizar\n");
-						scanf("%d",&op_mod);
-					}while(op_mod<0 || op_mod>2);
-					modificar_cliente(modificar,op_mod,&*ini_cliente);
+						do{
+							system("cls");
+							printf("1-modificar nombre del cliente\n");
+							printf("2-modificar telefono del cliente\n");
+							printf("0-Atras\n");
+							scanf("%d",&op_mod);
+						}while(op_mod<0 || op_mod>2);
+						system("cls");
+						modificar_cliente(modificar,op_mod,&*ini_cliente);
+					}while(op_mod!=0);
 				}
 			break;
 		}	
@@ -123,6 +126,6 @@ void listar_all_clientes(cliente *ini){
 			ini = ini->sgte;
 		}
 	}else
-		printf("\nSIN CLIENTES\n");
+		printf("SIN CLIENTES\n");
 }
 #endif

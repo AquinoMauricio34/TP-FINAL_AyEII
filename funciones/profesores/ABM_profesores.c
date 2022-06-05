@@ -17,42 +17,30 @@ void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad){
 		printf("1-Aniadir un nuevo profesor\n");
 		printf("2-Eliminar un profesor\n");
 		printf("3-Modificar un profesor\n");
-		printf("0-Finalizar");
+		printf("0-Finalizar\n>> ");
 		scanf("%d",&op);
 		
 		switch(op){
 
 
-
-
-
-
-
-
-
-
-
-
-
 			case 1://aniadir un nuevo profesor
-			nv = malloc(sizeof(reserva));
+			nv = malloc(sizeof(profesor));
 			if(nv != NULL){
 
 				do{
-					printf("ingrese el dni del profesor\n");
+					system("cls");
+					printf("Ingrese el dni del profesor: ");
 					scanf("%ld",&nv->dni);
 					buscar_dni = buscar_dni_profesor(nv->dni,*ini_profesor);
-					// printf("\nbuscar = %d\n",buscar_dni);
 				}while(buscar_dni == 1 && nv->dni !=0);
 				if(nv->dni != 0){
 					fflush(stdin);
-					printf("ingrese el nombre del profesor\n");
+					printf("Ingrese el nombre del profesor: ");
 					gets(nv->nombre);
-					printf("ingrese el telefono del profesor\n");
+					printf("Ingrese el telefono del profesor: ");
 					scanf("%ld",&nv->telefono);
 					nv->sgte = NULL;
 					insertar_profesor(&nv,&*ini_profesor);
-					
 				}
 				
 			}
@@ -60,20 +48,7 @@ void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 			case 2://Eliminar un profesor
-				// eliminar = 1;
 				do{//no se saldra del bucle a no ser de que, se encuentre un profesor o el dni ingresado sea 0
 						system("cls");
 						if(buscar_dni == -1){
@@ -81,21 +56,14 @@ void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad){
 						}
 						printf("Ingrese el dni del profesor que desee borrar\n");
 						scanf("%ld",&buscar_borrar);
-						printf("\naaa\n");
 						buscar_dni = buscar_dni_profesor(buscar_borrar,*ini_profesor);
 						aux_actividad = ini_actividad;
-						// eliminar = 1;
 						while(aux_actividad != NULL && buscar_dni != -1){
-							// printf("aux; %ld, bor; %ld\n",aux_actividad->dni_profesor,buscar_borrar);
 							if(aux_actividad->dni_profesor == buscar_borrar){
-								printf("asdfasdfadsf\n");
 								buscar_dni = -1;
 							}else
 								aux_actividad = aux_actividad->sgte;
 						}
-// 						if(buscar_dni != 1 && eliminar!=1 && buscar_borrar !=0){
-// printf("243589983585\n");
-// 						}
 				}while(buscar_dni != 1 && buscar_borrar !=0);
 
 				if(buscar_borrar != 0){//si ebcontro el dni
@@ -109,23 +77,11 @@ void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad){
 			break;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 			case 3:
 				
 
 				do{//no se saldra del bucle a no ser de que, se encuentre un profesor o el dni ingresado sea 0
+						system("cls");
 						printf("Ingrese el dni que desea buscar para modificarlo\n");
 						scanf("%d",&modificar);
 						buscar_dni = buscar_dni_profesor(modificar,*ini_profesor);
@@ -133,29 +89,17 @@ void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad){
 
 				if(modificar != 0){
 					do{
-						printf("1-modificar nombre del profesor\n");
-						printf("2-modificar telefono del profesor\n");
-						//agregar opcion para modificar la actividad del profesor (trabajo Mauri)
-						printf("0-Finalizar\n");
-						scanf("%d",&op_mod);
-					}while(op_mod<0 || op_mod>2);
-					modificar_profesor(modificar,op_mod,&*ini_profesor);
+						do{
+							printf("1-modificar nombre del profesor\n");
+							printf("2-modificar telefono del profesor\n");
+							printf("0-Finalizar\n");
+							scanf("%d",&op_mod);
+						}while(op_mod<0 || op_mod>2);
+						system("cls");
+						modificar_profesor(modificar,op_mod,&*ini_profesor);
+					}while(op_mod != 0);
 				}
 			break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 		}	
@@ -170,7 +114,7 @@ void listar_all_profesores(profesor *ini){
 			ini = ini->sgte;
 		}
 	}else
-		printf("\nSIN PROFESORES\n");
+		printf("SIN PROFESORES\n");
 }
 
 #endif

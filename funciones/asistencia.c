@@ -39,21 +39,16 @@ void asistencia(actividad *ini_actividad,turno_cliente **ini_turno_cliente,tipo_
                 aux_turno_cliente = *ini_turno_cliente;
                 while(aux_turno_cliente != NULL && verificado != 1){
                     if(aux_turno_cliente->baja != 1 && aux_turno_cliente->dni == dni_cliente && aux_turno_cliente->cod_act == eleccion_actividad && (aux_turno_cliente->debe == 0 || (aux_turno_cliente->debe != 0 && (fecha_global.dd>=1 && fecha_global.dd<= 10)))){
-                        // printf("\n111\n");
                         encontrado = 0;
                         aux_tipo_turno = ini_tipo_turno;
                         while(aux_tipo_turno != NULL && encontrado != 1){
-                            // printf("\n222\n");
                             if(aux_turno_cliente->cod_turno == aux_tipo_turno->cod_turno && aux_tipo_turno->estado != 0){
-                                // printf("\n333\n");
                                 encontrado = 1;
                                 if(aux_tipo_turno->dias[dia_sem_actual-1]==1){
                                     sede_encontrada = buscar_sede(eleccion_actividad,ini_actividad);
-                                    printf("\nsede encontrada = %d\n",sede_encontrada);
-//                                    if((aux_tipo_turno->hora_inicio_turno.hh <= hora_global.hh && (aux_tipo_turno->hora_fin_turno.hh > hora_global.hh)) || sede_encontrada == -1){
                                 	if(((aux_tipo_turno->hora_inicio_turno.hh < hora_global.hh && (hora_global.hh < aux_tipo_turno->hora_fin_turno.hh || (hora_global.hh == aux_tipo_turno->hora_fin_turno.hh && hora_global.mm < aux_tipo_turno->hora_fin_turno.mm))) || (aux_tipo_turno->hora_inicio_turno.hh == hora_global.hh && hora_global.mm >= aux_tipo_turno->hora_inicio_turno.mm)) || sede_encontrada == -1){
-                                        // printf("\n555\n");
                                         verificado = 1;
+                                        system("cls");
                                         printf("VERIFICADO\n");
                                         system("pause");
                                     }
@@ -77,6 +72,7 @@ void asistencia(actividad *ini_actividad,turno_cliente **ini_turno_cliente,tipo_
     }
 
     if(verificado != 1){
+        system("cls");
         printf("NO PUEDE ASISTIR\n");
         system("pause");
     }

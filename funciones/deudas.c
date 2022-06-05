@@ -14,47 +14,33 @@ void deudas(turno_cliente **ini_turno_cliente,tipo_turno *ini_tipo_turno,cuenta 
     tipo_turno *aux_turno=NULL;
     cuenta *aux_cuenta=NULL;
     int cuenta_encontrada=0;
-    // printf("\nDEUDAS\n");
-        // printf("\n111\n");
         while(aux != NULL){
-            // printf("\n2\n");
             if(aux->baja == 0 && aux->debe>=0){
-                // printf("\n3\n");
                 aux_cuenta = ini_cuenta;
                 cuenta_encontrada = 0;
                 while(aux_cuenta != NULL && cuenta_encontrada != 1){
-                    // printf("\n4\n");
                     if(aux_cuenta->cod_clientesta == aux->cod_clientesta && aux_cuenta->f_pago.mm == fecha_global.mm && aux_cuenta->f_pago.yy && fecha_global.yy){
                         cuenta_encontrada = 1;
-                        // printf("\n5\n");
                     }
                     aux_cuenta = aux_cuenta->sgte;
                 }
                 if(cuenta_encontrada == 1){
                     aux->debe = 0.00;
-                    // printf("\n6\n");
                 }else{
                     if(fecha_global.dd >= 1 && fecha_global.dd <= 10 && aux->debe == 0){
-                        // printf("\n7\n");
                         aux_turno = ini_tipo_turno;
                         while(aux_turno != NULL){
-                            // printf("\n8\n");
                             if(aux_turno->cod_turno == aux->cod_turno){
                                 aux->debe = aux_turno->precio;
                                 aux->incrementado = 0;
-                                // printf("\n9\n");
                             }
                             aux_turno = aux_turno->sgte;
                         }
                     }else if(fecha_global.dd >= 11 && aux->incrementado == 0){
-                        // printf("\n10\n");
                         aux_turno = ini_tipo_turno;
                         while(aux_turno != NULL){
-                            // printf("\n11\n");
                             if(aux_turno->cod_turno == aux->cod_turno){
-                                // printf("\n12 auxtprecio = %f\n",aux_turno->precio);
                                 aux->debe =aux_turno->precio + (aux_turno->precio * 0.1);
-                                // printf("\n12 auxdebe = %f\n",aux->debe);
                                 aux->incrementado = 1;
                             }
                             aux_turno = aux_turno->sgte;
@@ -62,8 +48,6 @@ void deudas(turno_cliente **ini_turno_cliente,tipo_turno *ini_tipo_turno,cuenta 
                     }
                 }
             }
-            // printf("\n13 auxdebe = %f\n",aux->debe);
-            // break;
             aux = aux->sgte;
         }
     
@@ -85,7 +69,6 @@ void baja_mes(cliente **ini_cliente,turno_cliente **ini_turno_cliente){
                 //toma de la ultima vez que asistió
 
                 if(aux_turno_cliete->dni == aux_cliente->dni && aux_turno_cliete->baja == 0){
-                    printf("\n---%d/%d/%d---\n",aux_turno_cliete->f_ultima_vez.dd,aux_turno_cliete->f_ultima_vez.mm,aux_turno_cliete->f_ultima_vez.yy);
                     tomar = 0;
                     if(aux_turno_cliete->f_ultima_vez.yy > max_yy){
                         tomar = 1;
@@ -105,7 +88,6 @@ void baja_mes(cliente **ini_cliente,turno_cliente **ini_turno_cliente){
                 aux_turno_cliete = aux_turno_cliete -> sgte;
             }
 
-            printf("\nNombre: %s  -----%d/%d/%d-----\n",aux_cliente->nombre,max_dd,max_mm,max_yy);
             mayor = 0;
             if(max_dd != 0){
                 if((max_yy < fecha_global.yy && max_mm != 12))
@@ -133,7 +115,6 @@ void baja_mes(cliente **ini_cliente,turno_cliente **ini_turno_cliente){
         }
         aux_cliente=aux_cliente->sgte;
     }
-            system("pause");
 }
 
 #endif

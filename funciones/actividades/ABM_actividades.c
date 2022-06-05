@@ -20,49 +20,43 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 		printf("1-Aniadir una nueva actividad\n");
 		printf("2-Eliminar una actividad\n");
 		printf("3-Modificar una actividad\n");
-		printf("0-Finalizar");
+		printf("0-Finalizar\n>> ");
 		scanf("%d",&op);
 		
 		switch(op){
 			case 1://aniadir una nueva actividad
 				//se pide espacio en la memoria ------------------------------------------------------------------
+				system("cls");
                  nv = malloc(sizeof( actividad));
                  if(nv != NULL){
-					//  printf("\naaa\n");
                     if(*ini_actividad == NULL){
-						// printf("\naaa111\n");
                         nv->cod_act = 1;
                     }else{
-						// printf("\naaa222\n");
                         aux=*ini_actividad;
                         while(aux->sgte!=NULL){
                             aux = aux->sgte;
-							// printf("\naaa2233\n");
                         }
-						// printf("\naaa333\n");
                         nv->cod_act= aux->cod_act + 1;
-						// printf("\naaa444\n");
                     }
-					// printf("\nbbb\n");
 					if(nv->cod_act != 0 ){
                         fflush(stdin);
-						printf("ingrese el nombre de la actividad: \n");
+						printf("Ingrese el nombre de la actividad: \n");
 						gets(nv->nombre);
-                        //...
 						do{
-							printf("ingrese la cantidad de personas que se tendra por actividad: ");
+							printf("Ingrese la cantidad de personas que se tendra por actividad: ");
 							scanf("%d",&nv->cant_personas);
 						}while(nv->cant_personas < 0);
 						if(nv->cant_personas > 0){
 							do{
-								printf("ingrese la sede en la que se realiza esta actividad: ");
+								printf("Ingrese la sede en la que se realiza esta actividad: ");
 								scanf("%d",&nv->sede);
 							}while(nv->sede < -1 && nv->sede > 2 && nv->sede!=0);
 							if(nv->sede != 0){
 								if(ini_profesor!=NULL){
-									listar_all_profesores(ini_profesor);
 									do{
-										printf("Ingresar el dni del profesor: ");scanf("%ld",&dni_profesor);
+										system("cls");
+										listar_all_profesores(ini_profesor);
+										printf("Ingresar el dni del profesor a cargo de la actividad: ");scanf("%ld",&dni_profesor);
 										buscar = buscar_dni_profesor(dni_profesor,ini_profesor);
 									}while(buscar != 1 && dni_profesor != 0);
 									if(dni_profesor!=0){
@@ -89,7 +83,8 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 			break;
 			case 2://Eliminar una actividad
 				do{//no se saldra del bucle a no ser de que, se encuentre un cliente o el dni ingresado sea 0
-						printf("ingrese el cod de la actividad que desee borrar\n");
+						system("cls");
+						printf("Ingrese el cod de la actividad que desee borrar\n");
 						scanf("%d",&buscar_borrar);
 						buscar_cod = buscar_actividadx(buscar_borrar,*ini_actividad);
 				}while(buscar_cod != 1 && buscar_borrar !=0);
@@ -98,10 +93,6 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 					printf("Esta seguro/a de que quiere eliminar la actividad (1. SI | 0. NO): ");
 					scanf("%d",&op_mod);
 					if(op_mod == 1){
-						/*do{
-							encontrado = borrar_Tcliente();
-						}while(encontrado == 1);*/
-						// borrar_nodo_actividad(buscar_borrar,&*ini_actividad);
 
 
 
@@ -128,6 +119,7 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 			break;
 			case 3:
 				do{//no se saldra del bucle a no ser de que, se encuentre un cliente o el dni ingresado sea 0
+						system("cls");
 						printf("Ingrese el codigo de la actividad que desea buscar para modificar\n");
 						scanf("%d",&modificar);
 						buscar_cod = buscar_actividadx(modificar,*ini_actividad);
@@ -135,8 +127,8 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 
 				if(modificar != 0){
 					do{
-						system("cls");
 						do{
+							system("cls");
 							printf("1-modificar nombre de la actividad \n");
 							printf("2-modificar la cantidad de personas \n");
 							printf("3-modificar la sede de la actividad \n");
@@ -151,9 +143,7 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 			break;
 		}	
 	}while(op != 0);
-	// printf("asdfasdfsadf");
 	free(nv);
-	// printf("123412341234");
 }
 
 

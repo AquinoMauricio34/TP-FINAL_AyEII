@@ -12,13 +12,11 @@
 fecha fecha_global;
 hora hora_global;
 int dia_sem_actual,fecha_modificada,hora_modificada;
-// extern int fecha_modificada;
 
 void fecha_actual(){
     time_t t;
 	struct tm *fecha;
 	
-	// while(1){
 		t = time(NULL);
 		fecha = localtime(&t);
         
@@ -72,8 +70,6 @@ void modificar_fecha(){
     }else if(op == 3){
         hora_modificada = 0;
     }else if(op == 4){
-        // hora_modificada = 1;
-        // printf("Ingresar la hora con formato (hh:mm): ");scanf("%d:%d",&hora_global.hh,&hora_global.mm);
 
 
         do{
