@@ -117,4 +117,91 @@ void listar_all_profesores(profesor *ini){
 		printf("SIN PROFESORES\n");
 }
 
+
+
+void borrar_nodo_profesor(int dato,profesor **ini_profesor){
+    profesor *bor=*ini_profesor,*ant=NULL;
+    buscar_borrar_profesor(dato,&bor,&ant);
+    if(bor != NULL){
+        if(ant == NULL){
+           *ini_profesor = (*ini_profesor)->sgte;
+        }else{
+            ant->sgte = bor->sgte;
+        }
+        bor->sgte = NULL;
+        free(bor);
+    }else
+         printf("no existe el dato no esta en la lista\n");
+}
+
+
+void buscar_borrar_profesor(long int dato,profesor **bor,profesor **ant){
+    *ant = NULL;
+    int encontrado=0;
+    while(*bor != NULL && encontrado != 1){
+        if(dato == (*bor)->dni){
+            encontrado = 1;
+        }else{
+            *ant = *bor;
+            *bor = (*bor)->sgte;
+        }
+    }
+}
+
+
+int buscar_dni_profesor(long int dni,profesor *ini_profesor){
+    int buscar=0;
+	while(ini_profesor != NULL && buscar != 1){
+		if(ini_profesor->dni == dni)
+			buscar = 1;
+		ini_profesor = ini_profesor->sgte;
+	}
+	return buscar;
+}
+
+
+void insertar_profesor(profesor **nv, profesor **ini_profesor){
+    profesor *aux = *ini_profesor;
+    if(*ini_profesor != NULL){
+        while(aux->sgte != NULL){
+            aux = aux->sgte;
+        }
+        aux->sgte = *nv;
+        *nv = NULL;
+    }else{
+        *ini_profesor = *nv;
+        *nv = NULL;
+	}
+    
+}
+
+
+void listar_actividades(actividad *ini){
+	while(ini != NULL){
+		printf("%-10d| %s\n",ini->cod_act,ini->nombre);
+		ini = ini->sgte;
+	}
+}
+
+
+
+void modificar_profesor(long int dato,int op,profesor **ini_profesor){
+	int buscar,codigo;
+	int encontrado = 0;
+	profesor *aux = *ini_profesor;
+	while(aux != NULL && encontrado != 1){
+		if(aux->dni == dato){
+			if(op==1){
+				fflush(stdin);
+				gets(aux->nombre);
+			}else if(op==2){
+				scanf("%ld",&aux->telefono);
+			}
+			encontrado = 1;
+		}
+		
+		aux = aux->sgte;	
+	}
+}
+
 #endif

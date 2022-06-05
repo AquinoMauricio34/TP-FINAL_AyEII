@@ -227,4 +227,142 @@ int buscar_dni_turno_cliente(long int dni,turno_cliente *ini_turno_cliente){
 	return encontrado;
 }
 
+
+void borrar_nodo_clientest(int buscar_borrar,turno_cliente **ini_clientest){
+    turno_cliente *bor=*ini_clientest,*ant=NULL;
+    buscar_borrar_clientest(buscar_borrar,&bor,&ant);
+    if(bor != NULL){
+        if(ant == NULL){
+            *ini_clientest = (*ini_clientest)->sgte;
+        }else{
+        ant->sgte = bor->sgte;
+        }
+        bor->sgte = NULL;
+        free(bor);
+    }else
+        printf("no existe el dato no esta en la lista\n");
+}
+
+void borrar_nodo_baja(turno_cliente **ini_turno_cliente){
+    turno_cliente *aux_turno_cliente=*ini_turno_cliente,*aux2=NULL;
+    while(aux_turno_cliente != NULL){
+        if(aux_turno_cliente->baja == 1 && aux_turno_cliente->debe == 0){
+            aux2 = aux_turno_cliente->sgte;
+            borrar_nodo_clientest(aux_turno_cliente->cod_clientesta,&*ini_turno_cliente);
+            aux_turno_cliente = aux2;
+        }else
+            aux_turno_cliente = aux_turno_cliente->sgte;
+    }
+}
+
+
+int buscar_actividades_clientesta(int cod_act,int sede,actividad *ini_actividad,turno_cliente *ini_turno_cliente){
+	int buscar=0,cont;
+	turno_cliente *aux_t_cliente=NULL;
+	while(ini_actividad != NULL && buscar!=1 && buscar!=-1){
+		if(ini_actividad->cod_act == cod_act && ini_actividad->estado == 1 && (ini_actividad->sede == sede || ini_actividad->sede == -1)){
+			aux_t_cliente = ini_turno_cliente;
+			cont = 0;
+			while(aux_t_cliente != NULL){
+
+				if(aux_t_cliente->cod_act == ini_actividad->cod_act && aux_t_cliente->baja == 0){
+					cont++;
+				}
+
+				aux_t_cliente = aux_t_cliente->sgte;
+			}
+			if(cont < ini_actividad->cant_personas){
+				buscar = 1;
+			}else
+				buscar = -1;
+		}
+		ini_actividad = ini_actividad->sgte;
+	}
+	aux_t_cliente=NULL;
+	return (buscar);
+}
+
+
+
+void buscar_borrar_clientest(long int dato,turno_cliente **bor,turno_cliente **ant){
+    *ant = NULL;
+    int encontrado=0;
+    while(*bor != NULL && encontrado != 1){
+        if(dato == (*bor)->cod_clientesta){
+            encontrado = 1;
+        }else{
+            *ant = *bor;
+            *bor = (*bor)->sgte;
+        }
+    }
+}
+
+
+
+int buscar_turno(int turno,int cod_actividad,tipo_turno *ini_turno){
+	int buscar=0;
+	while(ini_turno != NULL && buscar != 1){
+		if(ini_turno->cod_turno == turno && ini_turno->cod_act == cod_actividad && ini_turno->estado == 1){
+			buscar = 1;
+		}
+		ini_turno = ini_turno->sgte;
+	}
+	
+	return buscar;
+}
+
+
+void insertar_codigo_cliente(turno_cliente **nv,turno_cliente **ini_clientesta){
+	turno_cliente *aux = *ini_clientesta;
+	if(*ini_clientesta == NULL){
+		(*nv)->cod_clientesta = 1;
+	}else{
+		while(aux->sgte != NULL){
+			aux = aux->sgte;
+		}
+		(*nv)->cod_clientesta = aux->cod_clientesta+1;
+	}
+}
+
+
+
+void insertar_clientesta(turno_cliente **nv,turno_cliente **ini_clientesta){
+     turno_cliente *aux = *ini_clientesta;
+     if(*ini_clientesta != NULL){
+          while(aux->sgte!= NULL){
+               aux = aux->sgte;
+          }
+          aux->sgte = *nv;
+          *nv = NULL;
+     }else{
+          *ini_clientesta = *nv;
+          *nv = NULL;
+     }
+}
+
+
+void recorrer_actividades(int sede,actividad *ini){
+	while(ini != NULL){
+		if((ini->sede == sede || ini->sede == -1) && ini->estado == 1){
+			printf("%-10d| %s\n",ini->cod_act,ini->nombre);
+		}
+		ini = ini->sgte;
+	}
+}
+
+
+void recorrer_turnos(int cod_act,tipo_turno *ini_turno){
+	int buscar=0;
+	while(ini_turno != NULL){
+		if(ini_turno->cod_act == cod_act){
+			printf("cod_t: %7d | cod_act: %7d | precio: %.2f | est: %d\n",ini_turno->cod_turno,ini_turno->cod_act,ini_turno->precio,ini_turno->estado);
+            printf("Dias %d-%d-%d-%d-%d\n",ini_turno->dias[0],ini_turno->dias[1],ini_turno->dias[2],ini_turno->dias[3],ini_turno->dias[4]);
+            printf("Hora ini: %d:%d, Hora fin: %d:%d\n",ini_turno->hora_inicio_turno.hh,ini_turno->hora_inicio_turno.mm,ini_turno->hora_fin_turno.hh,ini_turno->hora_fin_turno.mm);
+            printf("-----------\n");
+		}
+		ini_turno = ini_turno->sgte;
+	}
+	
+}
+
 #endif

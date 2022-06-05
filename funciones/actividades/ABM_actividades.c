@@ -200,4 +200,77 @@ void listar_all_actividades(actividad *ini){
 	}else
 		printf("\nSIN ACTIVIDADES\n");
 }
+
+int buscar_actividadx(int codigo,actividad *ini_actividad){
+	int buscar=0;
+	while(ini_actividad != NULL && buscar != 1){
+		if(ini_actividad->cod_act == codigo){
+			buscar = 1;
+		}else{
+			buscar = 0;
+		}
+		ini_actividad = ini_actividad->sgte;
+	}
+	
+	return buscar;
+}
+
+
+
+void insertar_actividad(actividad **nv, actividad **ini_actividad){
+    actividad *aux = *ini_actividad;
+    if(*ini_actividad != NULL){
+        while(aux->sgte != NULL){
+            aux = aux->sgte;
+        }
+        aux->sgte = *nv;
+        *nv = NULL;
+    }else{
+        *ini_actividad = *nv;
+        *nv = NULL;
+	}
+    
+}
+
+
+
+
+void modificar_actividad(long int dato,int op,actividad **ini_actividad){
+	int encontrado = 0;
+	actividad *aux = *ini_actividad;
+	while(aux != NULL && encontrado != 1){
+		
+		if(aux->cod_act== dato && aux->estado != 0){
+		
+			if(op==1){
+				fflush(stdin);
+				printf("NOMBRE DE LA ACTIVIDAD\n");
+				printf("Nombre actual: ");puts(aux->nombre);
+				printf("Nuevo nombre: ");
+				fflush(stdin);
+				gets(aux->nombre);
+			}else if(op==2){
+				printf("CANTIDAD DE CUPOS DE LA ACTIVIDAD\n");
+				printf("Cantidad actual: %d\n",aux->cant_personas);
+				printf("Nueva cantidad: ");
+				scanf("%d",&aux->cant_personas);
+			}else if(op==3){
+				printf("SEDE DE LA ACTIVIDAD\n");
+				printf("Sede actual: %d\n",aux->sede);
+				printf("Nueva sede: ");
+				scanf("%d",&aux->sede);
+			}else if(op==4){
+				printf("DNI PROFESOR DE LA ACTIVIDAD\n");
+				printf("Dni profesor actual: %d\n",aux->dni_profesor);
+				printf("Nueva dni profesor: ");
+				scanf("%d",&aux->dni_profesor);
+
+			}
+			encontrado = 1;
+		}
+		
+		aux = aux->sgte;	
+	}
+}
+
 #endif
