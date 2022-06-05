@@ -29,7 +29,6 @@ void fecha_actual(){
             fecha->tm_mday = fecha_global.dd;
             fecha->tm_mon = fecha_global.mm-1;
             fecha->tm_year = fecha_global.yy-1900;
-            printf("\naaa\n");
             mktime(fecha);
             dia_sem_actual = fecha->tm_wday;
 
