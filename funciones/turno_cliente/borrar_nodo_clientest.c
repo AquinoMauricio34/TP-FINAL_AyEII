@@ -1,7 +1,6 @@
 #ifndef BORRAR_NODO_CLIENTEST_C
 #define BORRAR_NODO_CLIENTEST_C
 
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>

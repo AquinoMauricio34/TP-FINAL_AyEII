@@ -84,7 +84,7 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 			case 2://Eliminar una actividad
 				do{//no se saldra del bucle a no ser de que, se encuentre un cliente o el dni ingresado sea 0
 						system("cls");
-						printf("Ingrese el cod de la actividad que desee borrar\n");
+						printf("Ingrese el cod de la actividad que desee borrar: ");
 						scanf("%d",&buscar_borrar);
 						buscar_cod = buscar_actividadx(buscar_borrar,*ini_actividad);
 				}while(buscar_cod != 1 && buscar_borrar !=0);
@@ -120,7 +120,7 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 			case 3:
 				do{//no se saldra del bucle a no ser de que, se encuentre un cliente o el dni ingresado sea 0
 						system("cls");
-						printf("Ingrese el codigo de la actividad que desea buscar para modificar\n");
+						printf("Ingrese el codigo de la actividad que desea buscar para modificar: ");
 						scanf("%d",&modificar);
 						buscar_cod = buscar_actividadx(modificar,*ini_actividad);
 				}while(buscar_cod != 1 && modificar !=0);
@@ -133,7 +133,7 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 							printf("2-modificar la cantidad de personas \n");
 							printf("3-modificar la sede de la actividad \n");
 							printf("4-modificar dni del profesor \n");
-							printf("0-Finalizar\n");
+							printf("0-Finalizar\n>> ");
 							scanf("%d",&op_mod);
 						}while(op_mod<0 || op_mod>4);
 						system("cls");
