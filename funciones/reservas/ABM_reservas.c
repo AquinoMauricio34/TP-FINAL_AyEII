@@ -229,10 +229,10 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
 
 void listar_actividades_sede(actividad *ini_actividad,int eleccion_sede){
     if(ini_actividad != NULL){
-        printf("%10s | %30s |\n","CODIGO","ACTIVIDAD");
+        printf("%-10s | %-30s |\n","CODIGO","ACTIVIDAD");
         while(ini_actividad != NULL){
             if((eleccion_sede == ini_actividad->sede || ini_actividad->sede == -1) && ini_actividad->estado == 1){
-                printf("%10d | %30s |\n",ini_actividad->cod_act,ini_actividad->nombre);
+                printf("%-10d | %-30s |\n",ini_actividad->cod_act,ini_actividad->nombre);
             }
             ini_actividad = ini_actividad->sgte;
         }
@@ -260,10 +260,11 @@ void listar_tipo_turno(tipo_turno *ini_tipo_turno,int eleccion_actividad){
     char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Vienes"};
     int i;
     
-    printf("%10s | %13s | %10s | %10s | %15s | %15s |\n\n","C. TURNO","C. ACTIVIDAD","PRECIO","ESTADO","H. INICIO","H. FIN");
+    printf("%-10s | %-13s | %-10s | %-10s | %-15s | %-15s |\n","CODIGO","CODIGO","PRECIO","ESTADO","HORA","HORA");
+    printf("%-10s | %-13s | %-10s | %-10s | %-15s | %-15s |\n\n","TURNO","ACTIVIDAD","","","INICIO","FIN");
     while(ini_tipo_turno != NULL){
         if(eleccion_actividad == ini_tipo_turno->cod_act && ini_tipo_turno->estado == 1){
-            printf("%10d | %13d | %10.2f | %10d | %13d:%d | %13d:%d |\n",ini_tipo_turno->cod_turno,ini_tipo_turno->cod_act,ini_tipo_turno->precio,ini_tipo_turno->estado,ini_tipo_turno->hora_inicio_turno.hh,ini_tipo_turno->hora_inicio_turno.mm,ini_tipo_turno->hora_fin_turno.hh,ini_tipo_turno->hora_fin_turno.mm);
+            printf("%-10d | %-13d | %-10.2f | %-10d | %d:%-13d | %d:%-13d |\n",ini_tipo_turno->cod_turno,ini_tipo_turno->cod_act,ini_tipo_turno->precio,ini_tipo_turno->estado,ini_tipo_turno->hora_inicio_turno.hh,ini_tipo_turno->hora_inicio_turno.mm,ini_tipo_turno->hora_fin_turno.hh,ini_tipo_turno->hora_fin_turno.mm);
             for(i=0;i<5;i++){
                 if(ini_tipo_turno->dias[i]==1){
                     printf("%s\n",nombres_dias_sem[i]);
@@ -403,11 +404,9 @@ void modificar_reserva(long int dato,int op,reserva **ini_reserva){
 
 void listar_reservas(reserva *ini){
 	if(ini!=NULL){
-        printf("%10s | %10s | %7s |\n","DNI","ACTIVIDAD","TURNO");
-        printf("-----------------------------------------------\n\n");
+        printf("%-10s | %-10s | %-7s |\n\n","DNI","ACTIVIDAD","TURNO");
 		while(ini != NULL){
-            printf("%10ld | %10d | %7d |\n",ini->dni,ini->cod_act,ini->cod_turno);
-            printf("-----------------------------------------------\n");
+            printf("%-10ld | %-10d | %-7d |\n",ini->dni,ini->cod_act,ini->cod_turno);
 			ini = ini->sgte;
 		}
 	}else

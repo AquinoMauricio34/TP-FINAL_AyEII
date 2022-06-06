@@ -48,7 +48,7 @@ void ABM_actividades(actividad **ini_actividad,tipo_turno **ini_turno_cliente,pr
 						}while(nv->cant_personas < 0);
 						if(nv->cant_personas > 0){
 							do{
-								printf("Ingrese la sede en la que se realiza esta actividad: ");
+								printf("Ingrese la sede en la que se realiza esta actividad (-1 para cualquier sede): ");
 								scanf("%d",&nv->sede);
 							}while(nv->sede < -1 && nv->sede > 2 && nv->sede!=0);
 							if(nv->sede != 0){
@@ -193,9 +193,9 @@ void baja_turnos_cliente_seguntturno(int codigo_tt,turno_cliente **ini_turno_cli
 
 void listar_all_actividades(actividad *ini){
 	if(ini!=NULL){
-			printf("%10s | %30s | %8s | %8s | %8s | %8s\n\n","CODIGO","NOMBRE","CUPO","SEDE","ESTADO","FECHA BAJA");
+			printf("%-10s | %-30s | %-8s | %-8s | %-8s | %-8s\n\n","CODIGO","NOMBRE","CUPO","SEDE","ESTADO","FECHA BAJA");
 		while(ini != NULL){
-			printf("%10d | %30s | %8d | %8d | %8d | %8d/%d/%d\n",ini->cod_act,ini->nombre,ini->cant_personas,ini->sede,ini->estado,ini->fecha_baja.dd,ini->fecha_baja.mm,ini->fecha_baja.yy);
+			printf("%-10d | %-30s | %-8d | %-8d | %-8d | %-8d/%d/%d\n",ini->cod_act,ini->nombre,ini->cant_personas,ini->sede,ini->estado,ini->fecha_baja.dd,ini->fecha_baja.mm,ini->fecha_baja.yy);
 			ini = ini->sgte;
 		}
 	}else
