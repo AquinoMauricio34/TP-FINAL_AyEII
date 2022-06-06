@@ -109,6 +109,7 @@ void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad){
 
 void listar_all_profesores(profesor *ini){
 	if(ini!=NULL){
+			printf("%15s | %30s | %15s |\n\n","DNI","NOMBRE","TELEFONO");
 		while(ini != NULL){
 			printf("%15ld | %30s | %15ld |\n",ini->dni,ini->nombre,ini->telefono);
 			ini = ini->sgte;
@@ -176,12 +177,6 @@ void insertar_profesor(profesor **nv, profesor **ini_profesor){
 }
 
 
-void listar_actividades(actividad *ini){
-	while(ini != NULL){
-		printf("%-10d| %s\n",ini->cod_act,ini->nombre);
-		ini = ini->sgte;
-	}
-}
 
 
 

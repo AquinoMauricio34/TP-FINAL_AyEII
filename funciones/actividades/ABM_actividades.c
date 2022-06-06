@@ -193,8 +193,7 @@ void baja_turnos_cliente_seguntturno(int codigo_tt,turno_cliente **ini_turno_cli
 
 void listar_all_actividades(actividad *ini){
 	if(ini!=NULL){
-			printf("    CODIGO |                         NOMBRE |     CUPO | \n");
-			printf(" ACTIVIDAD |                                |          |\n\n");
+			printf("%10s | %30s | %8s | %8s | %8s | %8s\n\n","CODIGO","NOMBRE","CUPO","SEDE","ESTADO","FECHA BAJA");
 		while(ini != NULL){
 			printf("%10d | %30s | %8d | %8d | %8d | %8d/%d/%d\n",ini->cod_act,ini->nombre,ini->cant_personas,ini->sede,ini->estado,ini->fecha_baja.dd,ini->fecha_baja.mm,ini->fecha_baja.yy);
 			ini = ini->sgte;

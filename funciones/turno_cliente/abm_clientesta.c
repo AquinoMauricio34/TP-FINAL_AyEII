@@ -179,10 +179,10 @@ int buscar_dni_clientesta_turno_repetido(long int dni,int codigo_turno,turno_cli
 
 void listar_all_turnos_clientes(turno_cliente *ini){
 	if(ini!=NULL){
+			printf("%10s | %13s | %13s | %10s | %7s | %17s | %7s |\n","CODIGO","CODIGO","CODIGO","DNI","DEBE","F. ULTIMA","BAJA");
+			printf("%10s | %13s | %13s | %10s | %7s | %17s | %7s |\n\n","TURNO","ACTIVIDAD","T. CLIENTE","","","VEZ","");
 		while(ini != NULL){
-			printf("cod_t: %d | cod_a: %d | cod_clientesta: %d | dni: %ld |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni);
-			printf("debe: %f | ult_v: %d/%d/%d | baja: %d\n",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy,ini->baja);
-            printf("--------------\n");
+			printf("%10d | %13d | %13d | %10ld | %7.2f | %10d/%d/%d | %7d |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni, ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy,ini->baja);
 			ini = ini->sgte;
 		}
 	}else
@@ -192,11 +192,11 @@ void listar_all_turnos_clientes(turno_cliente *ini){
 
 void listar_turnos_cliente(long int dni_cliente,turno_cliente *ini){
 	if(ini!=NULL){
+		printf("%10s | %13s | %13s | %10s | %7s | %17s | %7s |\n","CODIGO","CODIGO","CODIGO","DNI","DEBE","F. ULTIMA","BAJA");
+		printf("%10s | %13s | %13s | %10s | %7s | %17s | %7s |\n\n","TURNO","ACTIVIDAD","T. CLIENTE","","","VEZ","");
 		while(ini != NULL){
 			if(ini->dni == dni_cliente && ini->baja == 0){
-				printf("cod_t: %d | cod_a: %d | cod_clientesta: %d | dni: %ld |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni);
-				printf("debe: %d | ult_v: %d/%d\n",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy);
-				printf("--------------");
+				printf("%10d | %13d | %13d | %10ld | %7.2f | %10d/%d/%d | %7d |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni, ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy,ini->baja);
 			}
 			ini = ini->sgte;
 		}

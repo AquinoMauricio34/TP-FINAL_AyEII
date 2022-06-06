@@ -13,7 +13,7 @@ void listar_sede_actividades(actividad *ini_actividad,turno_cliente *ini_turno){
 	turno_cliente *aux_turno_cliente=NULL;
 	while(i <= 2){
 		if(i != 0){
-			printf("sede %d \n",i);
+			printf("Sede %d \n",i);
 			aux_actividad = ini_actividad;
 			while(aux_actividad != NULL){
 				if(aux_actividad->sede == i){

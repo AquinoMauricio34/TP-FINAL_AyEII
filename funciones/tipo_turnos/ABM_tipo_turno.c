@@ -334,16 +334,22 @@ void modificar_tipo_turno(long int dato,int op,reserva **ini_tipo_turno){
 
 
 
-void listar_all_tipo_turnos(tipo_turno *ini){
-	if(ini!=NULL){
-		while(ini != NULL){
-			printf("cod_t: %7d | cod_act: %7d | precio: %.2f | est: %d\n",ini->cod_turno,ini->cod_act,ini->precio,ini->estado);
-            printf("Dias %d-%d-%d-%d-%d\n",ini->dias[0],ini->dias[1],ini->dias[2],ini->dias[3],ini->dias[4]);
-            printf("Hora inicio: %d:%d, Hora fin: %d:%d\n",ini->hora_inicio_turno.hh,ini->hora_inicio_turno.mm,ini->hora_fin_turno.hh,ini->hora_fin_turno.mm);
-            printf("-----------\n");
-            
-			ini = ini->sgte;
-		}
+void listar_all_tipo_turnos(tipo_turno *ini_tipo_turno){
+    char nombres_dias_sem[5][15]={"Lunes","Martes","Miercoles","Jueves","Vienes"};
+    int i;
+	if(ini_tipo_turno!=NULL){
+        printf("%10s | %13s | %10s | %10s | %15s | %15s |\n\n","C. TURNO","C. ACTIVIDAD","PRECIO","ESTADO","H. INICIO","H. FIN");
+        while(ini_tipo_turno != NULL){
+                printf("%10d | %13d | %10.2f | %10d | %13d:%d | %13d:%d |\n",ini_tipo_turno->cod_turno,ini_tipo_turno->cod_act,ini_tipo_turno->precio,ini_tipo_turno->estado,ini_tipo_turno->hora_inicio_turno.hh,ini_tipo_turno->hora_inicio_turno.mm,ini_tipo_turno->hora_fin_turno.hh,ini_tipo_turno->hora_fin_turno.mm);
+                for(i=0;i<5;i++){
+                    if(ini_tipo_turno->dias[i]==1){
+                        printf("%s\n",nombres_dias_sem[i]);
+                    }
+                }
+                printf("----------\n");
+            ini_tipo_turno = ini_tipo_turno->sgte;
+        }
+		
 	}else
 		printf("\nSIN TURNOS \n");
 }

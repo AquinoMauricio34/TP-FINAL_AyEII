@@ -123,21 +123,24 @@ int buscar_dni_turno_cliente_cuenta(long int dni,turno_cliente *ini_turno_client
 
 void listar_turnos_cliente_segunactividad(long int dni_cliente,int eleccion_actividad,turno_cliente *ini){
     if(ini!=NULL){
+        printf("%10s | %13s | %13s | %10s | %7s | %17s | %7s |\n","CODIGO","CODIGO","CODIGO","DNI","DEBE","F. ULTIMA","BAJA");
+ 		printf("%10s | %13s | %13s | %10s | %7s | %17s | %7s |\n\n","TURNO","ACTIVIDAD","T. CLIENTE","","","VEZ","");
 		while(ini != NULL){
 			if(ini->dni == dni_cliente && ini->cod_act == eleccion_actividad){
-				printf("cod_t: %d | cod_a: %d | cod_clientesta: %d | dni: %ld |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni);
-				printf("debe: %f | ult_v: %d/%d\n",ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy);
-				printf("--------------");
+                printf("%10d | %13d | %13d | %10ld | %7.2f | %10d/%d/%d | %7d |\n",ini->cod_turno,ini->cod_act,ini->cod_clientesta,ini->dni, ini->debe,ini->f_ultima_vez.dd,ini->f_ultima_vez.mm,ini->f_ultima_vez.yy,ini->baja);
 			}
 			ini = ini->sgte;
 		}
 	}
 }
 
+
 void listar_all_cuentas(cuenta *ini){
     if(ini!=NULL){
+			printf("%10s | %7s | %13s |\n","CODIGO","PRECIO","FECHA");
+			printf("%10s | %7s | %13s |\n\n","T. CLIENTE","","PAGO");
 		while(ini != NULL){
-			printf("cod_clientesta: %d | precio: %.2f | f_pago: %d/%d/%d\n",ini->cod_clientesta,ini->precio,ini->f_pago.dd,ini->f_pago.mm,ini->f_pago.yy);
+			printf("%10d | %7.2f | %13d/%d/%d |\n",ini->cod_clientesta,ini->precio,ini->f_pago.dd,ini->f_pago.mm,ini->f_pago.yy);
 			ini = ini->sgte;
 		}
 	}else
