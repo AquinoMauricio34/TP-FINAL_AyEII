@@ -36,10 +36,15 @@ int main(){
         	
             system("cls");
             fecha_actual();
+            //carga deuda a cada cliente al inicio de cada mes
             deudas(&ini_turno_cliente,ini_tipo_turno,ini_cuenta);
+            //da de baja a todos los cliente que faltaron un mes
             baja_mes(&ini_cliente,&ini_turno_cliente);
+            //baja a las actividad con estado -1
             baja_actividad_estado(&ini_actividad,&ini_tipo_turno,&ini_turno_cliente);
+            //baja a los tipo turno
             baja_tipo_turno_estado(&ini_tipo_turno,&ini_turno_cliente);
+            //borrar todos los nodos (de turno cliente) que tengo debe = 0 y baja = 1
             borrar_nodo_baja(&ini_turno_cliente);//borra los nodos que esten de baja y con debe 0.
             // printf("\nsem = %d\n",dia_sem_actual);
             printf("%d/%d/%d %d:%d %s\n\n",fecha_global.dd,fecha_global.mm,fecha_global.yy,hora_global.hh,hora_global.mm,nombres_dias_sem[dia_sem_actual]);
@@ -143,6 +148,10 @@ int main(){
             break;
             case 14:
                 system("cls");
+	                if(ini_cuenta!=NULL){
+			 			printf("%-10s | %-7s | %-13s |\n","CODIGO","PRECIO","FECHA");
+			 			printf("%-10s | %-7s | %-13s |\n\n","T. CLIENTE","","PAGO");
+			 		}
                 listar_all_cuentas(ini_cuenta);
                 system("pause");
             break;

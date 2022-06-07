@@ -193,9 +193,9 @@ void baja_turnos_cliente_seguntturno(int codigo_tt,turno_cliente **ini_turno_cli
 
 void listar_all_actividades(actividad *ini){
 	if(ini!=NULL){
-			printf("%-10s | %-30s | %-8s | %-8s | %-8s | %-8s\n\n","CODIGO","NOMBRE","CUPO","SEDE","ESTADO","FECHA BAJA");
+			printf("%-10s | %-30s | %-8s | %-8s | %-8s | %-8s | %-12s |\n\n","CODIGO","NOMBRE","CUPO","SEDE","ESTADO","FECHA BAJA","DNI PROFESOR");
 		while(ini != NULL){
-			printf("%-10d | %-30s | %-8d | %-8d | %-8d | %-8d/%d/%d\n",ini->cod_act,ini->nombre,ini->cant_personas,ini->sede,ini->estado,ini->fecha_baja.dd,ini->fecha_baja.mm,ini->fecha_baja.yy);
+			printf("%-10d | %-30s | %-8d | %-8d | %-8d | %d/%d/%-8d | %-12ld |\n",ini->cod_act,ini->nombre,ini->cant_personas,ini->sede,ini->estado,ini->fecha_baja.dd,ini->fecha_baja.mm,ini->fecha_baja.yy,ini->dni_profesor);
 			ini = ini->sgte;
 		}
 	}else
@@ -237,7 +237,7 @@ void insertar_actividad(actividad **nv, actividad **ini_actividad){
 
 
 void modificar_actividad(long int dato,int op,actividad **ini_actividad){
-	int encontrado = 0;
+	int encontrado = 0,datoo;
 	actividad *aux = *ini_actividad;
 	while(aux != NULL && encontrado != 1){
 		
@@ -251,16 +251,25 @@ void modificar_actividad(long int dato,int op,actividad **ini_actividad){
 				fflush(stdin);
 				gets(aux->nombre);
 			}else if(op==2){
-				printf("CANTIDAD DE CUPOS DE LA ACTIVIDAD\n");
-				printf("Cantidad actual: %d\n",aux->cant_personas);
-				printf("Nueva cantidad: ");
-				scanf("%d",&aux->cant_personas);
+				do{
+					system("cls");
+					printf("CANTIDAD DE CUPOS DE LA ACTIVIDAD\n");
+					printf("Cantidad actual: %d\n",aux->cant_personas);
+					printf("Nueva cantidad: ");
+					scanf("%d",&datoo);
+				}while(datoo <=  0);
+				aux->cant_personas = datoo;
 			}else if(op==3){
-				printf("SEDE DE LA ACTIVIDAD\n");
-				printf("Sede actual: %d\n",aux->sede);
-				printf("Nueva sede: ");
-				scanf("%d",&aux->sede);
+				do{
+					system("cls");
+					printf("SEDE DE LA ACTIVIDAD\n");
+					printf("Sede actual: %d\n",aux->sede);
+					printf("Nueva sede: ");
+					scanf("%d",&datoo);
+				}while(datoo <-1 && datoo > 2 && datoo == 0);
+				aux->sede = datoo;
 			}else if(op==4){
+				
 				printf("DNI PROFESOR DE LA ACTIVIDAD\n");
 				printf("Dni profesor actual: %d\n",aux->dni_profesor);
 				printf("Nueva dni profesor: ");

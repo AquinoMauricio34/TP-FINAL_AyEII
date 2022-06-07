@@ -59,6 +59,7 @@ void deudores_mayo(turno_cliente *ini_turno_cliente,cuenta *ini_cuenta,cliente *
 	printf("DEUDORES MAYO ANIO %d\n\n",eleccion_yy);
 	if(arbol != NULL){
 		do{
+			system("pause");
 			inorder(arbol);
 			printf("\n");
 			system("pause");

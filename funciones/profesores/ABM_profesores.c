@@ -54,7 +54,7 @@ void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad){
 						if(buscar_dni == -1){
 							printf("EL PROFESOR NO PUEDE SER ELIMINADO, DEBIDO A QUE ES TITULAR EN 1 O MAS ACTIVIDADES.\nDEBE MODIFICAR EL DNI DEL PROFESOR A ELIMINAR EN CADA UNA DE LAS ACTIVIDADES.\n");
 						}
-						printf("Ingrese el dni del profesor que desee borrar\n");
+						printf("Ingrese el dni del profesor que desee borrar: ");
 						scanf("%ld",&buscar_borrar);
 						buscar_dni = buscar_dni_profesor(buscar_borrar,*ini_profesor);
 						aux_actividad = ini_actividad;

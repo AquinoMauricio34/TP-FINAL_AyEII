@@ -34,7 +34,6 @@ void insertar_profesor(profesor **nv, profesor **ini_profesor);
 int buscar_dni_profesor(long int dni,profesor *ini_profesor);
 void ABM_profesores(profesor **ini_profesor,actividad *ini_actividad);
 void borrar_nodo_profesor(int dato,profesor **ini_profesor);
-// int buscar_actividades_profesores(int codigo,actividad *ini_actividad);
 void buscar_borrar_profesor(long int dato,profesor **bor,profesor **ant);
 void insertar_profesor(profesor **nv, profesor **ini_profesor);
 void modificar_profesor(long int dato,int op,profesor **ini_profesor);
@@ -45,10 +44,6 @@ int buscar_dni_cliente(long int dni,cliente *ini_cliente);
 int buscar_dni_cliente_2(long int dni,cliente **ini_cliente,turno_cliente *ini_turno_cliente);
 void insertar_cliente(cliente **nv, cliente **ini_cliente);
 void modificar_cliente(long int dato,int op,cliente **ini_cliente);
-// void borrar_nodo_cliente(int dato,cliente **ini_cliente);
-// int borrar_Tcliente(int dato,turno_cliente **ini_tcliente,int *encontrado);
-// int buscar_actividades_clientes(int codigo,actividad *ini_actividad);
-// void buscar_borrar_Tcliete(long int dato,turno_cliente **bor,turno_cliente **ant);
 void listar_all_clientes(cliente *ini);//LISTO
 void baja_nodo_cliente(long int buscar_borrar,cliente **ini_cliente);
 void baja_turnos_cliente(long int buscar_borrar,turno_cliente **ini_turno_cliente);
@@ -78,7 +73,6 @@ void recorrer_actividades(int sede,actividad *ini);
 void recorrer_turnos(int cod_act,tipo_turno *ini_turno);
 int buscar_turno(int turno,int cod_actividad,tipo_turno *ini_turno);
 void listar_all_turnos_clientes(turno_cliente *ini);//listo
-// int borrar_Tcliente(int dato,turno_cliente **ini_tcliente);
 void listar_turnos_cliente(long int dni_cliente,turno_cliente *ini);//listo
 int buscar_turno_cliente(int eleccion_turno_cliente,long int dni_cliente,turno_cliente *ini_clientesta);
 int buscar_dni_turno_cliente(long int dni,turno_cliente *ini_turno_cliente);
@@ -87,12 +81,14 @@ void baja_tipo_turno_estado(tipo_turno **ini_tipo_turno,turno_cliente **ini_turn
 void borrar_nodo_baja(turno_cliente **ini_turno_cliente);
 
 //cuentas
-int buscar_dni_turno_cliente_cuenta(long int dni,turno_cliente *ini_turno_cliente);
-void insertar_cuenta(cuenta **nv,cuenta **ini_cuenta);
-void listar_turnos_cliente_segunactividad(long int dni_cliente,int eleccion_actividad,turno_cliente *ini);//listo
-int buscar_turno_cliente_cuenta(int eleccion_turno_cliente,int eleccion_actividad,long int dni_cliente,turno_cliente **ini_turno_cliente);
-void listar_all_cuentas(cuenta *ini);
 void pago_cuenta(turno_cliente **ini_turno_cliente,actividad *ini_actividad,tipo_turno *ini_tipo_turno,cuenta **ini_cuenta);
+
+cliente * insertar_cuenta(cuenta **nv, cuenta *ini_cuenta);
+int buscar_turno_cliente_cuenta(int buscar,int eleccion_turno_cliente,int eleccion_actividad,long int dni_cliente,turno_cliente **aux_turno_cliente,turno_cliente *ini_clientesta);
+int buscar_dni_turno_cliente_cuenta(int encontrado,long int dni,turno_cliente *ini_turno_cliente);
+int listar_turnos_cliente_segunactividad(long int dni_cliente,int eleccion_actividad,turno_cliente *ini,int con_cuentas);
+void listar_all_cuentas(cuenta *ini);
+
 
 
 void baja_mes(cliente **ini_cliente,turno_cliente **ini_turno_cliente);

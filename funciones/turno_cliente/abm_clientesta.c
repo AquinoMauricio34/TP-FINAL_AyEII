@@ -101,7 +101,7 @@ void abm_clientes_ta(turno_cliente **ini_clientesta,tipo_turno **ini_turno,activ
 												}
 												aux_tipo_turno = aux_tipo_turno->sgte;
 											}
-											insertar_cuenta(&nv_cuenta,&*ini_cuenta);
+											*ini_cuenta = insertar_cuenta(&nv_cuenta,*ini_cuenta);
 										}else
 											printf("No se puede crear la cuenta");
 									}

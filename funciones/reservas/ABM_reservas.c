@@ -114,17 +114,21 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
                     encontrado = 0;
                     eleccion_actividad = (*ini_reserva)->cod_act;
                     aux_actividad = ini_actividad;
+                    printf("\nEleccion; %d\n",eleccion_actividad);
                     while(aux_actividad != NULL){
-
+                        printf("\naux act = %d\n",aux_actividad->cod_act);
                         if(aux_actividad->cod_act == eleccion_actividad){
                             aux_turno_cliente = *ini_turno_cliente;
                             cont = 0;//se verifica que existe la actividad, entonces cont = 0
                             while(aux_turno_cliente != NULL){
+                                printf("\naux turno = %d\n",aux_actividad->cod_act);
                                 if(aux_turno_cliente->cod_act == eleccion_actividad && aux_turno_cliente->baja == 0){
+                                    printf("adentro\n");
                                     cont++;
                                 }
                                 aux_turno_cliente = aux_turno_cliente->sgte;
                             }
+                            printf("\ncont = %d\n",cont);
                             if(cont < aux_actividad->cant_personas){
                                 encontrado = 1;
                             }
@@ -132,6 +136,7 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
                             aux_actividad = NULL;
                         }else
                             aux_actividad = aux_actividad->sgte;
+                            system("pause");
                     }
                     // system("pause");
                     if(encontrado == 1){
@@ -188,7 +193,7 @@ void ABM_reservas(reserva **ini_reserva,actividad *ini_actividad, tipo_turno *in
                                                 }
                                                 aux_tipo_turno = aux_tipo_turno->sgte;
                                             }
-                                            insertar_cuenta(&nv_cuenta,&*ini_cuenta);
+                                            *ini_cuenta = insertar_cuenta(&nv_cuenta,*ini_cuenta);
                                         }else
                                             printf("No se puede crear la cuenta");
                                         printf("TURNO DE CLIENTE CREADO EXITOSAMENTE.\n");
